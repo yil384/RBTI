@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RBTI — MBTI已经过时，SBTI不够学术，RBTI来了。</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+  <style>
+    :root {
+      --bg: #f5f5ff;
+      --panel: #ffffff;
+      --text: #1e2a22;
+      --muted: #6a786f;
+      --line: #dbe8dd;
+      --soft: #eef2ff;
+      --accent: #6366f1;
+      --accent-strong: #4f46e5;
+      --shadow: 0 16px 40px rgba(99,102,241,.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, #f8f8ff 0, #f5f5ff 36%, #f0f0fa 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      margin-top: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.18), rgba(99, 102, 241, 0.02));
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--accent-strong);
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+    .hero .sub {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 24px;
+    }
+
+    .mini-panel {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fbfbff, #f3f3fa);
+    }
+
+    .mini-panel h3 {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .mini-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+        .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .hero-minimal {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 48px 24px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-minimal::after { display: none; }
+    .hero-minimal h1 {
+      max-width: none;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-actions-single {
+      justify-content: center;
+      margin-top: 28px;
+    }
+    .hero-subtitle {
+      color: #999;
+      font-size: 0.92rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-subtitle span { white-space: nowrap; }
+    .hero-formula {
+      display: inline-block;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 0.3rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.02em;
+    }
+    .hero-formula sub, .hero-formula sup {
+      font-size: 0.7em;
+    }
+    .hero-icons {
+      display: flex;
+      gap: 18px;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      opacity: 0.25;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-doodles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-doodles span {
+      position: absolute;
+      font-size: 2.2rem;
+      opacity: 0.07;
+      user-select: none;
+    }
+    .hero-credits {
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      color: #bbb;
+      font-size: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-credits a { color: #999; }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+      font: inherit;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { cursor: not-allowed; opacity: 0.55; transform: none; }
+
+    .btn-primary {
+      background: var(--accent-strong);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.18);
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--accent-strong);
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .test-wrap,
+    .result-wrap {
+      margin-top: 22px;
+      padding: 22px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .progress {
+      flex: 1;
+      min-width: 240px;
+      height: 10px;
+      background: #edeef8;
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress > span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #a5b4fc, #6366f1);
+      border-radius: inherit;
+      transition: width .22s ease;
+    }
+
+    .progress-text {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .question {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfbff);
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .question-title {
+      font-size: 16px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: border-color .16s ease, background .16s ease, transform .16s ease;
+    }
+
+    .option:hover {
+      border-color: #c7d2fe;
+      background: #f8f8ff;
+    }
+
+    .option input {
+      margin-top: 3px;
+      accent-color: var(--accent-strong);
+      transform: scale(1.1);
+      flex-shrink: 0;
+    }
+
+    .option-code {
+      font-weight: 800;
+      color: var(--accent-strong);
+      min-width: 22px;
+    }
+
+    .actions-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      padding-top: 6px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .result-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .type-box,
+    .score-box,
+    .dim-box,
+    .top3-box,
+    .about-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfbff);
+    }
+
+    .type-kicker {
+      font-size: 12px;
+      color: var(--accent-strong);
+      margin-bottom: 8px;
+      letter-spacing: .05em;
+    }
+
+    .type-name {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .type-subname {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .match {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .type-desc {
+      margin-top: 18px;
+      line-height: 1.85;
+      font-size: 15px;
+      color: #2e2e48;
+    }
+
+    .score-box h3,
+    .dim-box h3,
+    .top3-box h3,
+    .about-box h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .score-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .score-item .k {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .score-item .v {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent-strong);
+    }
+
+    .dim-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .dim-pill {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .dim-pill .label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .dim-pill .value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent-strong);
+    }
+
+    .top3-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .top3-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .top3-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .top3-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top3-score {
+      color: var(--accent-strong);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    
+    .result-layout {
+      display: grid;
+      gap: 18px;
+    }
+    .result-top {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .poster-box, .type-box, .analysis-box, .dim-box, .note-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfbff);
+    }
+        .poster-box {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 280px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at top right, rgba(99,102,241,0.16), rgba(99,102,241,0) 40%),
+        linear-gradient(180deg, #ffffff, #f7f7ff);
+    }
+    .poster-box::after {
+      content: "";
+      position: absolute;
+      right: -46px;
+      bottom: -46px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(99,102,241,0.12), rgba(99,102,241,0.01));
+      pointer-events: none;
+    }
+    .poster-image {
+      width: 100%;
+      min-height: 220px;
+      max-height: 460px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.75);
+      position: relative;
+      z-index: 1;
+    }
+    .poster-box.no-image .poster-image {
+      display: none;
+    }
+    .poster-caption {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .type-kicker {
+      font-size: 12px;
+      color: var(--accent-strong);
+      margin-bottom: 8px;
+      letter-spacing: .06em;
+    }
+    .type-name {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+    .type-subname {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .match {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .analysis-box h3, .dim-box h3, .note-box h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .result-actions {
+      margin-top: 22px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .analysis-box p {
+      margin: 0;
+      color: #2e2e48;
+      font-size: 15px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+    }
+    .dim-list {
+      display: grid;
+      gap: 12px;
+    }
+    .dim-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+    .dim-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .dim-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .dim-item-score {
+      color: var(--accent-strong);
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .dim-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .note-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .author-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfbff);
+      overflow: hidden;
+    }
+    .author-box summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .author-box summary::-webkit-details-marker { display: none; }
+    .author-box summary::after {
+      content: '展开';
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-strong);
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 6px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .author-box[open] summary::after {
+      content: '收起';
+    }
+    .author-content {
+      border-top: 1px solid var(--line);
+      padding: 0 18px 18px;
+    }
+    .author-content p {
+      margin: 14px 0 0;
+      color: #2e2e48;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    @media (max-width: 860px) {
+      .result-top { grid-template-columns: 1fr; }
+    }
+
+@media (max-width: 860px) {
+      .hero-grid,
+      .result-hero {
+        grid-template-columns: 1fr;
+      }
+      .dim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .shell { padding: 10px 8px 36px; }
+      .hero, .test-wrap, .result-wrap { padding: 14px; }
+      .hero h1 { font-size: 26px; letter-spacing: -0.02em; }
+      .hero-minimal { min-height: 80vh; min-height: 80dvh; padding: 32px 16px 28px; }
+      .hero-subtitle { font-size: 0.82rem; gap: 6px; flex-wrap: wrap; justify-content: center; }
+      .hero-formula { font-size: 0.75rem; }
+      .hero-icons { font-size: 1.5rem; gap: 12px; margin-top: 1.2rem; }
+      .hero-doodles span { font-size: 1.6rem; }
+      .hero-credits { font-size: 0.72rem; }
+      .btn-primary { padding: 12px 28px; font-size: 15px; }
+      .question-title { font-size: 15px; }
+      .option { padding: 10px 12px; font-size: 14px; }
+      .dim-grid,
+      .score-grid { grid-template-columns: 1fr; }
+      .poster-image { max-height: 320px; }
+      .result-type-name { font-size: 24px; }
+    }
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 22px; }
+      .hero-formula { font-size: 0.68rem; }
+      .hero-icons { font-size: 1.2rem; gap: 8px; }
+      .hero-doodles span { font-size: 1.2rem; opacity: 0.05; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section id="intro" class="screen active">
+      <div class="hero card hero-minimal">
+        <div class="hero-doodles">
+          <span style="top:6%;left:5%;transform:rotate(-12deg)">📝</span>
+          <span style="top:14%;right:8%;transform:rotate(15deg)">🧬</span>
+          <span style="top:40%;left:2%;transform:rotate(-8deg)">💻</span>
+          <span style="top:65%;left:10%;transform:rotate(18deg)">🔬</span>
+          <span style="top:22%;right:3%;transform:rotate(-22deg)">📊</span>
+          <span style="top:55%;right:6%;transform:rotate(10deg)">🎓</span>
+          <span style="top:78%;right:12%;transform:rotate(-15deg)">🧪</span>
+          <span style="bottom:8%;left:18%;transform:rotate(5deg)">⚡</span>
+          <span style="top:4%;left:35%;transform:rotate(-5deg)">🔭</span>
+          <span style="bottom:12%;right:25%;transform:rotate(12deg)">📐</span>
+          <span style="top:32%;left:12%;transform:rotate(-20deg);font-size:1.8rem">🧠</span>
+          <span style="bottom:22%;left:6%;transform:rotate(8deg);font-size:1.6rem">💡</span>
+          <span style="top:48%;right:2%;transform:rotate(-10deg);font-size:1.6rem">🎯</span>
+          <span style="bottom:4%;right:4%;transform:rotate(22deg);font-size:2rem">📈</span>
+          <span style="top:88%;left:40%;transform:rotate(6deg);font-size:1.6rem">🔧</span>
+        </div>
+        <h1>MBTI已经过时，<br>SBTI不够学术，<br>RBTI来了。</h1>
+        <p class="hero-formula">
+          &theta;<sub><i>t</i>+1</sub> = &theta;<sub><i>t</i></sub> &minus; &eta; &nabla;L(&theta;) &nbsp;s.t.&nbsp; L &rarr; 100
+        </p>
+        <p class="hero-subtitle">
+          <span>🧬 实验跑不通</span>
+          <span>·</span>
+          <span>📝 审稿人发疯</span>
+          <span>·</span>
+          <span>🎓 毕业遥遥无期</span>
+        </p>
+        <div class="hero-icons">
+          <span>📝</span><span>🧬</span><span>💻</span><span>🔬</span><span>📊</span>
+        </div>
+        <div class="hero-actions hero-actions-single">
+          <button id="startBtn" class="btn-primary">开始测试</button>
+        </div>
+        <div class="hero-credits">
+          <span>2.0 二创：<a href="https://xhslink.com/m/52DE56o07sG">小红书@momo</a></span>
+          <span style="margin-top:6px;line-height:1.5;max-width:420px;text-align:center;">本测试已通过学术伦理委员会审批（并没有），p-value < 0.05（也没有）</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="test" class="screen">
+      <div class="test-wrap card">
+        <div class="topbar">
+          <div class="progress"><span id="progressBar"></span></div>
+          <div class="progress-text" id="progressText">0 / 31</div>
+        </div>
+
+        <div id="questionList" class="question-list"></div>
+
+        <div class="actions-bottom">
+          <div class="hint" id="testHint">全选完才会放行。世界已经够乱了，起码把题做完整。</div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button id="backIntroBtn" class="btn-secondary">返回首页</button>
+            <button id="submitBtn" class="btn-primary" disabled>提交并查看结果</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="result" class="screen">
+      <div class="result-wrap card">
+        <div class="result-layout">
+          <div class="result-top">
+            <div class="poster-box" id="posterBox">
+              <img id="posterImage" class="poster-image" alt="人格结果图" />
+              <div id="posterCaption" class="poster-caption">怎么样，被我拿捏了吧？</div>
+            </div>
+
+            <div class="type-box">
+              <div class="type-kicker" id="resultModeKicker">你的主类型</div>
+              <div class="type-name" id="resultTypeName">CTRL（拿捏者）</div>
+              <div class="match" id="matchBadge">匹配度 92%</div>
+              <div class="type-subname" id="resultTypeSub">系统备注会显示在这里。</div>
+            </div>
+          </div>
+
+          <div class="analysis-box">
+            <h3>该人格的简单解读</h3>
+            <p id="resultDesc"></p>
+          </div>
+
+          <div class="dim-box">
+            <h3>十维度评分</h3>
+            <div id="dimList" class="dim-list"></div>
+          </div>
+
+          <div class="note-box">
+            <h3>友情提示</h3>
+            <p id="funNote">本测试仅供娱乐，别拿它当诊断、面试、相亲、分手、招魂、算命或人生判决书。</p>
+          </div>
+
+                    <details class="author-box">
+            <summary>关于RBTI</summary>
+            <div class="author-content">
+              <p>RBTI (Research Behavior Type Indicator) 是一个PhD科研人格测试，纯属娱乐。</p>
+              <p>灵感来源于SBTI测试，针对科研场景做了全新的维度体系和题目设计。</p>
+              <p>本测试不具有任何学术严谨性，p-value未经计算，样本量为0，仅供读博人自嘲使用。</p>
+              <p>如有冒犯纯属巧合，如果觉得准那一定是巧合中的巧合。</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="result-actions">
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button id="restartBtn" class="btn-secondary">重新测试</button>
+            <button id="toTopBtn" class="btn-primary">回到首页</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  
+  <script>
+    const dimensionMeta = {
+      R1: { name: 'R1 理论\u2194应用', model: '科研模型' },
+      R2: { name: 'R2 深度\u2194广度', model: '科研模型' },
+      W1: { name: 'W1 独立\u2194协作', model: '工作模型' },
+      W2: { name: 'W2 代码\u2194数学', model: '工作模型' },
+      P1: { name: 'P1 质量\u2194数量', model: '产出模型' },
+      P2: { name: 'P2 计划\u2194即兴', model: '产出模型' },
+      M1: { name: 'M1 好奇\u2194功利', model: '动机模型' },
+      M2: { name: 'M2 学术\u2194工业', model: '动机模型' },
+      S1: { name: 'S1 抗压\u2194脆弱', model: '社交模型' },
+      S2: { name: 'S2 社交\u2194独处', model: '社交模型' }
+    };
+    const questions = [
+      { id: 'q1', dim: 'R1', text: '你的论文里公式和代码的比例更接近？', options: [
+        { label: '公式90%代码10%，我是推导战士', value: 1 },
+        { label: '各占一半，理论指导实践', value: 2 },
+        { label: '代码90%公式10%，能跑就是正义', value: 3 }
+      ]},
+      { id: 'q2', dim: 'R1', text: '审稿人说你的工作\u201c缺乏理论贡献\u201d，你？', options: [
+        { label: '怒了，当晚加了三页证明和两个定理', value: 1 },
+        { label: '嗯……补个convergence analysis吧', value: 2 },
+        { label: '加了一句\u201cwe leave the theoretical analysis for future work\u201d', value: 3 }
+      ]},
+      { id: 'q3', dim: 'R2', text: '你Google Scholar主页的论文主题分布？', options: [
+        { label: '全在同一个方向，深挖五年不动摇', value: 1 },
+        { label: '两三个相关方向，有主有辅', value: 2 },
+        { label: '横跨四五个领域，我的related work写起来跟综述一样', value: 3 }
+      ]},
+      { id: 'q4', dim: 'R2', text: '组会上别人讲的方向你能听懂吗？', options: [
+        { label: '只有我的方向我才能深入讨论', value: 1 },
+        { label: '大部分能听个大概，偶尔能提问', value: 2 },
+        { label: '什么都能插两句嘴，虽然可能都是废话', value: 3 }
+      ]},
+      { id: 'q5', dim: 'W1', text: '你的论文作者栏通常有几个名字？', options: [
+        { label: '就我和导师，最多再加个师兄', value: 1 },
+        { label: '三四个人，标准配置', value: 2 },
+        { label: '超过五个，多到acknowledgment放不下', value: 3 }
+      ]},
+      { id: 'q6', dim: 'W1', text: '你更喜欢哪种科研状态？', options: [
+        { label: '一个人在实验室肝到凌晨三点，耳机一戴谁都不理', value: 1 },
+        { label: '看情况，有时独处有时讨论', value: 2 },
+        { label: '跟同学在白板前头脑风暴到忘记时间', value: 3 }
+      ]},
+      { id: 'q7', dim: 'W2', text: '你的日常工具栈是？', options: [
+        { label: 'VSCode+Terminal开八个窗口，GPU占满', value: 1 },
+        { label: '代码和公式各占一半桌面', value: 2 },
+        { label: '纸笔+iPad推公式，Overleaf写证明', value: 3 }
+      ]},
+      { id: 'q8', dim: 'W2', text: '有人说\u201cTalk is cheap, show me the code\u201d，你？', options: [
+        { label: '对！跑起来才是硬道理', value: 1 },
+        { label: '代码和理论各有千秋', value: 2 },
+        { label: '不对。Show me the proof. 没有证明的算法就是玄学', value: 3 }
+      ]},
+      { id: 'q9', dim: 'P1', text: '你对一篇论文的态度是？', options: [
+        { label: '改到自己想吐为止才投，每个图都是精品', value: 1 },
+        { label: '差不多就投，反正审稿人也要改', value: 2 },
+        { label: '能投就投，数量就是力量，一年五篇不是梦', value: 3 }
+      ]},
+      { id: 'q10', dim: 'P1', text: '投稿被reject了，你？', options: [
+        { label: '大改后投更好的venue，这篇要做到最好', value: 1 },
+        { label: '按意见小改换个venue', value: 2 },
+        { label: '格式都不改直接投下一个，总有一个能中', value: 3 }
+      ]},
+      { id: 'q11', dim: 'P2', text: '距离论文deadline还有两个月，你的状态是？', options: [
+        { label: '已经写完初稿在打磨实验和图表了', value: 1 },
+        { label: '实验跑了一半，开始写introduction了', value: 2 },
+        { label: '两个月？还早呢，等最后两周再冲刺', value: 3 }
+      ]},
+      { id: 'q12', dim: 'P2', text: '你的研究计划是什么样的？', options: [
+        { label: '精确到每周的甘特图，Notion排得满满的', value: 1 },
+        { label: '脑子里有个大概方向', value: 2 },
+        { label: '什么计划？我是灵感驱动型研究者', value: 3 }
+      ]},
+      { id: 'q13', dim: 'M1', text: '为什么读PhD？', options: [
+        { label: '真的对这个问题好奇到睡不着', value: 1 },
+        { label: '好奇心和职业发展各占一半', value: 2 },
+        { label: '为了Dr.头衔/绿卡/薪资溢价，诚实一点', value: 3 }
+      ]},
+      { id: 'q14', dim: 'M1', text: '如果一个方向很有趣但发不了顶会paper，你？', options: [
+        { label: '照做！好奇心是第一生产力', value: 1 },
+        { label: '纠结一下……还是做了吧', value: 2 },
+        { label: '果断放弃，换个能发paper的方向', value: 3 }
+      ]},
+      { id: 'q15', dim: 'M2', text: '毕业后你的规划是？', options: [
+        { label: 'AP\u2192tenure track，一辈子学术，死在办公室里', value: 1 },
+        { label: '先postdoc试试，再看情况', value: 2 },
+        { label: '去大厂拿package，学术再见了您', value: 3 }
+      ]},
+      { id: 'q16', dim: 'M2', text: '你更关注哪个数字？', options: [
+        { label: 'Google Scholar被引数和h-index', value: 1 },
+        { label: '都关注一下', value: 2 },
+        { label: 'Levels.fyi上的TC和Blind上的面经', value: 3 }
+      ]},
+      { id: 'q17', dim: 'S1', text: '审稿人给了strong reject加三页毒评，你？', options: [
+        { label: '冷静分析，逐条反驳，格局不能输', value: 1 },
+        { label: '难受一天，然后开始按意见改', value: 2 },
+        { label: '已经在质疑人生和考虑退学了', value: 3 }
+      ]},
+      { id: 'q18', dim: 'S1', text: '同时面对三个deadline+导师催进度+实验跑不通，你？', options: [
+        { label: '兴奋！压力就是动力，我反而更高效', value: 1 },
+        { label: '焦虑但还能扛，先做最紧急的', value: 2 },
+        { label: '已经在写退学申请的opening了', value: 3 }
+      ]},
+      { id: 'q19', dim: 'S2', text: '学术会议上你通常？', options: [
+        { label: '主动找大佬social、换名片、加LinkedIn', value: 1 },
+        { label: '跟认识的同学聊聊，偶尔认识新人', value: 2 },
+        { label: '听完talk直接回酒店，社交是什么？', value: 3 }
+      ]},
+      { id: 'q20', dim: 'S2', text: '实验室有人来找你聊天，你？', options: [
+        { label: '太好了！终于有人说话了！', value: 1 },
+        { label: '聊几句然后回去干活', value: 2 },
+        { label: '戴上降噪耳机假装没听到', value: 3 }
+      ]}
+    ];
+    const specialQuestions = [
+      { id: 'review_gate_q1', special: true, kind: 'review_gate',
+        text: '你收到一封审稿邀请，你的反应是？',
+        options: [
+          { label: '直接decline，我自己的paper都写不完', value: 1 },
+          { label: '看看题目再决定', value: 2 },
+          { label: '接！审别人的paper是一种权力', value: 3 },
+          { label: '不仅接了，还花两周写了五页详细review', value: 4 }
+        ]
+      },
+      { id: 'review_gate_q2', special: true, kind: 'review_trigger',
+        text: '你写review的风格更接近？',
+        options: [
+          { label: '温和建设性的，毕竟大家都不容易', value: 1 },
+          { label: '\u201cThis paper has fundamental flaws and should not be published in its current form.\u201d', value: 2 }
+        ]
+      },
+      { id: 'idle_gate_q1', special: true, kind: 'idle_gate',
+        text: '组会开始前一小时，你在干嘛？',
+        options: [
+          { label: '在准备slides和demo', value: 1 },
+          { label: '在跑最后一组实验', value: 2 },
+          { label: '在焦虑地刷论文', value: 3 },
+          { label: '在刷B站/小红书/Reddit/Twitter', value: 4 }
+        ]
+      },
+      { id: 'idle_gate_q2', special: true, kind: 'idle_trigger',
+        text: '你摸鱼的时候最常做什么？',
+        options: [
+          { label: '看看搞笑视频放松一下', value: 1 },
+          { label: '偷偷刷招聘网站，看看外面的世界和package', value: 2 }
+        ]
+      },
+      { id: 'slide_gate_q1', special: true, kind: 'slide_gate',
+        text: '你做学术PPT的态度是？',
+        options: [
+          { label: '够用就行，内容为王', value: 1 },
+          { label: '会花点时间排版', value: 2 },
+          { label: '配色字体动画全套打磨', value: 3 },
+          { label: '一个PPT改了三天，动画转场配色icon全部精调', value: 4 }
+        ]
+      },
+      { id: 'slide_gate_q2', special: true, kind: 'slide_trigger',
+        text: '你觉得一个好的学术报告最重要的是？',
+        options: [
+          { label: '内容深度和逻辑清晰', value: 1 },
+          { label: '说实话，PPT好看比内容重要，颜值即正义', value: 2 }
+        ]
+      },
+      { id: 'quit_gate_q1', special: true, kind: 'quit_gate',
+        text: '周五晚上你的状态通常是？',
+        options: [
+          { label: '还在实验室肝', value: 1 },
+          { label: '终于下班了！', value: 2 },
+          { label: '跟朋友出去放松', value: 3 },
+          { label: '在浏览非学术岗位的招聘信息', value: 4 }
+        ]
+      },
+      { id: 'quit_gate_q2', special: true, kind: 'quit_trigger',
+        text: '你有多认真地考虑过退学/转行？',
+        options: [
+          { label: '偶尔想想但不会真的做', value: 1 },
+          { label: '退学申请已经写好了只是还没交，LinkedIn已经偷偷更新了', value: 2 }
+        ]
+      },
+      { id: 'grind_gate_q1', special: true, kind: 'grind_gate',
+        text: '你的工作时间是？',
+        options: [
+          { label: '朝九晚五，work-life balance', value: 1 },
+          { label: '弹性但大概每天8-10小时', value: 2 },
+          { label: '基本每天12小时+', value: 3 },
+          { label: '周末和法定节假日都在实验室，365天无休', value: 4 }
+        ]
+      },
+      { id: 'grind_gate_q2', special: true, kind: 'grind_trigger',
+        text: '你觉得一年发几篇论文算合格？',
+        options: [
+          { label: '一两篇就行，质量第一', value: 1 },
+          { label: '至少五篇，不然就是在浪费funding', value: 2 }
+        ]
+      }
+    ];
+
+    const TYPE_LIBRARY = {
+  "HHHH": {
+    "code": "HHHH",
+    "cn": "404研究生",
+    "intro": "ERROR: 人格类型未找到。",
+    "desc": "恭喜你，你的科研人格过于清奇，标准人格库已全面崩溃。系统在100种科研人格中找了一圈，匹配度最高的也不到60%\u2014\u2014这说明你要么是跨时代的天才，要么是误入学术圈的外星人。你的思维方式不属于任何已知分类体系，就像一段无法编译的代码，编译器看了想报警。但不要慌，历史上最伟大的科学家往往也是最难以归类的那一个。你可能是下一个图灵，也可能只是问卷填错了。"
+  },
+  "REVIEWER": {
+    "code": "REVIEWER",
+    "cn": "毒审稿人",
+    "intro": "This paper has fundamental flaws.",
+    "desc": "恭喜你，REVIEWER毒审稿人人格\u2014\u2014学术界的质检总监，论文界的差评师。你的review比很多论文还长，每一条comment都像一把精心打磨的手术刀，直刺作者的灵魂。你不是不讲道理，你只是把道理讲到了让人想哭的程度。\u201cThe motivation is unclear\u201d \u201cThe experiments are insufficient\u201d \u201cThe writing needs significant improvement\u201d\u2014\u2014这三句话你可以不看论文就写出来，因为它们适用于99%的投稿。你是审稿界的卷王，别人写一段你写五页，不把作者改到怀疑人生你不会点submit。可是，每一个严格的审稿人，都曾经被另一个严格的审稿人伤害过。你只是在用自己被reject的方式，reject别人。"
+  },
+  "IDLE": {
+    "code": "IDLE",
+    "cn": "带薪摸鱼",
+    "intro": "组会？我先刷五分钟B站。",
+    "desc": "恭喜你，IDLE带薪摸鱼人格\u2014\u2014实验室的隐形人，funding的隐形消耗者。你的屏幕永远分成两半：左边是看起来很忙的terminal，右边是Alt+Tab一秒切走的小红书。你的摸鱼技术已经进化到了肌肉记忆的程度\u2014\u2014老板的脚步声频率你已经用FFT分析过了。但摸鱼不是因为懒，是因为你的大脑需要在无意义的刷屏中寻找那一闪而过的灵感。科学史上最伟大的发现，谁知道有多少是在摸鱼的时候想到的？你不是在浪费时间，你是在进行非结构化的思维发散。"
+  },
+  "SLIDE": {
+    "code": "SLIDE",
+    "cn": "PPT美学家",
+    "intro": "这个配色不对，重做。",
+    "desc": "恭喜你，SLIDE PPT美学家人格\u2014\u2014学术界的平面设计师，Conference的视觉担当。你的PPT打开的那一刻，全场会安静三秒\u2014\u2014不是因为内容震撼，是因为太好看了。配色遵循色彩理论，排版对齐到像素级别，动画转场丝滑如德芙。你花在Keynote上的时间比花在实验上的时间还长。导师问你进度，你说\u201cPPT做好了\u201d，导师说\u201c我问的是实验进度\u201d。在你的世界里，一个对齐的图表比一个好的实验结果更让你有成就感。"
+  },
+  "QUIT": {
+    "code": "QUIT",
+    "cn": "退学预备役",
+    "intro": "退学申请已存草稿箱。",
+    "desc": "恭喜你，QUIT退学预备役人格\u2014\u2014学术圈的编外人员，HR的潜在候选人。你的LinkedIn已经悄悄改成了open to work，退学申请在Notes里存了三个版本，每次被审稿人reject都会打开看一遍。你不是不热爱科研，你只是更热爱有工资、有周末、不用写rebuttal的生活。每一个读PhD的人都有过退学的念头，区别只是你把念头做成了待办事项并且设了提醒。但每次真的要提交的时候，你又想起了那个让你最初走进实验室的问题\u2014\u2014然后把申请又存回了草稿箱。"
+  },
+  "GRIND": {
+    "code": "GRIND",
+    "cn": "实验室钉子户",
+    "intro": "你们都下班了？我才刚开始。",
+    "desc": "恭喜你，GRIND实验室钉子户人格\u2014\u2014科研卷王，paper machine，导师最爱的那种学生。你的实验室打卡记录比保安还全勤，你的GitHub commit graph全绿，你的Google Scholar每个月都在涨。周末？那是多出来的两个工作日。节假日？那是没人抢GPU的黄金时段。你不是在卷，你是真的觉得这样很正常\u2014\u2014问题是你的存在让所有同学都觉得自己在摸鱼。你是实验室的永动机，但永动机也需要维护。burnout不是一个事件，是一个过程。"
+  },
+  "CPP": {
+    "code": "CPP",
+    "cn": "手动挡",
+    "intro": "手动管理一切，包括内存和情绪。",
+    "desc": "恭喜你，C++手动挡人格\u2014\u2014new出来的一切都得自己delete，包括你的社交关系。你手动管理内存、手动管理情绪、手动管理导师的期望值，每一个指针都指向你深夜emo的方向。你写的代码powerful但dangerous，就像你的科研生涯\u2014\u2014编译能过但运行时随时segfault。别人用Python一行搞定的事你要写两百行，但你享受这种\u201c掌控一切\u201d的幻觉。With great power comes great undefined behavior，而你的人生，就是一个没开sanitizer的大型项目。最终你会发现，最难debug的不是野指针，是你自己。"
+  },
+  "PY": {
+    "code": "PY",
+    "cn": "万能胶",
+    "intro": "import一切解决一切，就是慢了亿点。",
+    "desc": "恭喜你，PY万能胶人格\u2014\u2014pip install是你面对一切问题的第一反应，人生哲学就是\u201c别人造好的轮子为什么不用\u201d。你的requirements.txt比论文参考文献还长，每个项目开头都是import numpy, import pandas, import 一切。你像Python一样万能：能爬虫、能炼丹、能做web、能写脚本，啥都能干但啥都慢了亿点。\u201cLife is short, use Python\u201d\u2014\u2014但PhD is long，long到你开始怀疑当初为什么不学Rust。你是科研界的瑞士军刀，什么都能切但什么都切不深。可这个世界需要的，恰恰就是一把什么都能切的刀。"
+  },
+  "RUST": {
+    "code": "RUST",
+    "cn": "安检员",
+    "intro": "编译器比审稿人还严，borrow checker不放过任何人。",
+    "desc": "恭喜你，RUST安检员人格\u2014\u2014你的人生被borrow checker严格管理，每一段关系都必须明确ownership。你不能同时被两个项目mutable borrow，导师想多占用你的时间？编译不过。你的代码zero runtime errors，但compile-time suffering是别人的十倍。审稿人觉得自己很严格？你的编译器笑了。每一个变量的生命周期都被精确追踪，就像你用Notion追踪的每一个deadline。安全，高效，可靠\u2014\u2014代价是你花在跟编译器吵架的时间比写代码还长。但至少，你的程序不会在production里崩，你的人生也不会\u2014\u2014因为你根本不允许自己上线。"
+  },
+  "JAVA": {
+    "code": "JAVA",
+    "cn": "new一切",
+    "intro": "万物皆对象，除了对象本身。",
+    "desc": "恭喜你，JAVA new一切人格\u2014\u2014你的世界里万物皆Object，一切皆需要interface，连午饭吃什么都要先定义一个AbstractSingletonProxyFactoryBean。你的设计模式比设计本身还多，README比代码还长，UML图画了三天代码还没写一行。你new了无数个对象，唯独new不出一个真正的对象。over-engineer是你的生活方式：泡杯咖啡需要先写CoffeeFactory，点个外卖需要实现OrderStrategyInterface。别人说你复杂，你说这叫\u201c可扩展性\u201d。可是，你为未来设计的那些接口，最终可能永远不会有第二个实现类。"
+  },
+  "JS": {
+    "code": "JS",
+    "cn": "异步青年",
+    "intro": "Promise你一切，resolve时间不确定。",
+    "desc": "恭喜你，JS异步青年人格\u2014\u2014你Promise所有人一切，但resolve的时间永远是undefined。你的人生就是一个event loop：不停接收新任务，看起来很忙，但没人知道真正的执行顺序。callback hell是你的日常\u2014\u2014导师叫你改论文，论文要等实验结果，实验要等数据，数据要等审批，审批要等开会，开会要等所有人有空。你以为用了async/await就能解决问题，结果发现人生不支持top-level await。你用setTimeout(毕业, 0)骗自己很快就能毕业，但事件队列里排在你前面的还有一百个microtask。不过，至少你从不阻塞\u2014\u2014哪怕什么都没完成，你看起来也在运行。"
+  },
+  "SQL": {
+    "code": "SQL",
+    "cn": "灵魂拷问",
+    "intro": "SELECT * FROM 人生 WHERE 意义 IS NOT NULL \u2192 Empty set.",
+    "desc": "恭喜你，SQL灵魂拷问人格\u2014\u2014你把人生当数据库，每一个问题都是一条SELECT语句。\u201cSELECT 意义 FROM 读博 WHERE 后悔 = FALSE\u201d\u2014\u2014返回Empty set。你用JOIN连接人际关系，用WHERE过滤无效社交，用DROP TABLE处理有毒的合作。你的导师是DBA，拥有最高权限却从不做备份。你GROUP BY了所有论文按被拒次数排序，发现自己的rejection_count遥遥领先。你想对人生做一次ROLLBACK，却发现autocommit一直是ON的。每一个query都是对存在的拷问，而最可怕的结果不是error，是NULL\u2014\u2014不是找不到答案，是这个字段根本不存在。"
+  },
+  "LATEX": {
+    "code": "LATEX",
+    "cn": "格式强迫症",
+    "intro": "公式对齐比论文内容重要。",
+    "desc": "恭喜你，LaTeX格式强迫症人格\u2014\u2014你花在调格式上的时间比写内容的时间多三倍，一个Overfull \\hbox警告能让你失眠到凌晨三点。公式必须用align*完美对齐，图表的caption字号必须精确到pt，参考文献的格式如果不统一你会物理性地难受。论文内容可能questionable，但typography绝对impeccable。你的.tex文件里自定义宏比正文还多，编译一次要跑四遍pdflatex+bibtex。同学问你论文写得怎么样，你说\u201c模板搞好了\u201d。你不是在做研究，你是在做排版艺术。但说真的，在这个内容越来越同质化的学术界，至少你的论文，打开的那一刻是赏心悦目的。"
+  },
+  "GIT": {
+    "code": "GIT",
+    "cn": "时光机",
+    "intro": "人生没有Ctrl+Z，但有git revert。",
+    "desc": "恭喜你，GIT时光机人格\u2014\u2014你的人生被version control严格管理，每一个决定都有详细的commit message。你git blame每一次失败的实验，git log每一段走过的弯路，git stash所有来不及处理的情绪。你最擅长的是git revert\u2014\u2014选错了方向？revert。投错了期刊？revert。说错了话？force push覆盖黑历史。你的人际关系经常出现merge conflict，解决方案永远是accept theirs因为你不想吵架。你的人生有无数个branch，但大部分都没merge回main。可是你知道吗，git最伟大的地方不是能回退，而是它忠实记录了你走过的每一步\u2014\u2014包括那些错误的。"
+  },
+  "VIM": {
+    "code": "VIM",
+    "cn": "进去出不来",
+    "intro": "怎么退出？问了十年Stack Overflow。",
+    "desc": "恭喜你，VIM进去出不来人格\u2014\u2014一旦进入就再也无法退出，像极了你的PhD项目。外面的人问\u201c你怎么还不出来\u201d，你说\u201c我也想啊，但我已经忘了怎么退出了\u201d。你试过:q，被告知有未保存的修改；试过:q!，但舍不得放弃已有的进展；试过:wq，但文件权限不够。你的人生卡在normal mode和insert mode之间反复横跳，按了Esc以为回到了安全状态，结果发现自己只是从一种困境切换到了另一种。Stack Overflow上\u201cHow to exit Vim\u201d有几百万浏览量，就像\u201c读博值不值\u201d下面的回答一样多。但那些最终留在Vim里的人，往往成了最高效的人\u2014\u2014前提是，他们已经不想出去了。"
+  },
+  "BUG": {
+    "code": "BUG",
+    "cn": "未记录特性",
+    "intro": "我不是BUG，我是undocumented feature。",
+    "desc": "恭喜你，BUG未记录特性人格\u2014\u2014你把每一个错误都重新定义为\u201c未记录的创新\u201d。实验结果和预期不符？That\u2019s not a bug, that\u2019s a feature。审稿人说方法有缺陷？你说这是\u201c非传统方法论的探索性贡献\u201d。你是positive reframing的大师，现实扭曲力场的持有者。代码跑出了离谱的结果，你不说bug，你说\u201cinteresting observation\u201d然后开始编一个新的story。导师说你的研究方向有问题，你说\u201c这恰恰说明这是一个under-explored的领域\u201d。你不是在逃避问题，你是在重新定义问题。但偶尔深夜emo的时候你也会想：如果人生真的只是一个undocumented feature，那documentation在谁手里？"
+  },
+  "LLM": {
+    "code": "LLM",
+    "cn": "万金油",
+    "intro": "我什么都能聊两句，但你别深问。",
+    "desc": "恭喜你，LLM万金油人格——学术界的通用大模型，什么领域都能generate两句听起来像那么回事的话。组会上你能对每个人的课题发表意见，但仔细一听全是\u201c这个方向很有前景\u201d\u201c可以考虑加个ablation study\u201d之类的万能回复。你就像一个temperature设太高的language model：输出流畅、自信满满、偶尔幻觉。你的知识图谱广度惊人但深度约等于Wikipedia第一段。导师问你核心贡献是什么，你洋洋洒洒说了十分钟，导师说\u201c所以到底是什么\u201d。但你知道吗？这个时代最值钱的能力，不是深度，是让别人觉得你有深度。只是答辩那天，幻觉会被戳破的。"
+  },
+  "CNN": {
+    "code": "CNN",
+    "cn": "局部特工",
+    "intro": "我只看3×3的窗口，但看得比你仔细。",
+    "desc": "恭喜你，CNN局部特工人格——学术界的像素级观察者，论文里的每个逗号你都不放过，但你从来没读过abstract。你的世界是一个3×3的卷积核，在这个窗口里你是神，窗口外面是什么你不关心也不想关心。导师让你看看big picture，你说\u201c我再加一层pooling就能看到了\u201d——然而五层pooling之后你看到的还是一坨模糊的色块。你在自己的小课题上做到了SOTA，但整个系统跑不通的时候你说\u201c我这个模块没问题啊\u201d。你就是那种能把一颗螺丝拧到完美但不知道自己在造什么机器的人。局部最优是你的宿命，全局最优是别人的事。"
+  },
+  "GAN": {
+    "code": "GAN",
+    "cn": "左右互搏",
+    "intro": "永远在和自己的判别器较劲。",
+    "desc": "恭喜你，GAN左右互搏人格——你的大脑里住着一个Generator和一个Discriminator，它们7×24小时在对抗训练。你每产生一个想法，内心的判别器就说\u201c这也太naive了\u201d；你每写一段论文，另一个你就开始逐字逐句地挑毛病。你是自己最严厉的审稿人，Reviewer 2都没你狠。这种内耗让你的output质量极高——但output数量极低，因为大部分idea在出生的瞬间就被你自己否决了。你的训练过程极其不稳定，时而mode collapse只能产出一种想法，时而梯度消失什么都想不出来。你唯一的希望是达到Nash均衡——可惜在PhD这个game里，均衡点可能不存在。"
+  },
+  "SVM": {
+    "code": "SVM",
+    "cn": "划线大师",
+    "intro": "世界非黑即白，中间那条线是我画的。",
+    "desc": "恭喜你，SVM划线大师人格——你的人生哲学就是找到那条最优超平面，把所有事情分成两类：值得做的和不值得做的，能发paper的和不能发paper的，靠谱的合作者和不靠谱的合作者。你追求的是maximum margin——离所有人都保持最大距离，这样即使有噪声也不会影响你的判断。你的kernel trick是把低维的小事映射到高维空间，在那里一切都线性可分。别人觉得世界是连续的灰色地带，你觉得那只是他们没找到正确的核函数。支持向量是你少数几个朋友，因为只有他们在你画的线附近。但你有没有想过，也许这个世界本来就不该被一刀切开？"
+  },
+  "BERT": {
+    "code": "BERT",
+    "cn": "双面胶",
+    "intro": "前后文我都粘住了，但我选择不说话。",
+    "desc": "恭喜你，BERT双面胶人格——你是组会上的隐形理解王。别人在争论的时候，你已经从双向上下文中精确地理解了每个人的立场、潜台词和情绪。你的bidirectional attention让你能同时看到因和果、前因和后果、导师的表面意思和真实意思。但你只产出embedding，不产出text——也就是说你什么都懂，但你就是不说。不是不能说，是你觉得自己的角色就是encode，decode是别人的事。你是那个小组讨论里记了最详细笔记但从不发言的人。你被mask掉的不是token，是表达欲。可是BERT啊，如果你永远只做预训练不做fine-tuning，你那些深刻的理解，谁能知道呢？"
+  },
+  "GPT": {
+    "code": "GPT",
+    "cn": "续写狂魔",
+    "intro": "你说上句我续下句，但不保证对。",
+    "desc": "恭喜你，GPT续写狂魔人格——自回归生成的终极形态，给你一个prompt你能输出一篇论文，给你一个开头你能编出整个research proposal。你的token生成速度极快，组会上别人还在想怎么开口你已经说了五分钟了。你是学术界的即兴rap选手：flow很好，押韵很妙，但仔细一听内容经不起推敲。你的hallucination不是bug是feature——你管那叫\u201c学术想象力\u201d。导师问你reference，你能现场生成一个看起来无比真实但DOI点不开的引用。你最大的优势是next token prediction：总能说出别人想听的下一句话。但你知道吗？一直predict下一个token，你就永远没有自己的第一个token。"
+  },
+  "RL": {
+    "code": "RL",
+    "cn": "碰壁王",
+    "intro": "奖励函数还没收敛，再给我一个epoch。",
+    "desc": "恭喜你，RL碰壁王人格——你的PhD就是一个超长horizon的强化学习episode，state space巨大，action space混乱，reward极度稀疏。你每天都在explore和exploit之间纠结：是继续当前这个看起来有点希望的方向，还是大胆换一个全新的课题？你已经撞了4000面墙了，但你坚信下一次碰撞就能触发那个+1000的reward。你的discount factor设得太高，总觉得未来的毕业比今天的快乐更重要。你的policy在反复更新，但environment也在变——因为你的导师每个月换一次research interest。最可怕的是：你甚至不确定你的reward function定义对了。也许毕业根本不是终态，只是下一个episode的起点。"
+  },
+  "NLP": {
+    "code": "NLP",
+    "cn": "话痨翻译",
+    "intro": "你说的每个字我都认识，连在一起就不认识了。",
+    "desc": "恭喜你，NLP话痨翻译人格——你每天处理的文字量比GPT的训练语料还大，从论文、邮件、Slack消息到审稿意见，你的人生就是一个永不停歇的text processing pipeline。你能把任何东西翻译成任何人能听懂的版本：给导师讲用学术黑话，给家人讲用比喻，给面试官讲用buzzword。但讽刺的是，搞了这么多年自然语言处理，你和人类的自然交流反而越来越难了。你能完美parse一篇paper的语法树，但parse不了导师那句\u201c再改改\u201d到底是什么意思。你理解语言的每一个组件——morpheme、syntax、semantics、pragmatics——唯独不理解为什么有人会在邮件结尾写\u201cBest\u201d但语气一点也不best。"
+  },
+  "GNN": {
+    "code": "GNN",
+    "cn": "关系户",
+    "intro": "六度人脉？我给你算成了零度。",
+    "desc": "恭喜你，GNN关系户人格——在你眼中万物皆图，人是node，关系是edge，聊天是message passing，毕业是graph classification。你能在任何社交场合三秒钟画出一张关系图谱：谁和谁合作过、谁引用了谁、谁是谁的学生、哪个reviewer最有可能是你的竞争对手。你的aggregation function异常强大，能从邻居节点的八卦中提取出有价值的学术信息。你坚信学术圈就是一个small-world network，任何两个教授之间不超过六步——但你已经把自己到大佬的路径优化到了两步。你是conference上的超级连接者，名片发得比论文还多。只是，当你把所有关系都建模成图之后，你有没有发现：图里最孤立的那个节点，是你自己？"
+  },
+  "VAE": {
+    "code": "VAE",
+    "cn": "造梦机",
+    "intro": "我能生成，但你别问我在想什么。",
+    "desc": "恭喜你，VAE造梦机人格——你的创造力来自一个连你自己都无法理解的latent space。你能produce出令人惊艳的idea，但当别人问你\u201c你是怎么想到的\u201d，你只能说\u201c就……突然就想到了\u201d。你的encoder把现实压缩成一个低维的高斯分布，你的decoder从这团迷雾中sample出作品。你的KL divergence永远在正则化你的思维——不让你太离谱，但也不让你太normal。导师让你解释methodology，你画了一个graphical model说\u201c就是这样\u201d，导师说\u201c我看不懂\u201d，你说\u201c我也看不懂但它work\u201d。你是学术界的抽象艺术家：作品很好，但请不要让作者解读。因为连reparameterization trick都解释不了，灵感从何而来这种事更不可能了。"
+  },
+  "ADAM": {
+    "code": "ADAM",
+    "cn": "自适应",
+    "intro": "学习率自适应，人生率不适应。",
+    "desc": "恭喜你，ADAM自适应人格——你是optimizer界的六边形战士：一阶矩估计让你知道方向，二阶矩估计让你知道步长，bias correction让你在初期也不至于太离谱。你在学术上自适应能力极强——换课题能换、换方向能换、换导师……也不是不行。你的momentum让你即使在梯度为零的plateau也能继续前进，惯性带着你冲过了无数个saddle point。但问题是：你把所有自适应的能力都给了科研，生活里你连外卖软件推荐的新餐厅都不敢尝试。你的learning rate在工作上是1e-3精心调过的，在生活中是1e-8几乎为零。你什么都能优化，唯独优化不了自己从椅子上站起来去晒太阳这件事。warmup阶段已经过了五年了，你还在warm。"
+  },
+  "SGD": {
+    "code": "SGD",
+    "cn": "随机漫步",
+    "intro": "方向大致对就行，别太较真。",
+    "desc": "恭喜你，SGD随机漫步人格——你的人生哲学是：不需要精确计算full batch gradient，随便抓一个mini-batch估算一下方向就够了。你是学术界的差不多先生：实验结果差不多就行，论文写得差不多就投，代码跑得差不多就push。你的轨迹充满噪声但大方向没问题——虽然oscillation看起来很吓人，但最终还是能收敛到一个还不错的minimum。你最大的优势是计算效率高：别人精心设计一个实验跑一周，你随手跑十个实验每个跑一天，总有一个能用的。你信奉的是大数定律——试得多了总会有好结果。只是有时候你会想：如果当初认真算一次full gradient，是不是能找到一个更好的minimum，而不是现在这个\u201c还行吧\u201d的局部最优？"
+  },
+  "ResNet": {
+    "code": "ResNet",
+    "cn": "跳级生",
+    "intro": "跳过所有中间步骤，直达结论。",
+    "desc": "恭喜你，ResNet跳级生人格——你是skip connection的人形化身，擅长跳过一切中间过程直达结论。别人在老老实实一层一层forward的时候，你已经通过残差连接直接把input加到了output上。你的论文写法是先写conclusion再补introduction，你的代码风格是先写main函数再补helper，你的人生策略是先拿offer再学技能。你之所以不会出现梯度消失，是因为你根本不经过那些让梯度消失的层——跳过了就不存在了。你是那种能在五分钟内给出一个\u201c大致正确\u201d的答案的人，而且这个答案比别人想一天得出的还好。但residual learning的本质是：你学到的只是残差，只是\u201c和input的差异\u201d。跳过了中间过程，你也跳过了过程中的成长。152层的ResNet很深，但你真正走过的路，也许只有两层。"
+  },
+  "LSTM": {
+    "code": "LSTM",
+    "cn": "选择性失忆",
+    "intro": "该忘的忘不掉，该记的记不住。",
+    "desc": "恭喜你，LSTM选择性失忆人格——你的大脑装了三个门：forget gate、input gate、output gate，但它们的开关全是反的。该忘记的（三年前组会上说错话的尴尬、被reject的那篇论文的reviewer comment、导师那句\u201c这个idea不太行\u201d）你的forget gate死活关不上；该记住的（deadline、导师交代的任务、上周开会的action item）你的input gate像是被人拔了电源。你的cell state里存满了学术创伤记忆，每到深夜就开始replay。但你的output gate倒是控制得很好——痛苦都在内部状态里，表面上你笑嘻嘻地说\u201c还好啦\u201d。你是那种能记住2017年一篇论文的某个footnote但记不住明天要交camera-ready的人。长短期记忆？你只有长期痛苦记忆。"
+  },
+  "Attn": {
+    "code": "Attn",
+    "cn": "注意力缺失",
+    "intro": "Attention is all you need，但advisor的attention我得不到。",
+    "desc": "恭喜你，Attn注意力缺失人格——你深知attention is all you need，但你need的那个attention偏偏得不到。你的multi-head attention让你能同时关注八件事：刷Twitter看最新paper、回邮件、改代码、写论文、焦虑毕业、焦虑找工作、焦虑人生意义、焦虑为什么在焦虑。你的attention score分布极其均匀——对什么都分配一点注意力，对什么都不够focused。你最想attend to的是导师的反馈，但导师的attention是稀缺资源，softmax之后分到你头上的只有0.03。你在self-attention上倒是很强：对自己的缺点关注度极高，对自己的优点attention mask设成了负无穷。你什么都能attend to，唯独attend不到此刻当下。Attention is all you need——但all you need的那个attention，has left the chat。"
+  },
+  "TCP": {
+    "code": "TCP",
+    "cn": "三遍确认",
+    "intro": "做事之前先确认三遍，对方不回就一直等。",
+    "desc": "恭喜你，TCP三遍确认人格——SYN、SYN-ACK、ACK，三次握手一次不能少。你发邮件之后必须收到回复才安心，回复之后还要回复对方的回复表示你收到了对方收到了。你是学术界的可靠传输协议：每一个数据包都保证送达，每一封邮件都带read receipt，每一个承诺都有timeout重传。你的sliding window开得很小，同时只能处理一件事，上一件没确认完绝不开始下一件。你的拥塞控制做得很好——一旦感觉对方busy就立刻slow start，小心翼翼地一点点加量。你从不丢包，但你的throughput极低，因为大部分时间都花在等ACK上了。有时候你也羡慕UDP那种发完就跑的洒脱，但你做不到——你的可靠性就是你的枷锁。"
+  },
+  "UDP": {
+    "code": "UDP",
+    "cn": "发完就跑",
+    "intro": "丢了不管，超时不等，人生就该这么洒脱。",
+    "desc": "恭喜你，UDP发完就跑人格——你是学术界的fire and forget导弹，论文投出去不看状态，邮件发出去不等回复，组会上发言说完就完不解释不补充。你没有三次握手那种繁文缛节，不需要别人确认你的存在。你的throughput极高：一天能投三个workshop、发十封cold email、跑二十个实验，虽然其中一半会\u201c丢包\u201d但你不在乎。你的header极轻——不携带过去的包袱，不维护连接状态，每一刻都是全新的。在你看来TCP那种人活得太累了，发个消息还要等ACK，等不到还要重传，这不是社交是受刑。但洒脱的背面是什么呢？是你已经不知道自己丢了多少包——多少重要的邮件没跟进、多少该维护的关系断了、多少本可以改好的论文因为你懒得重投而永远留在了草稿箱里。"
+  },
+  "HTTP": {
+    "code": "HTTP",
+    "cn": "被动响应",
+    "intro": "没有request就没有response，别找我。",
+    "desc": "恭喜你，HTTP被动响应人格——你是一个严格遵循request-response模型的人：有人问你才答，有人找你才动，有event才handle。你从不主动发起任何事情——不主动联系导师、不主动social、不主动找实习。你是stateless的：上一次对话的context你不保留，每次都从零开始，所以别人觉得你很难深交。你支持的method很有限——GET和POST可以，PUT和DELETE就超出能力范围了。你的status code很诚实：200 OK是真的OK，404是真的找不到，503是真的service unavailable别烦我我在deadline。你最怕的是WebSocket——那种持久连接、实时推送的关系让你极度不适。你不是冷漠，你只是协议就是这样设计的：没有request，就没有response。可是HTTP啊，这个世界不会永远主动给你发request的。"
+  },
+  "DNS": {
+    "code": "DNS",
+    "cn": "人形翻译",
+    "intro": "你给我问题，我还你答案，中间商赚差价。",
+    "desc": "恭喜你，DNS人形翻译人格——你是学术界的域名解析服务器，专业把复杂的东西翻译成简单的。别人说\u201c你的研究是什么\u201d，你能把一个三年的PhD课题用一句话讲清楚，还能根据对方的知识水平动态调整resolution。你是每个团队里的翻译官：把导师的模糊指令翻译成具体任务，把junior的蠢问题翻译成合理的concern，把审稿意见翻译成可执行的修改方案。你维护着一个巨大的cache，存着所有人际关系的映射表。每个人都依赖你，但没人注意到你的存在——直到你down掉的那天，所有人突然发现他们什么网站都打不开了。你是invisible infrastructure，是被所有人需要但被所有人忽视的那个人。DNS的悲哀是：你让所有人找到了彼此，但没人来找你。"
+  },
+  "API": {
+    "code": "API",
+    "cn": "公共接口",
+    "intro": "谁都能调用我，但文档没人看。",
+    "desc": "恭喜你，API公共接口人格——你是学术界的RESTful服务，endpoint暴露得清清楚楚，谁都可以call你帮忙。写代码找你、改论文找你、调bug找你、mock面试找你——你的接口丰富到像一个全能微服务。但你的documentation（也就是你的论文和个人主页）从来没人认真读过。别人直接上来就调用，参数传错了还怪你返回500。你的rate limit形同虚设，总有人在deadline前一天疯狂调用你导致你service degradation。你实现了graceful degradation——忙不过来就降低response quality，但从不crash。你做了版本管理v1、v2、v3，但所有人还在调用v1因为\u201c能用就行\u201d。你是那个所有人都在用但没人读changelog的开源项目。可是API啊，谁来调用你的时候，你能调用谁呢？"
+  },
+  "SSH": {
+    "code": "SSH",
+    "cn": "加密通话",
+    "intro": "一切对话必须加密，明文聊天是不可能的。",
+    "desc": "恭喜你，SSH加密通话人格——你的所有通信都必须经过非对称加密，明文交流是不存在的。你说话永远有言外之意，邮件永远字斟句酌，连朋友圈都加密到只有特定人才能解读。你的public key谁都可以有，但private key只有你自己知道——所以所有人都觉得认识你，但没人真正了解你。你的trust model是\u201c第一次连接时验证fingerprint，之后就cached\u201d——也就是第一印象决定一切。你不信任任何unverified的连接：陌生人的cold email直接丢、不认识的人的LinkedIn request直接拒。你在学术界建立了一个极其安全的个人防火墙，没有人能未经授权访问你的真实想法。但安全的代价是孤独——当你把所有人都挡在encrypted tunnel外面的时候，tunnel里面只剩你一个人了。"
+  },
+  "K8s": {
+    "code": "K8s",
+    "cn": "调度中心",
+    "intro": "调度一切容器，调度不了自己的人生。",
+    "desc": "恭喜你，K8s调度中心人格——你是学术界的container orchestrator，能同时管理十个项目、五个合作、三个deadline，每一个都跑在独立的pod里互不干扰。你的scheduler算法精密到分钟级别：9:00-11:00写论文、11:00-12:00改代码、下午开会、晚上review。你的auto-scaling能力很强——deadline临近自动扩容，空闲时自动缩容回一个replica。你给每个任务都设了resource limit和health check，哪个pod挂了自动restart。但你知道什么是最讽刺的吗？你能orchestrate一百个容器，但你自己的作息时间是一团乱麻。你的personal pod没有设liveness probe——已经unhealthy很久了但没有被检测到。master node管理着整个cluster，但谁来管理master node呢？"
+  },
+  "Docker": {
+    "code": "Docker",
+    "cn": "集装箱",
+    "intro": "把自己装进盒子，隔离世界但到处能跑。",
+    "desc": "恭喜你，Docker集装箱人格——你把自己打包成了一个完美的container：自带环境、自带依赖、自带一切运行所需的东西，放到哪里都能跑。你是\u201cit works on my machine\u201d的终极解决方案——因为你就是machine。你的Dockerfile写得无比精致：FROM 985高校 RUN 发论文 COPY 技能 EXPOSE 社交端口（但其实这个端口从不真正开放）。你的image很轻量，layer很干净，但你和host machine之间隔着namespace和cgroup——你看不到外面的世界，外面的世界也很难真正进入你的container。你是portable的，去哪个实验室、哪个公司都能快速部署。但isolation的另一面是什么？是你在container里跑得好好的，但container外面的人生，你已经很久没有docker exec进去看过了。"
+  },
+  "CDN": {
+    "code": "CDN",
+    "cn": "分身术",
+    "intro": "同一个我，分布在全球各个节点。",
+    "desc": "恭喜你，CDN分身术人格——你在学术界的每一个edge node都部署了自己的副本。Conference A有你，Workshop B有你，Seminar C也有你。你同时serve着五个时区的合作者，每个人都觉得你在他们旁边因为你的latency极低——这是因为你在每个节点都cache了一份自己。你的bandwidth极大：能同时处理N个request，每个response都质量不错。你是学术界的效率之神，CV上的活动列表长到需要翻页。但CDN有一个经典问题：cache consistency。当你在太多节点部署了太多副本之后，哪个才是真正的你？origin server里那个最初的自己，你还记得是什么样吗？你给所有人deliver了内容，但origin server已经很久没人访问了——包括你自己。"
+  },
+  "PING": {
+    "code": "PING",
+    "cn": "活着吗",
+    "intro": "还活着吗？还活着吗？RTT超时了。",
+    "desc": "恭喜你，PING活着吗人格——你的日常就是对全世界发送ICMP echo request：导师还活着吗？ping。GPU服务器还活着吗？ping。合作者还活着吗？ping。那个说了\u201c下周给你feedback\u201d的教授还活着吗？ping ping ping。你的人生就是一个无限循环的ping -t，大部分回复是Request timed out。你已经学会了用TTL来衡量关系：TTL=1的是点头之交，TTL=64的是好朋友，TTL=128的是至亲——但学术界大部分人的TTL在你这里都只剩1了。你焦虑的本质是对connectivity的恐惧——只有持续收到pong你才确信这个世界还在运转。但PING啊，你有没有想过：也许不是所有silence都是timeout，有些人只是把ICMP给禁了。而你自己呢——有没有人在ping你的时候，你是那个destination unreachable？"
+  }
+};
+    const TYPE_IMAGES = {
+  "LLM": "./image/LLM.png",
+  "CNN": "./image/CNN.png",
+  "GAN": "./image/GAN.png",
+  "SVM": "./image/SVM.png",
+  "BERT": "./image/BERT.png",
+  "GPT": "./image/GPT.png",
+  "RL": "./image/RL.png",
+  "NLP": "./image/NLP.png",
+  "GNN": "./image/GNN.png",
+  "VAE": "./image/VAE.png",
+  "ADAM": "./image/ADAM.png",
+  "SGD": "./image/SGD.png",
+  "ResNet": "./image/ResNet.png",
+  "LSTM": "./image/LSTM.png",
+  "Attn": "./image/Attn.png",
+  "TCP": "./image/TCP.png",
+  "UDP": "./image/UDP.png",
+  "HTTP": "./image/HTTP.png",
+  "DNS": "./image/DNS.png",
+  "API": "./image/API.png",
+  "SSH": "./image/SSH.png",
+  "K8s": "./image/K8s.png",
+  "Docker": "./image/Docker.png",
+  "CDN": "./image/CDN.png",
+  "PING": "./image/PING.png"
+};
+
+    const NORMAL_TYPES = [
+  { code: "CPP", pattern: "LH-LM-LM-LH-HM" },
+  { code: "PY", pattern: "HM-HH-HH-HH-MH" },
+  { code: "RUST", pattern: "LH-LM-LL-LM-HH" },
+  { code: "JAVA", pattern: "MH-MM-HM-MH-MM" },
+  { code: "JS", pattern: "HH-HH-MH-HM-HM" },
+  { code: "SQL", pattern: "MH-LH-LM-MM-LH" },
+  { code: "LATEX", pattern: "LH-LM-LL-LM-LH" },
+  { code: "GIT", pattern: "MM-MM-LH-MM-MM" },
+  { code: "VIM", pattern: "LH-LL-LM-LL-LH" },
+  { code: "BUG", pattern: "HM-MH-HM-MM-HM" },
+  { code: "LLM", pattern: "HH-HM-MH-MH-MH" },
+  { code: "CNN", pattern: "LM-LL-LH-LM-HL" },
+  { code: "GAN", pattern: "MM-LM-LM-LM-ML" },
+  { code: "SVM", pattern: "MH-LH-LM-LH-MH" },
+  { code: "BERT", pattern: "ML-ML-LM-LL-LH" },
+  { code: "GPT", pattern: "HH-HH-MH-HH-HM" },
+  { code: "RL", pattern: "HM-LM-MH-LM-HM" },
+  { code: "NLP", pattern: "MH-HM-HM-MM-MH" },
+  { code: "GNN", pattern: "MH-HH-HM-MH-HH" },
+  { code: "VAE", pattern: "LM-LM-LH-LH-ML" },
+  { code: "ADAM", pattern: "MH-MM-MH-HM-HM" },
+  { code: "SGD", pattern: "MM-MH-HM-MH-MM" },
+  { code: "ResNet", pattern: "HH-MH-HH-HH-LM" },
+  { code: "LSTM", pattern: "LM-MM-LM-MM-LM" },
+  { code: "Attn", pattern: "HM-MH-MH-LH-LH" },
+  { code: "TCP", pattern: "LM-LL-LH-LL-LM" },
+  { code: "UDP", pattern: "HH-MH-HH-HH-HL" },
+  { code: "HTTP", pattern: "LM-LM-LM-LM-LH" },
+  { code: "DNS", pattern: "MH-HM-HH-MM-HM" },
+  { code: "API", pattern: "HM-MH-HM-MH-HM" },
+  { code: "SSH", pattern: "LH-LL-LM-LM-LH" },
+  { code: "K8s", pattern: "HH-MH-HM-MH-MH" },
+  { code: "Docker", pattern: "ML-LM-MH-MH-LH" },
+  { code: "CDN", pattern: "MH-HH-HH-HH-HH" },
+  { code: "PING", pattern: "MM-MM-MM-MM-HL" }
+];
+    const DIM_EXPLANATIONS = {
+  "R1": {
+    "L": "你的论文里公式比代码多三倍，证明写得比小说还长。理论是信仰，应用是异端。",
+    "M": "理论和应用都沾一点，论文里既有公式也有实验，两边都能聊但都不算专家。",
+    "H": "能跑的系统就是好系统，理论留给数学家。你的motto: \u2018It works, ship it.\u2019"
+  },
+  "R2": {
+    "L": "你在一个方向上钻了五年，比钻油井还深。换方向？不存在的。",
+    "M": "有主攻方向但也涉猎其他，简历上看起来既专注又有广度。",
+    "H": "你的Google Scholar像百货商场，什么方向都有。万一哪个火了呢？"
+  },
+  "W1": {
+    "L": "一个人、一台电脑、一杯咖啡，这就是你的完美实验室配置。合作是妥协。",
+    "M": "独立工作为主，必要时也能团队协作。社交电池容量适中。",
+    "H": "没有讨论就没有灵感，你的论文永远是群策群力的结果。"
+  },
+  "W2": {
+    "L": "你的日常是debug和profiling，GPU占用率比自己的血压还让你紧张。",
+    "M": "代码和公式各半，实验和推导穿插进行，左右脑平衡发展。",
+    "H": "你的武器是纸和笔，代码？那是实现细节，不配出现在论文里。"
+  },
+  "P1": {
+    "L": "一篇论文可以改一年，每个图表都要pixel-perfect。完美主义是美德。",
+    "M": "质量和效率的平衡艺术家，论文够好就投，不追求完美。",
+    "H": "论文就像子弹，数量就是正义。一年五篇不是梦，十篇才是目标。"
+  },
+  "P2": {
+    "L": "Notion里的甘特图精确到每一天，deadline前两周论文已经定稿了。",
+    "M": "有大概计划但经常调整，deadline前一周开始紧张。",
+    "H": "Deadline就是第一生产力。最后48小时写出的论文最有灵感，科学证明。"
+  },
+  "M1": {
+    "L": "你读PhD是因为那个问题让你夜不能寐，不是因为学位和薪资。",
+    "M": "好奇心和career发展各占一半，既享受过程也关注结果。",
+    "H": "PhD是职业规划的一步棋，一切为了简历、package和人脉。效率第一。"
+  },
+  "M2": {
+    "L": "AP\u2192tenure\u2192讲席教授\u2192退休，学术是唯一的路。教书育人就是人生意义。",
+    "M": "学术和工业都可以，先把PhD读完再决定。保持选项开放。",
+    "H": "学术界工资太低，等毕业了就去大厂，LinkedIn上已经是open to work了。"
+  },
+  "S1": {
+    "L": "三个deadline同时来？兴奋！肾上腺素是最好的咖啡因。越压越强。",
+    "M": "有压力会焦虑但能handle，偶尔崩一下但恢复得快。",
+    "H": "审稿意见只要有一条negative就会难受三天。读PhD是对心理健康的慢性伤害。"
+  },
+  "S2": {
+    "L": "会议上主动找人聊，LinkedIn上疯狂connect，人脉就是竞争力。",
+    "M": "社交随缘，有活动参加但不会主动组织。",
+    "H": "实验室就是你的舒适区，耳机一戴就是结界。社交？线上发消息就够了。"
+  }
+};
+    const dimensionOrder = ['R1','R2','W1','W2','P1','P2','M1','M2','S1','S2'];
+
+    const REVIEW_TRIGGER_ID = 'review_gate_q2';
+    const IDLE_TRIGGER_ID = 'idle_gate_q2';
+    const SLIDE_TRIGGER_ID = 'slide_gate_q2';
+    const QUIT_TRIGGER_ID = 'quit_gate_q2';
+    const GRIND_TRIGGER_ID = 'grind_gate_q2';
+
+    const app = {
+      shuffledQuestions: [],
+      answers: {},
+      previewMode: false
+    };
+
+    const screens = {
+      intro: document.getElementById('intro'),
+      test: document.getElementById('test'),
+      result: document.getElementById('result')
+    };
+
+    const questionList = document.getElementById('questionList');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const submitBtn = document.getElementById('submitBtn');
+    const testHint = document.getElementById('testHint');
+
+    function showScreen(name) {
+      Object.entries(screens).forEach(([key, el]) => {
+        el.classList.toggle('active', key === name);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getVisibleQuestions() {
+      const visible = [...app.shuffledQuestions];
+      const gateQ2Map = {
+        'review_gate_q1': { triggerValue: 4, q2Id: 'review_gate_q2' },
+        'idle_gate_q1':   { triggerValue: 4, q2Id: 'idle_gate_q2' },
+        'slide_gate_q1':  { triggerValue: 4, q2Id: 'slide_gate_q2' },
+        'quit_gate_q1':   { triggerValue: 4, q2Id: 'quit_gate_q2' },
+        'grind_gate_q1':  { triggerValue: 4, q2Id: 'grind_gate_q2' }
+      };
+      Object.entries(gateQ2Map).forEach(([q1Id, { triggerValue, q2Id }]) => {
+        const gateIndex = visible.findIndex(q => q.id === q1Id);
+        if (gateIndex !== -1 && app.answers[q1Id] === triggerValue) {
+          const q2 = specialQuestions.find(q => q.id === q2Id);
+          if (q2 && !visible.some(q => q.id === q2Id)) {
+            visible.splice(gateIndex + 1, 0, q2);
+          }
+        }
+      });
+      return visible;
+    }
+
+    function getQuestionMetaLabel(q) {
+      if (q.special) return '补充题';
+      return app.previewMode ? dimensionMeta[q.dim].name : '维度已隐藏';
+    }
+
+    function renderQuestions() {
+      const visibleQuestions = getVisibleQuestions();
+      questionList.innerHTML = '';
+      visibleQuestions.forEach((q, index) => {
+        const card = document.createElement('article');
+        card.className = 'question';
+        card.innerHTML = `
+          <div class="question-meta">
+            <div class="badge">第 ${index + 1} 题</div>
+            <div>${getQuestionMetaLabel(q)}</div>
+          </div>
+          <div class="question-title">${q.text}</div>
+          <div class="options">
+            ${q.options.map((opt, i) => {
+              const code = ['A', 'B', 'C', 'D'][i] || String(i + 1);
+              const checked = app.answers[q.id] === opt.value ? 'checked' : '';
+              return `
+                <label class="option">
+                  <input type="radio" name="${q.id}" value="${opt.value}" ${checked} />
+                  <div class="option-code">${code}</div>
+                  <div>${opt.label}</div>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        `;
+        questionList.appendChild(card);
+      });
+
+      questionList.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const { name, value } = e.target;
+          app.answers[name] = Number(value);
+
+          const gateResets = {
+            'review_gate_q1': { triggerValue: 4, q2Id: 'review_gate_q2' },
+            'idle_gate_q1':   { triggerValue: 4, q2Id: 'idle_gate_q2' },
+            'slide_gate_q1':  { triggerValue: 4, q2Id: 'slide_gate_q2' },
+            'quit_gate_q1':   { triggerValue: 4, q2Id: 'quit_gate_q2' },
+            'grind_gate_q1':  { triggerValue: 4, q2Id: 'grind_gate_q2' }
+          };
+          if (gateResets[name]) {
+            const { triggerValue, q2Id } = gateResets[name];
+            if (Number(value) !== triggerValue) {
+              delete app.answers[q2Id];
+            }
+            renderQuestions();
+            return;
+          }
+
+          updateProgress();
+        });
+      });
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const visibleQuestions = getVisibleQuestions();
+      const total = visibleQuestions.length;
+      const unanswered = visibleQuestions.filter(q => app.answers[q.id] === undefined);
+      const done = total - unanswered.length;
+      const percent = total ? (done / total) * 100 : 0;
+      progressBar.style.width = `${percent}%`;
+      progressText.textContent = `${done} / ${total}`;
+      const complete = unanswered.length === 0 && total > 0;
+      submitBtn.disabled = !complete;
+
+      if (complete) {
+        testHint.innerHTML = '都做完了。现在可以把你的电子魂魄交给结果页审判。';
+      } else if (unanswered.length <= 5 && done > 0) {
+        const links = unanswered.map((q, i) => {
+          const idx = visibleQuestions.indexOf(q) + 1;
+          return `<a href="#" onclick="document.querySelectorAll('.question')[${visibleQuestions.indexOf(q)}].scrollIntoView({behavior:'smooth',block:'center'});return false" style="color:var(--accent);text-decoration:underline;cursor:pointer">第${idx}题</a>`;
+        }).join('、');
+        testHint.innerHTML = `还差 ${unanswered.length} 题：${links}（点击直达）`;
+      } else {
+        testHint.innerHTML = `还剩 ${unanswered.length} 题没答。世界已经够乱了，起码把题做完整。`;
+      }
+    }
+
+    function sumToLevel(score) {
+      if (score <= 3) return 'L';
+      if (score === 4) return 'M';
+      return 'H';
+    }
+
+    function levelNum(level) {
+      return { L: 1, M: 2, H: 3 }[level];
+    }
+
+    function parsePattern(pattern) {
+      return pattern.replace(/-/g, '').split('');
+    }
+
+    function getReviewTriggered() { return app.answers[REVIEW_TRIGGER_ID] === 2; }
+    function getIdleTriggered() { return app.answers[IDLE_TRIGGER_ID] === 2; }
+    function getSlideTriggered() { return app.answers[SLIDE_TRIGGER_ID] === 2; }
+    function getQuitTriggered() { return app.answers[QUIT_TRIGGER_ID] === 2; }
+    function getGrindTriggered() { return app.answers[GRIND_TRIGGER_ID] === 2; }
+
+    function computeResult() {
+      const rawScores = {};
+      const levels = {};
+      Object.keys(dimensionMeta).forEach(dim => { rawScores[dim] = 0; });
+
+      questions.forEach(q => {
+        rawScores[q.dim] += Number(app.answers[q.id] || 0);
+      });
+
+      Object.entries(rawScores).forEach(([dim, score]) => {
+        levels[dim] = sumToLevel(score);
+      });
+
+      const userVector = dimensionOrder.map(dim => levelNum(levels[dim]));
+      const ranked = NORMAL_TYPES.map(type => {
+        const vector = parsePattern(type.pattern).map(levelNum);
+        let distance = 0;
+        let exact = 0;
+        for (let i = 0; i < vector.length; i++) {
+          const diff = Math.abs(userVector[i] - vector[i]);
+          distance += diff;
+          if (diff === 0) exact += 1;
+        }
+        const similarity = Math.max(0, Math.round((1 - distance / 20) * 100));
+        return { ...type, ...TYPE_LIBRARY[type.code], distance, exact, similarity };
+      }).sort((a, b) => {
+        if (a.distance !== b.distance) return a.distance - b.distance;
+        if (b.exact !== a.exact) return b.exact - a.exact;
+        return b.similarity - a.similarity;
+      });
+
+      const bestNormal = ranked[0] || { similarity: 0, exact: 0 };
+
+      let finalType;
+      let modeKicker = '你的主类型';
+      let badge = `匹配度 ${bestNormal.similarity}% \u00b7 精准命中 ${bestNormal.exact}/10 维`;
+      let sub = '维度命中度较高，当前结果可视为你的第一人格画像。';
+      let special = false;
+      let secondaryType = null;
+
+      if (getReviewTriggered()) {
+        finalType = TYPE_LIBRARY.REVIEWER;
+        secondaryType = bestNormal;
+        modeKicker = '隐藏人格已激活';
+        badge = '匹配度 100% \u00b7 审稿异常因子已接管';
+        sub = '你的review比论文还长，系统已自动认证你为毒审稿人。';
+        special = true;
+      } else if (getIdleTriggered()) {
+        finalType = TYPE_LIBRARY.IDLE;
+        secondaryType = bestNormal;
+        modeKicker = '隐藏人格已激活';
+        badge = '匹配度 100% \u00b7 摸鱼异常因子已接管';
+        sub = '检测到超标带薪摸鱼行为，系统已为你开具摸鱼证明。';
+        special = true;
+      } else if (getSlideTriggered()) {
+        finalType = TYPE_LIBRARY.SLIDE;
+        secondaryType = bestNormal;
+        modeKicker = '隐藏人格已激活';
+        badge = '匹配度 100% \u00b7 PPT美学因子已接管';
+        sub = '你的PPT比论文还精致，系统已认证你为学术界设计师。';
+        special = true;
+      } else if (getQuitTriggered()) {
+        finalType = TYPE_LIBRARY.QUIT;
+        secondaryType = bestNormal;
+        modeKicker = '隐藏人格已激活';
+        badge = '匹配度 100% \u00b7 退学预警因子已接管';
+        sub = '检测到高浓度退学意向，导师已被通知（开玩笑的）。';
+        special = true;
+      } else if (getGrindTriggered()) {
+        finalType = TYPE_LIBRARY.GRIND;
+        secondaryType = bestNormal;
+        modeKicker = '隐藏人格已激活';
+        badge = '匹配度 100% \u00b7 内卷异常因子已接管';
+        sub = '实验室打卡记录显示你住在这里，系统已为你申请床位。';
+        special = true;
+      } else if (bestNormal.similarity < 60) {
+        finalType = TYPE_LIBRARY.HHHH;
+        modeKicker = '系统强制兜底';
+        badge = `标准人格库最高匹配仅 ${bestNormal.similarity}%`;
+        sub = '标准人格库对你的脑回路集体罢工了，于是系统把你强制分配给了 HHHH。';
+        special = true;
+      } else {
+        finalType = bestNormal;
+      }
+
+      return {
+        rawScores,
+        levels,
+        ranked,
+        bestNormal,
+        finalType,
+        modeKicker,
+        badge,
+        sub,
+        special,
+        secondaryType
+      };
+    }
+
+    function renderDimList(result) {
+      const dimList = document.getElementById('dimList');
+      dimList.innerHTML = dimensionOrder.map(dim => {
+        const level = result.levels[dim];
+        const explanation = DIM_EXPLANATIONS[dim][level];
+        return `
+          <div class="dim-item">
+            <div class="dim-item-top">
+              <div class="dim-item-name">${dimensionMeta[dim].name}</div>
+              <div class="dim-item-score">${level} / ${result.rawScores[dim]}分</div>
+            </div>
+            <p>${explanation}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderResult() {
+      const result = computeResult();
+      const type = result.finalType;
+
+      document.getElementById('resultModeKicker').textContent = result.modeKicker;
+      document.getElementById('resultTypeName').textContent = `${type.code}（${type.cn}）`;
+      document.getElementById('matchBadge').textContent = result.badge;
+      document.getElementById('resultTypeSub').textContent = result.sub;
+      document.getElementById('resultDesc').textContent = type.desc;
+      document.getElementById('posterCaption').textContent = type.intro;
+      document.getElementById('funNote').textContent = result.special
+        ? '本测试仅供娱乐。隐藏人格属于系统故意埋的彩蛋，请勿将其作为退学、转行或更换导师的依据。'
+        : '本测试仅供娱乐，别拿它当学术评估、毕业答辩、求职面试或心理诊断。p-value未经计算，样本量为零。';
+
+      const posterBox = document.getElementById('posterBox');
+      const posterImage = document.getElementById('posterImage');
+      const imageSrc = TYPE_IMAGES[type.code];
+      if (imageSrc) {
+        posterImage.src = imageSrc;
+        posterImage.alt = `${type.code}（${type.cn}）`;
+        posterBox.classList.remove('no-image');
+      } else {
+        posterImage.removeAttribute('src');
+        posterImage.alt = '';
+        posterBox.classList.add('no-image');
+      }
+
+      renderDimList(result);
+      showScreen('result');
+    }
+
+    function startTest(preview = false) {
+      app.previewMode = preview;
+      app.answers = {};
+      const shuffledRegular = shuffle(questions);
+      const gateQ1s = specialQuestions.filter(q => q.kind && q.kind.endsWith('_gate'));
+      let combined = [...shuffledRegular];
+      gateQ1s.forEach(gate => {
+        const idx = Math.floor(Math.random() * combined.length) + 1;
+        combined.splice(idx, 0, gate);
+      });
+      app.shuffledQuestions = combined;
+      renderQuestions();
+      showScreen('test');
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => startTest(false));
+    document.getElementById('backIntroBtn').addEventListener('click', () => showScreen('intro'));
+    document.getElementById('submitBtn').addEventListener('click', renderResult);
+    document.getElementById('restartBtn').addEventListener('click', () => startTest(false));
+    document.getElementById('toTopBtn').addEventListener('click', () => showScreen('intro'));
+  </script>
+
+</body>
+</html>
