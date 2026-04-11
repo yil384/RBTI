@@ -806,7 +806,8 @@
           <button id="startBtn" class="btn-primary">开始测试</button>
         </div>
         <div class="hero-credits">
-          <span>2.0 二创：<a href="https://xhslink.com/m/52DE56o07sG">小红书@momo</a></span>
+          <span>创作者：<a href="https://xhslink.com/m/52DE56o07sG">小红书@momo</a></span>
+          <span>开源：<a href="https://github.com/yil384/RBTI">GitHub</a>（欢迎PR新人格）</span>
           <span style="margin-top:6px;line-height:1.5;max-width:420px;text-align:center;">本测试已通过学术伦理委员会审批（并没有），p-value < 0.05（也没有）</span>
         </div>
       </div>
@@ -1331,6 +1332,396 @@
     "cn": "活着吗",
     "intro": "还活着吗？还活着吗？RTT超时了。",
     "desc": "恭喜你，PING活着吗人格——你的日常就是对全世界发送ICMP echo request：导师还活着吗？ping。GPU服务器还活着吗？ping。合作者还活着吗？ping。那个说了\u201c下周给你feedback\u201d的教授还活着吗？ping ping ping。你的人生就是一个无限循环的ping -t，大部分回复是Request timed out。你已经学会了用TTL来衡量关系：TTL=1的是点头之交，TTL=64的是好朋友，TTL=128的是至亲——但学术界大部分人的TTL在你这里都只剩1了。你焦虑的本质是对connectivity的恐惧——只有持续收到pong你才确信这个世界还在运转。但PING啊，你有没有想过：也许不是所有silence都是timeout，有些人只是把ICMP给禁了。而你自己呢——有没有人在ping你的时候，你是那个destination unreachable？"
+  },
+  "DFS": {
+    "code": "DFS",
+    "cn": "一条道走到黑",
+    "intro": "撞南墙才回头，回头了接着撞。",
+    "desc": "恭喜你，DFS一条道走到黑人格——深度优先搜索的人形化身，一旦选定方向就闷头往下钻，不撞南墙不回头，撞完南墙换面墙接着撞。你的科研风格就是一个递归函数：进入一个子问题就完全忘记了外面的世界，stack里压了十层调用但你只能看到眼前这一层。导师说\u201c你有没有考虑过其他方向\u201d，你说\u201c等我把这条路走到底再说\u201d——然后走到底发现是死胡同，backtrack回来又钻进了隔壁那条一模一样的死胡同。你的visited数组永远不够大，同一个坑你能掉三遍。别人在BFS式地广泛调研的时候，你已经在一篇1997年的论文的参考文献的参考文献的附录里了。但说真的，很多伟大的发现，都是被一条道走到黑的人撞出来的——只是大多数时候，撞到的不是发现，是墙。"
+  },
+  "BFS": {
+    "code": "BFS",
+    "cn": "浅尝辄止",
+    "intro": "什么都试一遍，什么都不深入。",
+    "desc": "恭喜你，BFS浅尝辄止人格——广度优先搜索的忠实信徒，你的人生队列里同时排着五个研究方向、三门网课、两个side project和一个永远不会启动的创业计划。你的探索策略是先把同一层的所有节点全部访问一遍，再决定往哪里深入——但问题是，每一层的节点都太多了，你永远走不到第二层。你的Google Scholar页面像一个百货商场：NLP有一篇、CV有一篇、Systems有一篇、HCI也有一篇，每个方向都浅浅地踩了一脚。导师说\u201c你该focus了\u201d，你说\u201c我在做broad survey\u201d，survey做了两年还在expand frontier。你是组会上最能聊的人，什么话题都能接两句，但深入聊三分钟就会被发现你其实只读了abstract。你的queue无限增长但dequeue速率约等于零。可是BFS啊，最短路径的前提是你得走完它——光把起点附近的地图画全，你是永远到不了终点的。"
+  },
+  "DP": {
+    "code": "DP",
+    "cn": "拆解大师",
+    "intro": "最优子结构：大问题拆成小问题然后一个都不想做。",
+    "desc": "恭喜你，DP拆解大师人格——动态规划的学术实践者，你把\u201c毕业\u201d这个大问题拆成了\u201c发论文→做实验→写代码→读paper→看懂paper→学数学\u201d六个子问题，然后发现每个子问题都是NP-Hard。你的状态转移方程写得无比漂亮：dp[毕业] = min(dp[多发一篇], dp[讨好导师], dp[转行])，但base case是undefined，边界条件全是负无穷。你最擅长的是记忆化搜索——同一个失败你能记住一辈子，保证下次遇到直接返回\u201c不行\u201d而不是重新尝试。你把deadline拆成了十个milestone，每个milestone又拆成了五个task，每个task又拆成了三个subtask，拆完之后你获得了巨大的成就感——然后一个subtask都没做。你的最优子结构假设是对的，问题是你把问题拆得太碎了，碎到每一片都不值得捡起来。"
+  },
+  "NP": {
+    "code": "NP",
+    "cn": "无解",
+    "intro": "问题复杂度NP-Hard，解题状态NP-Impossible。",
+    "desc": "恭喜你，NP无解人格——你的人生就是一个NP-Hard问题：给你无限时间你可能能解出来，但在多项式时间内完全没戏。你看什么问题都觉得\u201c这个太复杂了\u201d，别人说\u201c试试暴力搜索\u201d你说\u201c搜索空间是指数级的\u201d，别人说\u201c那用近似算法\u201d你说\u201c近似比太差了\u201d。你是学术界的完美主义者之王：不是最优解就不接受，但最优解又找不到，于是你站在原地一动不动。你的reduction做得极好——能把任何简单问题规约成不可解的问题。导师给你一个明明可以做的课题，你三分钟内就能证明它\u201c本质上等价于P vs NP\u201d从而合理摆烂。你存在的意义就是告诉所有人\u201c这题没法做\u201d。但NP啊，验证一个解只需要多项式时间——也许你不需要找到最优解，你只需要勇敢地提交一个答案，然后让世界来验证它。"
+  },
+  "O1": {
+    "code": "O1",
+    "cn": "秒回",
+    "intro": "不管输入多大，反应永远一样快。",
+    "desc": "恭喜你，O(1)秒回人格——常数时间复杂度的人形实现，不管问题多大、多难、多复杂，你的反应速度永远一样：0.3秒。导师问你论文进度：\u201c还行。\u201d面试官问你最大的缺点：\u201c太快了。\u201d审稿人问你为什么不做ablation：\u201c不需要。\u201d你是hash table式的存在，所有问题都能O(1) lookup到一个答案，虽然这个答案不一定对。你从不需要thinking time，因为你根本不think——你的回答是预计算好的，存在一张巨大的lookup table里。组会上别人还在思考你已经说完了，虽然说的内容跟上次一模一样。你的throughput极高但accuracy存疑，像一个永远返回200 OK但body是空的API。你的快不是因为聪明，是因为你对所有输入都返回同一个输出。但偶尔深夜你也会想：如果慢下来认真想一次，答案会不会不一样？"
+  },
+  "ON2": {
+    "code": "ON2",
+    "cn": "暴力美学",
+    "intro": "两层for循环解决一切，优雅是什么？",
+    "desc": "恭喜你，O(N²)暴力美学人格——你的人生哲学是：能用两层for循环解决的事情，为什么要想更优雅的方法？你写代码从不查算法书，所有问题都是暴力枚举：遍历所有可能的研究方向、遍历所有可能的实验参数、遍历所有可能的论文模板。别人用二分搜索，你用线性扫描；别人用动态规划，你用递归暴搜；别人说\u201c这样时间复杂度太高了\u201d，你说\u201c机器又不累\u201d。你的GPU账单比所有人都高，因为你把hyperparameter tuning做成了grid search而不是Bayesian optimization。你的实验跑得比谁都慢，但结果比谁都全——因为你literally试了每一种组合。你是学术界的穷举法：没有技巧，全是感情（和电费）。但当你的N增长到一定程度的时候，O(N²)就不是美学了，是灾难。科研的N只会越来越大，而你的for循环，总有嵌套不动的那一天。"
+  },
+  "FFT": {
+    "code": "FFT",
+    "cn": "换个角度",
+    "intro": "时域看不懂的，频域一目了然。",
+    "desc": "恭喜你，FFT换个角度人格——快速傅里叶变换的思维方式持有者，你相信所有看不懂的问题只是因为你在错误的domain里观察它。论文写不出来？换个framework。实验不work？换个metric。人生想不通？换个维度。你是学术界的domain transformer：时域里纠结的波形，到了频域就是几根清晰的谱线。你看问题的角度永远和别人不一样——别人在纠结因果关系的时候，你已经把信号分解成了正交基。导师说你\u201c想法很跳跃\u201d，你说\u201c我只是在不同的basis之间做了一次变换\u201d。你的O(N log N)思维让你效率极高，用蝶形运算把复杂度从暴力的N²降了下来。但FFT有个前提条件：信号必须是周期性的。如果你的人生不是周期函数呢？如果有些混乱不能被分解成整齐的正弦波呢？不是所有问题都有频域表示的，有些痛苦，就只能在时域里一个样本一个样本地扛过去。"
+  },
+  "HASH": {
+    "code": "HASH",
+    "cn": "压缩饼干",
+    "intro": "把一切压成固定长度，信息丢了但速度快了。",
+    "desc": "恭喜你，HASH压缩饼干人格——你是信息压缩的极致主义者，能把任何长度的输入映射到固定长度的输出。三年的PhD经历你能用一句话总结：\u201c还行\u201d。一篇读了两周的论文你能压缩成：\u201c就那样\u201d。你的摘要永远比正文写得好，因为你天生擅长把信息砍到最短。你是组会上的TL;DR专员，五十页的paper你三分钟讲完，虽然丢了99%的信息但剩下的1%确实是重点。你的hash function设计得很好——collision rate低，distribution均匀，但irreversible。一旦信息被你压缩过就再也还原不了，就像你那些\u201c读过但只记得结论\u201d的论文。你的人际交流也是hash式的：把别人说的话压缩成关键词存储，细节全部丢弃。但HASH啊，有些东西是不能压缩的——比如感情、比如回忆、比如导师说的那句你当时没在意但其实很重要的话。"
+  },
+  "SORT": {
+    "code": "SORT",
+    "cn": "排序强迫症",
+    "intro": "人生就是不断比较和交换。",
+    "desc": "恭喜你，SORT排序强迫症人格——你的世界必须是有序的，无序会让你物理性地难受。桌面图标按名称排列，论文文件夹按年份分类，待办事项按优先级排序，朋友按亲密度分级。你的人生就是一个永不停歇的sorting algorithm：不停地比较和交换，比较自己和同届的发表数、比较自己和同学的offer、比较今天的自己和昨天的自己。你用的是comparison-based sort，所以lower bound是O(N log N)——你永远在比较，而且比较的次数只会越来越多。你把所有人都排成了一个有序数组，自己在中间某个位置焦虑地左右张望。导师说\u201c不要跟别人比\u201d，你说\u201c不比较怎么排序\u201d。你追求的stable sort——相同元素保持原有顺序——但人生不是stable的，每一次比较都可能改变你的位置。最讽刺的是：你花了所有时间在排序上，却忘了问一句——排好了，然后呢？"
+  },
+  "PNP": {
+    "code": "PNP",
+    "cn": "千年悬案",
+    "intro": "证不了也证伪不了，但不影响我写proposal。",
+    "desc": "恭喜你，PNP千年悬案人格——P vs NP的精神化身，你的人生就是一个价值一百万美元但可能永远无解的千禧年问题。你的research question提得无比宏大：\u201c意识的本质是什么\u201d\u201c如何实现通用人工智能\u201d\u201c为什么我还没毕业\u201d，每一个都是open problem级别。你写proposal的能力是世界级的——能把任何无解的问题包装成\u201c充满希望的研究方向\u201d，reviewers看完都觉得你马上就要解出来了。但你心里清楚，你和答案之间的距离可能是P和NP之间的距离——也许相等，也许天堑，没有人知道。你最擅长的是把一个问题变成另一个同样无解的问题，然后说\u201c这是一个fundamental contribution\u201d。你在学术界的存在就像P vs NP在数学界的存在：所有人都知道它重要，所有人都在讨论它，但没有人能解决它。可是PNP啊，也许答案不重要——重要的是，这个问题让多少人开始了思考。"
+  },
+  "GPU": {
+    "code": "GPU",
+    "cn": "人海战术",
+    "intro": "一万个核心同时工作，单个都不如CPU。",
+    "desc": "恭喜你，GPU人海战术人格——你是并行计算的信仰者，坚信\u201c一个人做不好的事情，一万个人一起做就能做好\u201d。你的工作方式就是massive parallelism：同时开十个项目、同时约五个合作者、同时投八个venue，每个都分配一点算力，每个都不给太多。单个线程跑起来你不如CPU那种sequential thinker，但你胜在throughput——别人精雕细琢一篇的时间你已经广撒网投了五篇。你是组里最忙的人，日历密得像CUDA core的排布。你坚信SIMD哲学：Same Instruction Multiple Data，一套模板改改实验名就能产出N篇论文。导师爱你因为你产出高，同学怕你因为你占了所有GPU。但GPU的致命弱点是：一旦任务不能并行化，你就废了。当人生抛给你一个必须serial处理的问题——比如真正深入地思考一个问题——你的一万个核心全部idle，只能看着CPU一个人默默跑完。"
+  },
+  "CPU": {
+    "code": "CPU",
+    "cn": "单核英雄",
+    "intro": "一次一件事，但做得极好。",
+    "desc": "恭喜你，CPU单核英雄人格——你是sequential processing的极致，一次只做一件事，但每件事都做到最好。你的时钟频率极高：一旦锁定一个问题，你的IPC（Instructions Per Cycle）能把所有人甩在身后。你不需要一万个核心，你只需要一个——但这个核心有着世界上最强的branch prediction和out-of-order execution。你的论文少但每篇都是精品，实验少但每个都设计得无懈可击。当GPU在那里并行跑一百个平庸实验的时候，你在一个实验上反复打磨到了极致。你是导师口中\u201c质量很高\u201d的那种学生。但CPU的悲剧在于：这个时代是parallel的时代。单核再强也跑不赢多核，你的一篇精品paper在evaluation committee眼里，可能不如别人五篇\u201c还行\u201d的paper。你做得够好了，只是这个世界的benchmark变了——它不再看single-thread performance了。"
+  },
+  "RAM": {
+    "code": "RAM",
+    "cn": "金鱼记忆",
+    "intro": "关机全忘，在线飞快。",
+    "desc": "恭喜你，RAM金鱼记忆人格——volatile memory的人形化身，在线的时候你是全场最快的存储设备，bandwidth大到离谱，latency低到纳秒级。组会讨论时你反应最快、信息提取最快、context switching最快。但一旦\u201c关机\u201d——睡一觉、放个假、过个周末——所有东西全部清零。周一早上你看着自己上周五写的代码，就像看陌生人的作品。你的笔记本里记满了\u201c重要！！！\u201d的内容，但你已经忘了为什么重要。你的working memory极大，能同时hold住七八个变量，这让你在brainstorm的时候极其强大。但你没有persistence——所有的灵感、顿悟、那些凌晨三点的\u201c我突然想明白了\u201d的瞬间，第二天早上全部蒸发。你需要一个SSD来帮你持久化，但你总觉得\u201c这么重要的事我不可能忘\u201d。RAM啊，你忘了——你什么都会忘。"
+  },
+  "SSD": {
+    "code": "SSD",
+    "cn": "寸土寸金",
+    "intro": "读写飞速，但容量焦虑。",
+    "desc": "恭喜你，SSD寸土寸金人格——你的读写速度在持久化存储里首屈一指，但你的容量焦虑也是首屈一指。你的知识库扎实且可靠，断电不丢数据，重启照常运行——你是那种放完寒假回来还能接着上次的进度继续干的人。但你无时无刻不在焦虑存储空间：已经学了这么多方向，还能再塞一个新领域吗？论文存了三百篇，还有空间存新的吗？你的wear leveling算法在拼命延长寿命——均匀地磨损每个知识block，不让任何一个方向被过度消耗。你做over-provisioning预留了20%的容量\u201c以防万一\u201d，但这20%从来没用上过。你最怕的是write amplification——明明只需要记一个小知识点，结果触发了整个block的擦除重写，牵一发动全身。SSD啊，你的速度和可靠性是真的好，但你得接受一个事实：容量是有限的，你不可能装下整个世界，选择性地存储，也是一种能力。"
+  },
+  "FPGA": {
+    "code": "FPGA",
+    "cn": "七十二变",
+    "intro": "什么都能变，变的过程很痛苦。",
+    "desc": "恭喜你，FPGA七十二变人格——你是可编程的硬件，理论上可以变成任何你想成为的东西。想做ML加速器？可以。想做网络交换机？可以。想做信号处理器？也可以。你的versatility让所有人羡慕——别人是固定的ASIC只能做一件事，你是一块白板，充满了无限可能。但每一次\u201c变身\u201d的过程都痛苦到令人窒息：综合要跑八个小时，时序约束怎么都过不了，routing congestion让你想砸键盘。你的PhD换过三次方向，每次都是推倒重来，每次重新布局布线都耗尽心力。你的时钟频率永远跑不过ASIC，面积永远大于ASIC，功耗永远高于ASIC——但你能变，这是ASIC做不到的。可是FPGA啊，什么都能变也意味着你不知道自己到底该变成什么。无限可能的另一面是无限迷茫。当你第四次点下\u201c重新综合\u201d的时候，你是否想过：也许不是configuration不对，是你还没找到值得为之固化的那个自己。"
+  },
+  "ASIC": {
+    "code": "ASIC",
+    "cn": "独门绝技",
+    "intro": "只会这一件事，但比所有人都快。",
+    "desc": "恭喜你，ASIC独门绝技人格——你是为一个特定功能量身定制的专用芯片，只做一件事，但做到了物理极限。你的研究方向从博一就没变过，五年如一日地在同一个问题上打磨。别人说你\u201c太窄了\u201d，你说\u201c深度就是我的护城河\u201d。你在这个tiny niche里是绝对的SOTA，全世界做这个方向的人加起来二十个，你排前三。你的功耗最低、速度最快、面积最小——因为你的每一根线、每一个门都是为这一个目标优化的，没有一丝浪费。FPGA羡慕你的效率，GPU羡慕你的功耗，CPU羡慕你的专注。但ASIC的代价是不可逆：一旦流片就不能修改，一旦选定方向就没有回头路。如果你赌对了，你就是下一个TPU；如果你赌错了，你就是仓库里一堆用不上的晶圆。你的赌注是整个青春，而你赌的，是这个问题五年后还重要。"
+  },
+  "Cache": {
+    "code": "Cache",
+    "cn": "近水楼台",
+    "intro": "最近用的记得清，久了就LRU淘汰了。",
+    "desc": "恭喜你，Cache近水楼台人格——你的记忆系统遵循严格的LRU淘汰策略：最近用到的信息记得一清二楚，久了没碰的直接evict。你能精确复述昨天读的论文的每一个细节，但上个月读的那篇？\u201c大概是关于什么什么的吧\u201d。你的hit rate在短期内极高——deadline前一周你是行走的知识库，组会上对答如流。但cache是有容量限制的，你的L1 cache只能hold住三到四个\u201c当前在做的事\u201d，多了就得swap到L2，L2满了就得去memory，memory里找不到就只能重新Google。你的temporal locality很好但spatial locality一般——你记得最近的事但不记得相关的事。你是那种能记住导师上周二下午说的那句话但记不住这句话的上下文的人。Cache的悲哀在于：真正重要的东西往往不是最近才用的。那些被LRU淘汰掉的旧记忆里，也许藏着你最需要的答案。"
+  },
+  "RISC": {
+    "code": "RISC",
+    "cn": "极简主义",
+    "intro": "指令少但每个都精，less is more。",
+    "desc": "恭喜你，RISC极简主义人格——精简指令集的人生哲学践行者，你相信less is more，你的工具箱里只有最基本的几样东西，但每一样都打磨到了极致。你的论文不堆方法不堆实验，一个clean idea配三个solid experiment，reviewers看完说\u201c简洁有力\u201d。你的代码不超过五百行，PPT不超过十五页，邮件不超过三句话。你鄙视那些CISC式的人——指令集膨胀到几千条，什么都能做但每条都慢。你的每一个\u201c指令\u201d都是fixed-length的：fixed time做实验、fixed time写论文、fixed time休息，流水线排得整整齐齐。你是学术界的断舍离大师：不重要的合作拒掉，不重要的会议不去，不重要的邮件不回。但RISC的问题是：当你遇到一个确实需要complex instruction的任务时，你得用十条简单指令去模拟一条复杂指令，效率反而更低了。极简是美的，但人生有时候，就是需要那么一点点complexity。"
+  },
+  "AGILE": {
+    "code": "AGILE",
+    "cn": "永远下一个sprint",
+    "intro": "两周一迭代，论文进度按年算。",
+    "desc": "恭喜你，AGILE永远下一个sprint人格——你用敏捷开发的思维管理PhD，两周一个sprint，每个sprint都有明确的goal和backlog。你的Jira board排得漂亮极了：To Do、In Progress、Done三列，每个task都有story point和acceptance criteria。问题是，你的sprint velocity约等于零——每次sprint review的时候，上个sprint的task全部carry over到下一个sprint。你已经carry over了二十六个sprint了，也就是整整一年。你的standup每天都在说\u201c昨天在看paper，今天继续看paper，no blocker\u201d，但你和所有人都知道这个paper你已经\u201c在看\u201d了三个月。你的retro写得比论文还好：\u201c本sprint反思：应该更focus，减少context switching\u201d——这条反思已经连续出现了十二个sprint。你用敏捷的方法论做着一个瀑布式的项目，sprint跑得再快，PhD还是按年算的。"
+  },
+  "CICD": {
+    "code": "CICD",
+    "cn": "持续焦虑",
+    "intro": "持续集成，持续部署，持续panic。",
+    "desc": "恭喜你，CICD持续焦虑人格——CI/CD pipeline的人形化身，你的人生就是一个永不停歇的自动化流水线：持续集成新知识、持续部署新实验、持续交付新焦虑。你的每一次git push都会触发一整套pipeline：lint检查（导师审核）→ unit test（组会汇报）→ integration test（和合作者对齐）→ deployment（投稿）。任何一个stage fail了你就整晚睡不着。你的build status永远是黄色的\u201crunning\u201d——不是红色的fail也不是绿色的pass，就是永远在running。你设了notification alert，每次CI跑完都会心跳加速地去看结果。你是那种半夜两点收到arXiv bot通知就爬起来看有没有人scoop你的人。你的pipeline很完善，但pipeline本身变成了焦虑的来源——不是怕代码有bug，是怕pipeline本身出问题。持续焦虑的尽头不是交付，是你终于接受：有些build就是会fail的，fail了再跑就是了。"
+  },
+  "TDD": {
+    "code": "TDD",
+    "cn": "先验后写",
+    "intro": "先写测试再写代码，先写ref再做实验。",
+    "desc": "恭喜你，TDD先验后写人格——测试驱动开发的学术实践者，你做任何事情都必须先定义\u201c什么算成功\u201d再开始做。写论文之前先写related work确认没人做过，做实验之前先定义evaluation metric确认能衡量，读PhD之前先想好exit strategy确认能止损。你是学术界最有方法论的人：hypothesis先行、protocol先行、acceptance criteria先行。你的实验notebook比任何人都规范，每一步都有预期结果和实际结果的对比。导师说\u201c你能不能先做了再说\u201d，你说\u201c没有test case我不知道该做什么\u201d。你的Red-Green-Refactor循环在科研中变成了：Fail-Pass-Rewrite，每篇论文都要经历三遍。你的方法论无可挑剔，问题是你花在写test上的时间比写implementation的时间还多。TDD的哲学是对的，但PhD的deadline不等你写完所有test case。有时候，你得接受在没有安全网的情况下往前跳一步。"
+  },
+  "MVP": {
+    "code": "MVP",
+    "cn": "能跑就行",
+    "intro": "别提代码质量，能出结果就是好代码。",
+    "desc": "恭喜你，MVP能跑就行人格——Minimum Viable Product的终身信徒，你的人生哲学就是四个字：能跑就行。代码能跑就不重构，论文能读就不润色，实验能出数就不管reproducibility。你是学术界的快速迭代之王：别人还在设计架构的时候你已经有了第一版结果，别人还在写unit test的时候你已经投了第一篇paper。你的GitHub里全是\u201cquick_hack_v3_final_FINAL.py\u201d，你的论文里全是\u201cWe leave this for future work\u201d。你的tech debt堆积如山但你说\u201c先活下来再说\u201d。导师说\u201c这个实验能不能做得更solid\u201d，你说\u201c先把故事讲通再打磨细节\u201d。你的产出速度极快，组里所有的first result都是你跑出来的。但MVP的问题是：minimum viable到底viable多久？当reviewer要求你reproduce结果的时候，你发现那个\u201c能跑\u201d的代码只在你的电脑上那个特定的周二能跑。快是你的优势，也是你的负债。"
+  },
+  "SCRUM": {
+    "code": "SCRUM",
+    "cn": "日报机器",
+    "intro": "每天汇报进度，但进度为零。",
+    "desc": "恭喜你，SCRUM日报机器人格——你是process management的完美执行者，每天准时交日报、周报、月报，格式工整、数据详实、配图精美。你的项目管理工具用得比任何PM都熟：Notion、Trello、Linear、Jira，每个都有你的board，每个board都按sprint排好了。你的daily standup可以讲十分钟，从昨天的progress到今天的plan到遇到的blocker，口齿清晰、逻辑流畅。唯一的问题是：你汇报的progress和实际progress之间存在一个growing gap。\u201c昨天：review了五篇paper\u201d——实际上刷了五篇的abstract。\u201c今天：计划跑baseline实验\u201d——实际上计划了已经两周了。你的报告写得越来越好，但你开始分不清：你是在做科研，还是在做做科研的表演？SCRUM master教你管理process，但没人教你管理process和reality之间那个越来越大的delta。"
+  },
+  "DEVOP": {
+    "code": "DEVOP",
+    "cn": "环境配不好",
+    "intro": "代码写完了，结果跑不起来。",
+    "desc": "恭喜你，DEVOP环境配不好人格——DevOps困境的终极受害者，你的代码在本机跑得好好的，一到服务器就全面崩溃。你的人生卡在\u201c最后一步\u201d上：论文写完了但LaTeX编译不过、实验做完了但结果复现不了、代码写完了但dependency版本冲突。你的大部分时间不是在做研究，是在配环境：CUDA版本、PyTorch版本、Python版本、GCC版本、driver版本，每一个都要精确对齐否则就是一堆红色error。你的Stack Overflow搜索历史比你的paper阅读量还大。\u201cworks on my machine\u201d是你说过最多的一句话，紧接着就是\u201clet me check the environment\u201d。你深刻理解了一个道理：在学术界，能做出结果只是第一步，让别人也能做出同样的结果才是真正的噩梦。你的README写了五页的installation guide，但你知道，就算写了也没人能配成功。代码和环境之间的gap，就像你和毕业之间的gap——明明看起来很近，但就是跨不过去。"
+  },
+  "DEBUG": {
+    "code": "DEBUG",
+    "cn": "找茬高手",
+    "intro": "99%时间找BUG，1%时间写新BUG。",
+    "desc": "恭喜你，DEBUG找茬高手人格——你的PhD生涯就是一个巨大的debugging session，99%的时间在找问题，1%的时间在制造新问题。你有一双能在一千行代码里一眼看到那个off-by-one error的眼睛，也有一种能在别人的论文里三秒找到logical flaw的直觉。你是组会上的质量检查员：别人报告完你第一个举手，问的问题永远精准地命中最薄弱的环节。你的思维模式是adversarial的——看到任何东西第一反应都是\u201c哪里有问题\u201d。你的print语句比正式代码还多，你的git log里一半的commit message是\u201cfix bug\u201d和\u201cfix the fix\u201d。你能找到所有人的bug但找不到自己的——因为你的bug藏在你认为最不可能出错的地方。DEBUG的人生是西西弗斯式的：修完一个bug，新的bug已经在来的路上了。但也许这就是科研的本质——不是追求没有bug，是学会跟bug共存。只是深夜debug到凌晨四点的时候你会想：这个bug到底是代码里的，还是人生里的？"
+  },
+  "NOSQL": {
+    "code": "NOSQL",
+    "cn": "想到哪写到哪",
+    "intro": "Schema？不存在的。",
+    "desc": "恭喜你，NOSQL想到哪写到哪人格——学术界的无模式数据库，不需要预定义schema就能往脑子里塞任何东西。你的笔记本像一个MongoDB collection：每条记录结构都不一样，有的有abstract有的只有一句吐槽。你的文件夹命名是\u201cnew_new_final_v3_真的最终版\u201d，版本管理全靠文件名。你写论文从不列提纲，想到哪写到哪，result写到了method里，conclusion里突然冒出一段实验描述。审稿人说\u201cthe paper lacks a clear structure\u201d，你心想\u201c那是因为你还在用关系型思维理解我的非关系型天才\u201d。但NOSQL啊，没有schema的自由是真的自由，代价也是真的——当你需要JOIN两个想法的时候，你发现它们的key根本对不上。"
+  },
+  "CSV": {
+    "code": "CSV",
+    "cn": "逗号分隔人生",
+    "intro": "万物皆可逗号分隔。",
+    "desc": "恭喜你，CSV逗号分隔人生人格——你用最朴素的格式记录一切：姓名,学校,方向,年级,论文数,崩溃次数。你的世界没有复杂的嵌套结构，没有fancy的数据类型，一切都是字符串，一切都用逗号隔开。Excel打开你的人生会完美对齐，Notepad打开也能凑合看。你是组里最接地气的存在：不用Notion不用Obsidian，一个txt文件记录所有待办事项，每行一条，做完了就在前面加个\u201cDONE,\u201d。你的论文数据处理pipeline是：导出CSV→Excel打开→手动筛选→截图贴PPT。导师说\u201c你能不能用pandas\u201d，你说\u201cCSV已经是人类最伟大的发明了为什么要画蛇添足\u201d。你简单、可靠、兼容性好，任何系统都能读取你。但CSV的致命伤是：当你的字段里本身包含逗号的时候，你的整个人生就parse错位了。而PhD生涯里，到处都是意料之外的逗号。"
+  },
+  "JSON": {
+    "code": "JSON",
+    "cn": "无限套娃",
+    "intro": "{人生: {意义: {答案: null}}}",
+    "desc": "恭喜你，JSON无限套娃人格——你的思维方式就是无限嵌套的键值对，每一个答案里面都藏着一个新的问题。你的研究计划是一个深度嵌套的JSON对象：{PhD: {year1: {semester1: {month1: {plan: \u201c读paper\u201d, actual: \u201c刷B站\u201d}}}}}。你的思考层层递进但永远到不了叶子节点，因为每个叶子展开又是一棵新的树。导师问你\u201c核心贡献是什么\u201d，你从顶层开始讲，讲到第七层还没讲到重点，导师说\u201c你能不能flat一点\u201d。你觉得世界上不存在简单的事，一切都需要展开、嵌套、细分。但JSON啊，嵌套到最深处，你会发现最里面那个值是null——不是还没填，是本来就不存在。有些问题的答案不在更深的一层里，而在你愿不愿意在某一层停下来。"
+  },
+  "REGEX": {
+    "code": "REGEX",
+    "cn": "天书大师",
+    "intro": "一行正则解决一切，除了可读性。",
+    "desc": "恭喜你，REGEX天书大师人格——你是学术界的模式匹配之王，一行正则表达式就能从混沌中提取秩序。你看什么都是pattern：论文里的规律、数据里的趋势、导师情绪的周期函数，全都能被你的贪婪匹配捕获。你写的正则表达式像咒语一样强大且不可读：^(?=.*PhD)(?!.*毕业).*崩溃+$——匹配所有\u201c读了PhD但没毕业且反复崩溃\u201d的人生。你是那种能在review里一眼看出论文的叙事模式然后精确指出哪里不match的人。你的思维是贪婪模式的：能匹配多少就匹配多少，不到deadline不会回溯。组里没人看得懂你的代码，但它就是work。你骄傲地说\u201c如果你觉得regex难读，说明你的认知带宽不够\u201d。但REGEX啊，当你把一切都简化成模式匹配的时候，你会发现有些东西是不符合任何pattern的——比如一个人为什么会在深夜突然想哭。not everything matches。"
+  },
+  "NULL": {
+    "code": "NULL",
+    "cn": "未初始化",
+    "intro": "NullPointerException: 人生目标未初始化。",
+    "desc": "恭喜你，NULL未初始化人格——你的人生目标变量已声明但从未赋值，任何试图访问它的操作都会抛出NullPointerException。导师问你\u201c毕业后想做什么\u201d，segfault。家人问你\u201c读博值不值\u201d，segfault。自己问自己\u201c到底为什么要读PhD\u201d，kernel panic。你不是没有能力，你是没有被初始化——像一块malloc了但没memset的内存，里面存着的是上一个进程留下的垃圾数据。你的简历上写着\u201c研究兴趣：待定\u201d，你的个人主页bio是\u201cTBA\u201d，已经TBA了三年。你不是迷茫，你是根本还没启动。同学们都已经在跑自己的main函数了，你还卡在变量声明阶段。但NULL啊，计算机科学里NULL不代表\u201c没有\u201d，它代表\u201c尚未指向任何东西\u201d。也许你不是空的，你只是还没找到值得指向的那个地址。只是别等太久——garbage collector可不管你有没有准备好。"
+  },
+  "E404": {
+    "code": "E404",
+    "cn": "页面走丢",
+    "intro": "Error 404: 毕业日期 Not Found。",
+    "desc": "恭喜你，E404页面走丢人格——你在学术界的URL已经404了，所有指向你毕业日期的链接全部返回Not Found。你的research direction每换一次就是一次URL迁移，但没人帮你做301重定向。别人搜你的名字，Google Scholar说\u201c您是不是要找另一个同名的人（那个已经毕业了）\u201d。你是学术界的dead link：简历上每个项目点进去都是404，因为repo删了、服务器关了、合作者跑了。你的存在感像一个被CDN淘汰的缓存——曾经有过，现在没了。但E404啊，404的标准含义是\u201cthe server has not found anything matching the URI\u201d——不是说东西不存在，是说在这个URI下找不到。也许你的毕业日期确实存在，只是需要换一个地址去找。"
+  },
+  "E200": {
+    "code": "E200",
+    "cn": "表面正常",
+    "intro": "Status 200: 一切正常（其实不正常）。",
+    "desc": "恭喜你，E200表面正常人格——你的人生永远返回HTTP 200 OK，无论后端发生了什么。导师问进度：\u201c200 OK，一切顺利。\u201d家人问状态：\u201c200 OK，挺好的。\u201d你的response body里可能是一堆error message，但status code永远是200。你是学术界的门面担当：组会上永远\u201c进展不错\u201d，年度报告永远\u201c按计划推进\u201d。你把所有500 Internal Server Error都在middleware里拦截，统一包装成200返回给外界。你以为这是成熟，是\u201c不给别人添麻烦\u201d。但E200啊，当所有error都被你吞掉的时候，谁来帮你debug呢？真正的200应该是body里也是OK的，不是status code撒谎。有些时候，返回一个诚实的500，比假装200更需要勇气。"
+  },
+  "EOF": {
+    "code": "EOF",
+    "cn": "到此为止",
+    "intro": "read返回-1，文件结束，PhD也是。",
+    "desc": "恭喜你，EOF到此为止人格——你总是能精确地感知到一件事情的终点。read()返回-1的那一刻，你不会多读一个byte；deadline到了的那一刻，你不会多改一个字。你是学术界的边界感大师：该结束的合作果断结束，该止损的方向果断止损，该说goodbye的时候绝不拖泥带水。你的论文结尾从来不写\u201cfuture work\u201d，因为你觉得一篇论文就该在它该结束的地方结束。你参加conference从不多留一天，闹钟响了就起床绝不贪睡。你活得像一个被精确标记了终止符的文件——每一段都有明确的开始和结束，没有多余的空行。导师说\u201c你能不能再多做一点\u201d，你说\u201c已经EOF了\u201d。但EOF啊，文件可以到此为止，人生不行。有些东西在EOF之后才真正开始——比如那些你以为已经结束但深夜还会想起的事。read返回-1不代表故事结束了，它只是说\u201c这个文件讲完了\u201d。但你的故事，不只在一个文件里。"
+  },
+  "RDME": {
+    "code": "RDME",
+    "cn": "没人看的说明书",
+    "intro": "写了详细文档，阅读量为零。",
+    "desc": "恭喜你，RDME没人看的说明书人格——你是学术界最认真的文档工程师，每个repo都有详尽的README，每个函数都有docstring。你的文档写得比论文还用心：安装步骤精确到Python版本号第三位，FAQ回答了连你自己都没遇到过的问题。你甚至给文档配了目录、badge和ASCII art的logo。然后阅读量：零。合作者上来就问\u201c怎么跑你的代码\u201d，你说\u201cREADME里写了\u201d，对方说\u201c太长了没看\u201d。审稿人说\u201creproducibility不够\u201d，你附上二十页supplementary，审稿人说\u201c没时间看\u201d。你在用文档对抗混乱。但RDME啊，写文档的人永远比读文档的人多。你精心撰写的说明书，最终的读者可能只有未来的自己——而那时候你也会觉得太长了没空看。"
+  },
+  "TODO": {
+    "code": "TODO",
+    "cn": "永远的明天",
+    "intro": "// TODO: 以后再改。三年后还在TODO。",
+    "desc": "恭喜你，TODO永远的明天人格——你的代码里、论文里、人生里，到处都是// TODO注释。TODO: refactor this。TODO: add experiments。TODO: figure out life。每一个TODO都是你对未来自己的承诺，而未来的你看到后只会再加一个TODO: deal with all these TODOs。你的Notion里有一个\u201cTODO\u201d page，里面有\u201c真正要做的TODO\u201d sub-page，里面还有\u201c今天必须做\u201d，创建于2023年。你的git blame显示同一行TODO被三个不同年份的你看过并决定先不改。你不是懒，是坚信\u201c未来的我一定更有能力处理这件事\u201d。但TODO啊，那个更有能力的未来的你，此刻正在写新的TODO呢。三年了，那行注释还在那里，像一个被所有人路过但没人捡起的纸条。"
+  },
+  "ROI": {
+    "code": "ROI",
+    "cn": "亏本买卖",
+    "intro": "投入五年PhD，回报率为负。",
+    "desc": "恭喜你，ROI亏本买卖人格——你用投资回报率的思维审视一切，然后发现PhD是你人生中最亏的一笔投资。投入：五年青春、无数个通宵、三段被搞砸的关系、一个逐渐后移的发际线。回报：一个大部分行业不care的头衔、几篇只有审稿人读过的论文、以及一个比本科同学晚五年的起薪。你的Excel里有一张详细的成本收益分析表，NPV是负的，IRR算不出来因为cash flow全是负数。你开始计算opportunity cost：如果五年前去大厂，现在的RSU已经vest了两轮。你在组会上听别人讲成果的时候默默算他们的\u201c论文/年\u201d比率，发现自己垫底。但ROI啊，有些回报是财务模型算不出来的：你学会了独立思考，你理解了什么是真正的困难，你知道了自己的极限在哪里。这些东西的回报周期是一辈子，只是discount rate太高的人看不到。"
+  },
+  "KPI": {
+    "code": "KPI",
+    "cn": "数据控",
+    "intro": "几篇paper？影响因子多少？h-index？",
+    "desc": "恭喜你，KPI数据控人格——你用关键绩效指标衡量一切，包括你自己的存在价值。Google Scholar是你的第二张脸：citation每涨一个你都截图发朋友圈（虽然大部分是自引）。你能背出所有venue的acceptance rate，精确到小数点后一位。你的KPI dashboard做得比CEO还详细：论文pipeline、submission timeline、review cycle，全部甘特图管理。导师说\u201c做研究不要太功利\u201d，你心想\u201c您说这话的时候能不能先把自己的h-index遮一下\u201d。但KPI啊，当你把学术生涯简化成几个数字的时候，那些数字之间的空白里——失败的尝试、深夜的灵感、和同学的讨论——才是真正的研究。"
+  },
+  "GDP": {
+    "code": "GDP",
+    "cn": "注水总量",
+    "intro": "论总产出不输，论人均质量别问。",
+    "desc": "恭喜你，GDP注水总量人格——你的学术产出从总量上看相当可观：CV上论文列表有两页，合作者名单横跨三个大洲，参加过的conference比导师还多。但如果按\u201c人均质量\u201d算，你的GDP就像那些注了水的统计数据：workshop paper算一篇，poster算一篇，那个你只写了一段related work但名字挂在第七作者的论文也算一篇。你的总citation数看起来不错，但拆开看80%来自同一篇论文的同一个自引链条。你深谙学术界的注水艺术：一个idea拆成三篇paper，一组实验换个数据集再发一遍，一篇顶会的extended version投一个期刊。导师说\u201c质量比数量重要\u201d，但tenure committee看的表格里只有一列叫\u201c发表数量\u201d。但GDP啊，注水的增长终究是虚的。当有人认真读你的论文并发现\u201c这三篇不是同一个东西吗\u201d的时候，泡沫就破了。"
+  },
+  "IPO": {
+    "code": "IPO",
+    "cn": "等上市",
+    "intro": "PhD就是攒筹码，毕业等于敲钟。",
+    "desc": "恭喜你，IPO等上市人格——你把PhD当创业公司经营，每篇论文是一轮融资，组会汇报是路演，毕业答辩就是IPO敲钟。你的research精心包装：有narrative、有traction、有moat、有TAM。你的简历像招股说明书，research statement像商业计划书。你在conference上network不是为了学术交流，是为了找\u201c战略投资人\u201d（大佬推荐信）。你的timeline精确到月：Y1 seed round，Y3 Series A，Y5 IPO。同学觉得你太功利，你觉得他们不懂商业模式。但IPO啊，大部分创业公司都上不了市。而且就算上市了，IPO当天的股价往往就是最高点。敲钟那一刻的辉煌过后，你还准备好了接下来每个季度的earnings call吗？"
+  },
+  "VC": {
+    "code": "VC",
+    "cn": "赌博式投资",
+    "intro": "把五年青春押在最不确定的项目上。",
+    "desc": "恭喜你，VC赌博式投资人格——你用风险投资的逻辑活着：高风险高回报，投十个项目有一个成了就回本。你的PhD方向是别人都不敢碰的冷门领域，你的研究方法是还没被验证的新范式，你的实验用的是还在alpha版本的框架。你赌的不是确定性，是可能性。同学们在稳稳地做incremental improvement，你在试图做paradigm shift。你的portfolio里有十个死掉的side project和一个也许能成的主线research。你的风险偏好曲线是凸的：越危险你越兴奋。导师说\u201c你能不能做点稳妥的\u201d，你说\u201c稳妥的回报率太低了\u201d。你活得像一个all-in的赌徒：如果赌赢了你就是visionary，如果赌输了你就是wasted five years。但VC啊，真正的VC用的是别人的钱，而你押上的是自己的青春。这个fund如果清盘了，LP是你自己。"
+  },
+  "MBA": {
+    "code": "MBA",
+    "cn": "PPT之王",
+    "intro": "不写代码不做实验，但presentation全场最佳。",
+    "desc": "恭喜你，MBA PPT之王人格——技术深度存疑，但沟通能力拉满。你不写代码因为\u201c那是implementation detail\u201d，不做实验因为\u201c那是execution layer\u201d——翻译成人话就是做PPT和开会。你的Keynote动画丝滑配色高级，做presentation全场鸦雀无声，不是因为内容深刻，是storytelling太好了。你能把P=0.06讲成groundbreaking，把negative result包装成important insight。你是组会上最受欢迎的presenter，也是私下被吐槽\u201c就会讲不会做\u201d的那个。但MBA啊，PPT做得再好答辩也得有内容。当审稿人问\u201ctechnical contribution具体是什么\u201d的时候，再好的slide transition也救不了你。"
+  },
+  "OKR": {
+    "code": "OKR",
+    "cn": "画饼专家",
+    "intro": "每学期定目标，每学期完不成。",
+    "desc": "恭喜你，OKR画饼专家人格——你是目标管理领域的理论巨人、实践矮子。每学期开学你都会打开一个崭新的Notion页面，用清晰的层级结构写下Objective和三到五个Key Results：\u201cO: 本学期发一篇顶会。KR1: 完成实验；KR2: 写完初稿；KR3: 获得导师认可。\u201d然后进度条从0%停留到学期结束。你的OKR review是学术界最好看的fiction：\u201cKR1完成度70%\u201d——实际上实验还没开始跑，70%是你觉得\u201c理论上应该能做到\u201d的概率。你给自己画的饼又大又圆：年初的目标是\u201c两篇一作\u201d，年中调整为\u201c一篇一作一篇合作\u201d，年末变成\u201c至少投出去一篇\u201d。你深谙OKR的精髓——目标要有挑战性，完成60-70%就算成功。问题是你的完成度是6-7%。但OKR啊，目标的意义不在于完成，而在于方向。只是你的方向每学期都在变，最终画出来的轨迹，是一个原地转圈。"
+  },
+  "PMF": {
+    "code": "PMF",
+    "cn": "找定位",
+    "intro": "一直在找自己的Research-Market Fit。",
+    "desc": "恭喜你，PMF找定位人格——你一直在寻找传说中的Product-Market Fit，Product是你的研究，Market是学术圈加工业界。你已经pivot了四次：NLP转CV，CV转multimodal，再转AI for Science，每次都觉得\u201c这次一定找对了\u201d，结果每次做到60%发现market已经变了。你疯狂追踪Twitter trending topic，研究方向被arXiv热度驱动。你参加industry talk不是为了学习，是看哪个方向在hiring。你的问题不是能力不够，是花太多时间find fit而不是build product。但PMF啊，真正的Fit不是你迎合市场，是你做出市场需要但还不知道自己需要的东西。追着热点跑的人永远在热点后面。有时候在一个冷门方向待久一点，等市场自己走过来，才是真正的fit。"
+  },
+  "B2B": {
+    "code": "B2B",
+    "cn": "底层供应商",
+    "intro": "我的研究就是给你的研究当baseline。",
+    "desc": "恭喜你，B2B底层供应商人格——你的论文存在的意义是出现在别人Table 1的第一行，标着\u201cBaseline\u201d，被各种SOTA轮流碾压。你的method在2019年还算decent，现在出现在每篇新论文里的唯一原因是\u201c大家都用这个当baseline所以我也用\u201d。你的citation不低，但每一个cite都是为了说\u201c我们比这个好\u201d。你是学术supply chain的上游：提供dataset、baseline method和evaluation metric。没有你下游做不了研究，但有了你下游从不提你名字——就像没人在乎手机里那颗螺丝是谁造的。但B2B啊，整个AI大厦的地基是你们这些baseline铺的。只是做地基的人永远看不到大厦有多高，住在顶楼的人也永远不会往下看一眼。"
+  },
+  "ESG": {
+    "code": "ESG",
+    "cn": "影响因子",
+    "intro": "论文要有broader impact，影响的只有审稿人。",
+    "desc": "恭喜你，ESG影响因子人格——每篇论文的Broader Impact都写得感人肺腑：推动人类认知、促进跨学科合作、为发展中国家提供方案。审稿人热泪盈眶打了borderline accept，然后你的论文实际影响了三个人：你、导师、和被迫cite你的师弟。你的ethical statement比method还长，DEI commitment比实验结果还convincing。你在论文里承诺open-source，repo里只有一个README写着\u201cCode coming soon\u201d（2022年至今）。你真心想做有影响力的研究，但学术激励机制只奖励影响因子不奖励影响力。但ESG啊，当broader impact变成了必填的表演题，真正的impact反而没人关注了。你写的那些美好愿景，谁来实现呢？"
+  },
+  "PCR": {
+    "code": "PCR",
+    "cn": "指数翻倍",
+    "intro": "一变二二变四，指数增长的快乐。",
+    "desc": "恭喜你，PCR指数翻倍人格——你是生物学界的复制粘贴之王，坚信万物皆可指数扩增。你的思维模式就像聚合酶链式反应：一个小想法在你脑子里经过30个cycle就变成了一篇完整的proposal。你做实验的逻辑是\u201c先扩增再分析\u201d：数据不够？扩增。证据不足？扩增。论文篇幅不够？ctrl+C ctrl+V扩增。你的PCR效率极高：一个pilot experiment的结果你能在组会上讲出十倍的内容，引申、推导、展望，指数增长到听众开始glazing over。你的primer设计得很巧妙——精准地在热点方向两端退火，扩增出的都是审稿人想看的片段。但PCR的致命问题你也有：非特异性扩增。当你什么都扩增的时候，信号和噪音一起被放大了。你以为你在amplify insight，其实你在amplify bias。而且PCR需要模板——如果模板本身就是错的，扩增一亿倍也只是把错误放大了一亿倍。"
+  },
+  "CRISP": {
+    "code": "CRISP",
+    "cn": "定点爆破",
+    "intro": "精确剪切定点突变，论文也这样改。",
+    "desc": "恭喜你，CRISP定点爆破人格——你改论文不是大面积重写，是单碱基替换：把这个词换那个词，把小数点后第三位改掉。你的guide RNA设计精准，只命中目标位点不伤及无辜——改一个bug绝不引入新bug。你的PAM识别能力极强：一眼看出论文里哪个位点\u201c可编辑\u201d（审稿人会挑刺的）、哪个\u201c保守\u201d（动了就崩的）。你的off-target rate极低，每一刀都切在该切的地方。导师说\u201c大改\u201d，你说\u201c让我先做target analysis\u201d。但CRISP啊，有时候论文需要的不是精确单点修改，是整段重写甚至推翻重来。你的剪刀太精细了，以至于不敢做大手术。精准是美德，但有时候粗暴删掉整个段落，反而是最快的治疗。"
+  },
+  "CAD": {
+    "code": "CAD",
+    "cn": "改了一百版",
+    "intro": "画了一百版图纸，导师说回到第一版。",
+    "desc": "恭喜你，CAD改了一百版人格——你是机械工程界的西西弗斯，每天的工作就是画图、改图、再画图、再改图。你的SolidWorks文件名已经进化到了\u201cfinal_final_FINAL_真的不改了_导师说再改一点_v103.sldprt\u201d。你对3D建模的执着已经到了一种哲学境界：每一个倒角的半径、每一个配合的公差、每一条标注线的位置，都被你调整了不下二十遍。你的导师有一种神奇的能力：不管你改到第几版，他都能指着某个细节说\u201c这里不对\u201d，然后你花三天改完之后他说\u201c还是第一版好\u201d。你的硬盘里有200GB的历史版本，你的心理阴影面积比你画的任何零件都大。但CAD啊，一百版的迭代不是浪费——那些被否决的版本里，藏着你对结构、力学和美学越来越深的理解。只是这种理解的代价，是你对\u201c这版怎么样\u201d这句话产生了PTSD。"
+  },
+  "CFD": {
+    "code": "CFD",
+    "cn": "算到发散",
+    "intro": "算了三天三夜，结果diverge了。",
+    "desc": "恭喜你，CFD算到发散人格——你是流体力学界的赌徒，每一次点下\u201cRun\u201d都是一次豪赌：要么收敛到漂亮的flow field，要么三天后屏幕上全是NaN。你的ANSYS Fluent已经是你最亲密的伙伴了，你对着它的时间比对着任何人都长。你的日常是：划网格→设边界条件→跑仿真→发散→改网格→改边界条件→再跑→还是发散→对着屏幕发呆。你能背出所有turbulence model的适用范围，但你的人生没有任何model能拟合。Courant number要小于1，CFL条件要满足，但你的生活早就CFL违规了——时间步长太大，梯度太陡，处处都在发散。你的残差图是你的心电图：偶尔下降带来希望，然后突然飙升让你心脏骤停。但CFD啊，发散不代表模型错了，可能只是网格需要细化、时间步需要减小、或者你需要换一个solver。你的PhD也是一样——不收敛不代表方向错了，也许只是需要更多耐心。"
+  },
+  "FEM": {
+    "code": "FEM",
+    "cn": "离散焦虑",
+    "intro": "把连续问题离散化，焦虑也离散化了。",
+    "desc": "恭喜你，FEM离散焦虑人格——你是材料力学界的分割大师，习惯把一切连续的东西拆成有限个小块来分析。你的世界观是：只要网格够细，任何复杂问题都能求解。你把PhD分成了有限个阶段，把论文分成了有限个章节，把焦虑也分成了有限个可管理的小焦虑。你的ABAQUS里有几百万个单元，每一个都承受着精确计算过的应力——就像你的生活，每一天都承受着精确感知到的压力。你对应力集中有着深刻的理解：知道哪些地方容易出现裂纹（deadline前一周）、哪些地方需要加筋（有合作者的项目）。你的mesh convergence study做了七组，结果越来越趋近于一个让人沮丧的数字。但FEM啊，离散化的本质是近似——你永远只能逼近真实解，不能等于真实解。你的焦虑也是一样：拆得再细也是焦虑，它不会因为被分成了有限元就变成了有限的。有些问题需要的不是更细的网格，而是换一个偏微分方程。"
+  },
+  "PID": {
+    "code": "PID",
+    "cn": "控制不住",
+    "intro": "比例积分微分，控制一切除了自己的人生。",
+    "desc": "恭喜你，PID控制不住人格——你是自动控制领域的悲剧英雄：能把任何系统调到稳定，唯独稳不住自己的心态。你的大脑里装着三个控制器：P（比例）让你对当前的问题快速反应，I（积分）让你对过去的失败耿耿于怀，D（微分）让你对未来的变化过度敏感。你的Kp调太高了——对导师的一句批评反应过度，oscillation到半夜还在来回摆。你的Ki不该这么大——三年前被reject的论文你还在积分，steady-state error是消除了但overshoot把你的自信击穿了。你的Kd也有问题——对未来的不确定性微分放大，一点风吹草动就进入紧急制动。你能在Simulink里画出完美的控制框图，却画不出自己的情绪曲线。但PID啊，最好的控制不是把所有参数都调到极致，而是找到那个让系统\u201c够好\u201d的平衡点。完美的控制是不存在的——有些oscillation，你得允许它存在。"
+  },
+  "DSP": {
+    "code": "DSP",
+    "cn": "噪音过滤",
+    "intro": "滤波降噪，但滤不掉导师的噪音。",
+    "desc": "恭喜你，DSP噪音过滤人格——你是信号处理领域的降噪专家，习惯把世界分成\u201c信号\u201d和\u201c噪音\u201d两类。你的日常就是设计各种滤波器：低通滤波过滤掉不重要的信息，高通滤波去除无聊的背景，带通滤波只留下你感兴趣的频段。你读论文的时候自动做spectral analysis：哪些是有用的insight（信号），哪些是灌水的废话（噪音），SNR多少一眼就能判断。你的科研pipeline就是一个信号处理链：采集→预处理→分析→输出，每一步都有严格的质量控制。但有一种噪音你的滤波器始终无法过滤：导师的\u201c再改改\u201d、\u201c这个方向有没有想过换一下\u201d、\u201c你觉得这个结果convincing吗\u201d。这些信号落在你的stopband和passband的边界上，你分不清它是有价值的feedback还是纯粹的噪音。但DSP啊，真实世界不像课本里那样信号和噪音泾渭分明。有时候你滤掉的噪音里，藏着最重要的信号。"
+  },
+  "VLSI": {
+    "code": "VLSI",
+    "cn": "小题大做",
+    "intro": "纳米尺度工作的人，看什么都是大问题。",
+    "desc": "恭喜你，VLSI小题大做人格——你在纳米尺度的世界里工作了太久，以至于在宏观世界里看什么都觉得是巨大的问题。一个transistor的阈值电压偏移了50mV，你能写一篇论文；一个layout的DRC violation差了0.01um，你要改三天。你的EDA工具启动一次要十分钟，综合一次要八小时，跑完DRC要一整夜——你的PhD就是在等待进度条中度过的。你的Cadence Virtuoso用得比Photoshop还熟，画版图比画画还仔细。你对工艺节点的敏感度超过了对人际关系的敏感度：7nm和5nm的区别你讲三个小时不重样，但朋友的情绪变化你一点都察觉不到。你在微观世界里追求极致的精确，在宏观世界里活得粗糙且混乱。但VLSI啊，当你把注意力全部聚焦在纳米尺度的时候，你错过的是毫米尺度的生活——那些肉眼可见的、不需要SEM就能观察到的美好。"
+  },
+  "EV": {
+    "code": "EV",
+    "cn": "充电两小时",
+    "intro": "充电两小时，跑路五分钟。",
+    "desc": "恭喜你，EV充电两小时人格——你是新能源领域的里程焦虑代言人，充满电需要很久但消耗得特别快。你的工作模式就像一辆电动车：周末在家\u201c充电\u201d两天（睡觉+刷手机），周一到实验室五分钟电量就掉到20%。你的energy management system有严重的bug：高负载任务（写论文、做实验）的能耗是预期的三倍，而regenerative braking（摸鱼时恢复精力）的效率几乎为零。你对battery degradation有着切身的理解——PhD第一年的你就像新电池，capacity满格cycle life无限；第四年的你SOH已经掉到60%，快充也充不满了。你在实验室研究的是提高能量密度和延长寿命，而你自己的能量密度在持续下降。但EV啊，里程焦虑的本质不是电池不够好，而是你总想一次跑太远。也许不需要1000km续航——能到达下一个充电站，就够了。"
+  },
+  "FG": {
+    "code": "FG",
+    "cn": "高延迟毕业",
+    "intro": "传输延迟极低，毕业延迟极高。",
+    "desc": "恭喜你，FG高延迟毕业人格——你是5G/6G通信领域的研究者，研究的是如何把延迟降到1ms以下，而你自己的毕业延迟已经超过了预期两年。你能设计出传输效率极高的通信协议，但你和导师之间的通信效率极低：你发的邮件平均response time是72小时，你等一个实验反馈要等三周。你理解Shannon limit——信道容量是有上界的——但你不愿意接受自己的能力也有上界这件事。你的研究是关于massive MIMO和beamforming的，你能同时向几百个用户发送信号，但你没法同时给三个deadline发送有效的输出。你在论文里画的throughput曲线永远是上升的，但你的productivity曲线像你研究的衰落信道。但FG啊，通信的核心不是速度，是connectivity——是在嘈杂的环境中建立可靠的连接。你的PhD不需要低延迟，它需要的是不掉线。慢一点没关系，别断了就行。"
+  },
+  "GIS": {
+    "code": "GIS",
+    "cn": "找不到方向",
+    "intro": "给全世界画地图，自己找不到方向。",
+    "desc": "恭喜你，GIS找不到方向人格——你能用ArcGIS给整个地球做空间分析，但自己的人生缺少一个坐标系。你能算出任何两点之间的最短路径，除了\u201c现在的你\u201d到\u201c毕业的你\u201d之间的。你的投影变换做得很好——球面展开到平面不失真——但你把PhD这个多维问题投影到\u201c论文数\u201d一个维度上时，失真得面目全非。你理解spatial autocorrelation：距离越近越相似——所以实验室里所有人的焦虑程度高度正相关。你的buffer analysis告诉你：以你为圆心500米范围内三个咖啡店、两个奶茶店、零个psychiatrist。但GIS啊，地图不等于疆域。把zoom level从街道调到卫星视图看看——你在的位置，也许比你以为的要好。"
+  },
+  "BIM": {
+    "code": "BIM",
+    "cn": "甲方说改",
+    "intro": "三维建模一年，甲方说改成二维。",
+    "desc": "恭喜你，BIM甲方说改人格——你是建筑信息模型领域的忍者，修炼的是在甲方（导师）反复推翻需求后依然保持微笑的能力。你的Revit文件已经是第七个大版本了，每一个版本都凝聚了你数周的心血，每一个版本都被一句\u201c我觉得还是改改吧\u201d打回原形。你用BIM做的是\u201c全生命周期管理\u201d，而你的PhD的全生命周期就是：建模→汇报→被改→重新建模→再汇报→再被改→循环直到毕业或崩溃。你的碰撞检测做得很好——能在模型中发现所有管线冲突——但你检测不了导师的要求之间的冲突：\u201c要创新但不要冒险\u201d\u201c要详细但不要太长\u201d\u201c要有深度但要让外行看懂\u201d。你的IFC文件互操作性很强，但你和甲方之间的互操作性为零。但BIM啊，在建筑行业里，\u201c改\u201d不是失败的标志，是设计的本质。每一次修改都在趋近一个更好的方案——前提是你的耐心和Revit一样，不会crash。"
+  },
+  "MRI": {
+    "code": "MRI",
+    "cn": "看穿一切",
+    "intro": "看透别人的身体，看不透自己的论文。",
+    "desc": "恭喜你，MRI看穿一切人格——你是医学影像领域的透视者，习惯用无创的方式看穿一切表象。你的日常是看各种断层扫描图像：T1加权看结构、T2加权看病变、DWI看扩散、fMRI看功能活动。你能在一堆灰白色的脑切片里找到一个2mm的异常信号，但你找不到自己论文里那个让审稿人不满意的logical flaw。你理解磁共振的原理——用特定频率的射频脉冲激发原子核，然后接收它弛豫时释放的信号。你觉得人也是这样：需要被正确的频率激发，才会释放出真实的信号。但学术界的激发频率你始终找不准——有时候发表了却没有共振，有时候没发表却和某个想法产生了强烈的resonance。但MRI啊，看穿别人是一种能力，看穿自己是一种勇气。你的成像序列再先进，也只能看到结构和功能——那些藏在灰质深处的困惑和迷茫，不在任何一个imaging plane上。"
+  },
+  "PH": {
+    "code": "PH",
+    "cn": "不上不下",
+    "intro": "实验结果总在7附近，不酸不碱不死不活。",
+    "desc": "恭喜你，PH不上不下人格——你是化学界的中性缓冲液，永远维持在pH 7.0附近的安全区间。你的实验结果不算好也不算差，你的论文不算创新也不算平庸，你的成绩不算拔尖也不算垫底。你是高斯分布正中间那个人：恰好在均值上，完美地不突出。你的缓冲能力极强——导师表扬你不会飘，导师批评你也不会崩，任何external shock都会被你的buffer system吸收消化掉。你是组里最稳定的存在，像实验台上那瓶永远不需要调配的PBS缓冲液。但\u201c稳定\u201d和\u201c无趣\u201d只有一个pH的距离。你不会经历pH 1那种烧穿一切的痛苦，也不会体验pH 14那种强碱般的彻悟。你在neutral zone里安全地存活着，但化学反应只发生在极端条件下。但PH啊，也许中性不是缺点——在一个所有人都在酸碱两端尖叫的学术界，能做那个稳定的缓冲液，本身就是一种rare的能力。只是偶尔也可以允许自己的pH偏移一下。"
+  },
+  "LED": {
+    "code": "LED",
+    "cn": "自发光体",
+    "intro": "自己发光发热，但照亮的是别人的路。",
+    "desc": "恭喜你，LED自发光体人格——你是光电领域的奉献者，自己发光发热但照亮的永远是别人的方向。你的科研成果是组里很多项目的基础：你写的代码被所有师弟师妹继承，你搭的实验平台被全实验室共用，你踩过的坑被写成了文档让后人避开。你是那种组会上永远在帮别人debug而不是讲自己进度的人。你的energy gap精确决定了你的发射波长——你只在特定领域发光，但在那个波长上你是最亮的。你的量子效率高得可怕：投入一点能量就能产出大量光子，导师给你一个方向你就能照亮一整个子课题。但LED的问题是：发光的过程也是发热的过程，junction temperature太高寿命就会急剧缩短。你一直在给别人照明，但谁来关注你的thermal management？但LED啊，自发光不需要外部光源——在这个人人都在等别人点亮自己的学术界，你是少数几个能自己亮起来的人。只是别忘了，LED也需要散热器。"
+  },
+  "EEG": {
+    "code": "EEG",
+    "cn": "摸鱼脑电波",
+    "intro": "测大脑活动，发现摸鱼时最活跃。",
+    "desc": "恭喜你，EEG摸鱼脑电波人格——你研究人类最复杂的器官，但对自己大脑了解最清楚的是：它在摸鱼时alpha波最强。你的日常是给被试戴电极帽记录几百个channel的脑电，然后花三倍时间做artifact rejection。你的数据SNR低得像在垃圾堆里找钻石，你用ICA、频域分析、ERP averaging，试图从混沌中提取有意义的信号。你最大的发现是default mode network在走神时最活跃——这解释了为什么你组会走神时反而灵感最多。你的P300跟着每一次审稿意见上下起伏。但EEG啊，大脑的秘密不在电压波动里——那些deep brain structure里记录不到的活动，也许才是谜底。你测量了一辈子大脑，最终可能发现：理解大脑最好的方式不是EEG，而是好好活一次。"
+  },
+  "PV": {
+    "code": "PV",
+    "cn": "靠天吃饭",
+    "intro": "太阳出来就有数据，阴天就摆烂。",
+    "desc": "恭喜你，PV靠天吃饭人格——你是光伏领域的农民型研究者，你的实验数据产量完全取决于老天爷的心情。晴天你精神抖擞在太阳模拟器下测I-V曲线，阴天你就蔫了说\u201c今天的辐照度不适合做实验\u201d（虽然你在室内用的是人工光源）。你的productivity跟着季节走：夏天日照长你效率极高，冬天日照短你就进入了低功耗待机模式。你对conversion efficiency有着宗教般的执着：每提高0.1%你就要开香槟，虽然这0.1%的误差范围是正负0.3%。你的实验室桌面上有七种不同的solar cell样品，每一种都是你的\u201c潜力股\u201d，但没有一种的效率超过了文献里报道的值。你在追逐太阳能效率的路上跑得很快，但方向是追着太阳跑——问题是太阳会落山。但PV啊，靠天吃饭不丢人——人类最古老的生存方式就是靠天吃饭。你研究的是把阳光变成能源，而你自己，也需要偶尔走出实验室晒晒那个真正的太阳。"
+  },
+  "UAV": {
+    "code": "UAV",
+    "cn": "起飞容易降落难",
+    "intro": "飞得高看得远，但安全降落是个问题。",
+    "desc": "恭喜你，UAV起飞容易降落难人格——你深谙一个道理：把东西送上天不难，难的是让它完好无损地回来。你的PhD也是：开题时起飞得漂亮，导师说\u201c方向很好\u201d，你满怀信心升空了。然后发现：高空风比预想的大、电池比预期耗得快、GPS在关键时刻丢了、地面站和你通信断了。你在高空盘旋了三年，飞得越来越高但剩余电量已亮红灯，你需要找地方安全降落。你的path planning在仿真里跑得好，但real world有太多模型里没有的obstacle。你见过太多同学的项目空中解体或硬着陆，你知道安全降落靠的不是运气是engineering。但UAV啊，你已经飞了这么久——看看你拍到的那些高空照片，那些地面上永远看不到的风景。现在，深呼吸，开始approach。"
+  },
+  "NMR": {
+    "code": "NMR",
+    "cn": "频率共振",
+    "intro": "特定频率上共振，其他频率上沉默。",
+    "desc": "恭喜你，NMR频率共振人格——你只有在特定的外部磁场下才会产生信号。你的拉莫尔频率是独特的：只有对的话题、对的人、对的时机三者同时满足，你才会从沉默变成滔滔不绝。平时的你像处于基态的原子核，在学术社交中几乎invisible。但一旦有人触及你钻研了四年的narrow topic——你的magnetization vector瞬间翻转90度，FID信号强得能吸引整个实验室的注意力。你的chemical shift独一无二：在ppm标尺上占据只属于你的位置，虽然窄到几乎看不见。你的T1弛豫时间很长——被激发后需要很久才回到平衡态，一个好的讨论能让你兴奋一整周。但NMR啊，只在共振频率上响应意味着你错过了大部分频谱。那些off-resonance的信号里，也许有你从未想过的可能性。"
+  },
+  "MEMS": {
+    "code": "MEMS",
+    "cn": "微观崩溃",
+    "intro": "微米尺度工作，宏观尺度崩溃。",
+    "desc": "恭喜你，MEMS微观崩溃人格——你在微米尺度追求极致精密，但宏观人生正以肉眼可见的速度崩塌。你在100级净化环境中操作，宿舍是10万级污染区。你用e-beam lithography画出100nm精度的图案，人生规划精度大约正负五年。你对薄膜应力、刻蚀速率了如指掌，对自己的血压和睡眠质量一无所知。你的device yield大概30%——做十个三个能用——PhD进展也差不多。你在微观世界里是上帝：设计结构、沉积薄膜、释放悬臂梁。但走出洁净室的那一刻，你只是一个连晚饭吃什么都决定不了的人。MEMS啊，微观和宏观的鸿沟不是bug是feature——正是因为你在一个尺度上投入了全部心力，另一个尺度才会失控。别让cleanroom成了你唯一的comfort zone。"
   }
 };
     const TYPE_IMAGES = {
@@ -1358,7 +1749,72 @@
   "K8s": "./image/K8s.png",
   "Docker": "./image/Docker.png",
   "CDN": "./image/CDN.png",
-  "PING": "./image/PING.png"
+  "PING": "./image/PING.png",
+  "DFS": "./image/DFS.png",
+  "BFS": "./image/BFS.png",
+  "DP": "./image/DP.png",
+  "NP": "./image/NP.png",
+  "O1": "./image/O1.png",
+  "ON2": "./image/ON2.png",
+  "FFT": "./image/FFT.png",
+  "HASH": "./image/HASH.png",
+  "SORT": "./image/SORT.png",
+  "PNP": "./image/PNP.png",
+  "GPU": "./image/GPU.png",
+  "CPU": "./image/CPU.png",
+  "RAM": "./image/RAM.png",
+  "SSD": "./image/SSD.png",
+  "FPGA": "./image/FPGA.png",
+  "ASIC": "./image/ASIC.png",
+  "Cache": "./image/Cache.png",
+  "RISC": "./image/RISC.png",
+  "AGILE": "./image/AGILE.png",
+  "CICD": "./image/CICD.png",
+  "TDD": "./image/TDD.png",
+  "MVP": "./image/MVP.png",
+  "SCRUM": "./image/SCRUM.png",
+  "DEVOP": "./image/DEVOP.png",
+  "DEBUG": "./image/DEBUG.png",
+  "NOSQL": "./image/NOSQL.png",
+  "CSV": "./image/CSV.png",
+  "JSON": "./image/JSON.png",
+  "REGEX": "./image/REGEX.png",
+  "NULL": "./image/NULL.png",
+  "E404": "./image/E404.png",
+  "E200": "./image/E200.png",
+  "EOF": "./image/EOF.png",
+  "RDME": "./image/RDME.png",
+  "TODO": "./image/TODO.png",
+  "ROI": "./image/ROI.png",
+  "KPI": "./image/KPI.png",
+  "GDP": "./image/GDP.png",
+  "IPO": "./image/IPO.png",
+  "VC": "./image/VC.png",
+  "MBA": "./image/MBA.png",
+  "OKR": "./image/OKR.png",
+  "PMF": "./image/PMF.png",
+  "B2B": "./image/B2B.png",
+  "ESG": "./image/ESG.png",
+  "PCR": "./image/PCR.png",
+  "CRISP": "./image/CRISP.png",
+  "CAD": "./image/CAD.png",
+  "CFD": "./image/CFD.png",
+  "FEM": "./image/FEM.png",
+  "PID": "./image/PID.png",
+  "DSP": "./image/DSP.png",
+  "VLSI": "./image/VLSI.png",
+  "EV": "./image/EV.png",
+  "FG": "./image/FG.png",
+  "GIS": "./image/GIS.png",
+  "BIM": "./image/BIM.png",
+  "MRI": "./image/MRI.png",
+  "PH": "./image/PH.png",
+  "LED": "./image/LED.png",
+  "EEG": "./image/EEG.png",
+  "PV": "./image/PV.png",
+  "UAV": "./image/UAV.png",
+  "NMR": "./image/NMR.png",
+  "MEMS": "./image/MEMS.png"
 };
 
     const NORMAL_TYPES = [
@@ -1396,7 +1852,72 @@
   { code: "K8s", pattern: "HH-MH-HM-MH-MH" },
   { code: "Docker", pattern: "ML-LM-MH-MH-LH" },
   { code: "CDN", pattern: "MH-HH-HH-HH-HH" },
-  { code: "PING", pattern: "MM-MM-MM-MM-HL" }
+  { code: "PING", pattern: "MM-MM-MM-MM-HL" },
+  { code: "DFS", pattern: "LM-LL-LM-LM-HL" },
+  { code: "BFS", pattern: "HH-HH-HM-HM-MH" },
+  { code: "DP", pattern: "LH-LM-LH-LM-MM" },
+  { code: "NP", pattern: "LM-LH-MM-LL-HH" },
+  { code: "O1", pattern: "HM-HM-HH-HM-LM" },
+  { code: "ON2", pattern: "HH-MH-HH-HM-ML" },
+  { code: "FFT", pattern: "MH-LH-MH-LH-MH" },
+  { code: "HASH", pattern: "HM-MM-HH-MH-LM" },
+  { code: "SORT", pattern: "MH-LM-LH-MM-LM" },
+  { code: "PNP", pattern: "LH-LH-LM-LH-MH" },
+  { code: "GPU", pattern: "HM-HH-HH-MH-MM" },
+  { code: "CPU", pattern: "LH-LL-LL-LL-LM" },
+  { code: "RAM", pattern: "HH-MM-HM-MM-MH" },
+  { code: "SSD", pattern: "MH-LM-HM-MH-LM" },
+  { code: "FPGA", pattern: "MM-MH-MH-MH-ML" },
+  { code: "ASIC", pattern: "LH-LL-LH-LH-HL" },
+  { code: "Cache", pattern: "MH-MM-MH-MM-MM" },
+  { code: "RISC", pattern: "LH-LM-LL-LM-LM" },
+  { code: "AGILE", pattern: "MM-MH-HM-MH-MH" },
+  { code: "CICD", pattern: "HM-MH-HM-HH-HM" },
+  { code: "TDD", pattern: "LH-LM-LM-LM-LM" },
+  { code: "MVP", pattern: "HH-MH-HH-HH-ML" },
+  { code: "SCRUM", pattern: "MM-MM-MM-MH-HM" },
+  { code: "DEVOP", pattern: "HM-LM-MH-MH-LH" },
+  { code: "DEBUG", pattern: "MH-LM-LM-MM-LH" },
+  { code: "NOSQL", pattern: "HM-HH-HH-HM-ML" },
+  { code: "CSV", pattern: "MH-MM-HM-MM-ML" },
+  { code: "JSON", pattern: "LM-LM-LM-LM-LM" },
+  { code: "REGEX", pattern: "LH-LM-LH-LH-HH" },
+  { code: "NULL", pattern: "LL-LM-LL-LL-LH" },
+  { code: "E404", pattern: "LM-MM-LM-LM-MM" },
+  { code: "E200", pattern: "MM-MM-MM-MM-MM" },
+  { code: "EOF", pattern: "LM-LH-LM-LH-LM" },
+  { code: "RDME", pattern: "LH-LM-LM-LL-MH" },
+  { code: "TODO", pattern: "MM-MH-HH-MM-ML" },
+  { code: "ROI", pattern: "MM-MM-LM-HH-LM" },
+  { code: "KPI", pattern: "MH-LM-LH-HH-LM" },
+  { code: "GDP", pattern: "HM-HH-HH-HM-MH" },
+  { code: "IPO", pattern: "HH-MM-MH-HH-HM" },
+  { code: "VC", pattern: "HM-HH-HH-MH-HM" },
+  { code: "MBA", pattern: "HH-HH-HM-HH-HH" },
+  { code: "OKR", pattern: "MH-MH-LH-MH-MM" },
+  { code: "PMF", pattern: "MM-MH-MH-HM-MM" },
+  { code: "B2B", pattern: "LM-LM-HM-LM-ML" },
+  { code: "ESG", pattern: "MH-MH-LH-LM-HM" },
+  { code: "PCR", pattern: "HM-LM-HM-LM-MH" },
+  { code: "CRISP", pattern: "LH-LL-LH-MM-HM" },
+  { code: "CAD", pattern: "MH-LM-LL-MM-LH" },
+  { code: "CFD", pattern: "LH-LL-MH-LM-HM" },
+  { code: "FEM", pattern: "LH-LM-LM-LM-HM" },
+  { code: "PID", pattern: "MH-MM-MH-MM-MH" },
+  { code: "DSP", pattern: "MH-LM-MH-MM-LH" },
+  { code: "VLSI", pattern: "LH-LL-LL-LM-HH" },
+  { code: "EV", pattern: "HM-MM-HM-HH-MM" },
+  { code: "FG", pattern: "HH-HM-MH-MH-HH" },
+  { code: "GIS", pattern: "MH-HH-MH-LM-LH" },
+  { code: "BIM", pattern: "MH-LM-LH-MM-LH" },
+  { code: "MRI", pattern: "LH-LM-LM-LM-MH" },
+  { code: "PH", pattern: "MM-MM-MM-MM-LM" },
+  { code: "LED", pattern: "MH-LM-LM-LM-HM" },
+  { code: "EEG", pattern: "MM-MM-HM-MM-MH" },
+  { code: "PV", pattern: "HM-MM-HM-MM-ML" },
+  { code: "UAV", pattern: "HH-MH-HH-HM-HL" },
+  { code: "NMR", pattern: "LM-LL-LM-LM-LH" },
+  { code: "MEMS", pattern: "LH-LM-LM-LH-MH" }
 ];
     const DIM_EXPLANATIONS = {
   "R1": {
