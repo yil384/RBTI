@@ -582,6 +582,14 @@
     .poster-box.no-image .poster-image {
       display: none;
     }
+    .poster-label {
+      font-size: 13px;
+      color: var(--accent-strong);
+      font-weight: 600;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
     .poster-caption {
       margin-top: 14px;
       color: var(--muted);
@@ -871,6 +879,7 @@
         <div class="result-layout">
           <div class="result-top">
             <div class="poster-box" id="posterBox">
+              <div id="posterLabel" class="poster-label">你的科研人格是：</div>
               <img id="posterImage" class="poster-image" alt="人格结果图" />
               <div id="posterCaption" class="poster-caption">怎么样，被我拿捏了吧？</div>
             </div>
@@ -1456,6 +1465,70 @@
           "GRIND": {
             intro: "You all went home? I'm just getting started.",
             desc: "Congratulations, GRIND Lab Permanent Resident personality — the ultimate academic grinder, the paper machine, the student your advisor brags about to other advisors. Your lab access-card log shows more check-ins than the security guard's attendance record. Your GitHub contribution graph is solid green, every single day, including holidays. Your Google Scholar metrics tick upward every month like a slow, relentless clock. Weekends? Those are two extra workdays. National holidays? Those are golden GPU hours when nobody else is competing for compute. You are not grinding because you are pressured — you genuinely believe this pace is normal. The problem is that your existence makes every other student in the lab feel like they are slacking. You are the lab's perpetual-motion machine, the human proof that sleep is optional and burnout is a myth. Except it is not a myth. Burnout is not a sudden event — it is a process, a slow, invisible corrosion of the parts of you that used to care. You do not notice it because your output metrics are still climbing. The engine looks fine from the outside. But inside, the bearings are wearing smooth, and the day the machine finally stops, nobody — including you — will understand why it cannot restart. GRIND, the perpetual-motion machine does not exist in physics. It should not exist in your lab either. Maintenance is not weakness. It is engineering."
+          }
+        },
+        dimNames: {
+          R1: 'R1 Theory \u2194 Applied',
+          R2: 'R2 Depth \u2194 Breadth',
+          W1: 'W1 Solo \u2194 Collaborative',
+          W2: 'W2 Code \u2194 Math',
+          P1: 'P1 Quality \u2194 Quantity',
+          P2: 'P2 Planned \u2194 Impromptu',
+          M1: 'M1 Curiosity \u2194 Career',
+          M2: 'M2 Academia \u2194 Industry',
+          S1: 'S1 Resilient \u2194 Fragile',
+          S2: 'S2 Social \u2194 Solitary'
+        },
+        dimExplanations: {
+          R1: {
+            L: "Your papers have 3x more equations than code. Proofs are longer than novels. Theory is religion, application is heresy.",
+            M: "A bit of both theory and application. Your papers have equations AND experiments. Jack of both trades.",
+            H: "If it runs, it's science. Theory is for mathematicians. Your motto: 'It works, ship it.'"
+          },
+          R2: {
+            L: "You've drilled into one direction for 5 years. Deeper than an oil well. Change direction? Never.",
+            M: "A main focus area with some side interests. Your CV looks both focused and well-rounded.",
+            H: "Your Google Scholar looks like a department store. Something for everyone. Maybe something will take off?"
+          },
+          W1: {
+            L: "One person, one computer, one coffee. That's your perfect lab setup. Collaboration is compromise.",
+            M: "Mostly independent, team up when needed. Social battery: medium capacity.",
+            H: "No discussion, no inspiration. Your papers are always a group effort."
+          },
+          W2: {
+            L: "Your daily life is debugging and profiling. GPU utilization worries you more than your blood pressure.",
+            M: "Half code, half equations. Experiments and derivations in alternation. Both hemispheres engaged.",
+            H: "Your weapons are pen and paper. Code? That's an implementation detail, unworthy of your paper."
+          },
+          P1: {
+            L: "You can spend a year revising one paper. Every figure must be pixel-perfect. Perfectionism is a virtue.",
+            M: "Balancing quality and efficiency. Good enough to submit — no need for perfection.",
+            H: "Papers are like bullets — quantity is justice. Five a year is a dream, ten is the goal."
+          },
+          P2: {
+            L: "Your Notion Gantt chart is precise to the day. Paper finalized two weeks before deadline.",
+            M: "Rough plan but frequently adjusted. Start panicking one week before deadline.",
+            H: "Deadline IS the productivity. Papers written in the last 48 hours are the most inspired. Scientifically proven."
+          },
+          M1: {
+            L: "You're doing a PhD because the question keeps you up at night. Not for the degree or salary.",
+            M: "Half curiosity, half career planning. Enjoying the journey while watching the destination.",
+            H: "PhD is a career chess move. Everything for the CV, the package, and the network. Efficiency first."
+          },
+          M2: {
+            L: "AP \u2192 tenure \u2192 endowed chair \u2192 retire. Academia is the only path. Teaching is life's meaning.",
+            M: "Both academia and industry are fine. Finish the PhD first, then decide. Keep options open.",
+            H: "Academic salaries are too low. Industry awaits. Your LinkedIn already says 'open to work.'"
+          },
+          S1: {
+            L: "Three deadlines at once? Exciting! Adrenaline is the best caffeine. More pressure, more power.",
+            M: "Pressure causes anxiety but you can handle it. Occasional breakdowns, quick recovery.",
+            H: "One negative review comment ruins your whole week. A PhD is chronic damage to mental health."
+          },
+          S2: {
+            L: "Networking at conferences, connecting on LinkedIn like crazy. Connections are competitive advantage.",
+            M: "Socializing as it comes. Attend events but don't organize them.",
+            H: "The lab is your comfort zone. Headphones on = force field activated. Socializing? DMs are enough."
           }
         },
       }
@@ -2691,7 +2764,11 @@
 
     function getQuestionMetaLabel(q) {
       if (q.special) return t('supplementQ');
-      return app.previewMode ? dimensionMeta[q.dim].name : t('dimHidden');
+      if (app.previewMode) {
+        const enDimNames = LANG_DATA.en?.dimNames;
+        return currentLang === 'en' && enDimNames?.[q.dim] ? enDimNames[q.dim] : dimensionMeta[q.dim].name;
+      }
+      return t('dimHidden');
     }
 
     function renderQuestions() {
@@ -2913,14 +2990,24 @@
 
     function renderDimList(result) {
       const dimList = document.getElementById('dimList');
+      const enDimNames = LANG_DATA.en?.dimNames;
+      const enDimExpl = LANG_DATA.en?.dimExplanations;
       dimList.innerHTML = dimensionOrder.map(dim => {
         const level = result.levels[dim];
-        const explanation = DIM_EXPLANATIONS[dim][level];
+        const dimName = currentLang === 'en' && enDimNames?.[dim]
+          ? enDimNames[dim]
+          : dimensionMeta[dim].name;
+        const explanation = currentLang === 'en' && enDimExpl?.[dim]?.[level]
+          ? enDimExpl[dim][level]
+          : DIM_EXPLANATIONS[dim][level];
+        const scoreLabel = currentLang === 'en'
+          ? `${level} / ${result.rawScores[dim]} pts`
+          : `${level} / ${result.rawScores[dim]}分`;
         return `
           <div class="dim-item">
             <div class="dim-item-top">
-              <div class="dim-item-name">${dimensionMeta[dim].name}</div>
-              <div class="dim-item-score">${level} / ${result.rawScores[dim]}分</div>
+              <div class="dim-item-name">${dimName}</div>
+              <div class="dim-item-score">${scoreLabel}</div>
             </div>
             <p>${explanation}</p>
           </div>
@@ -2933,14 +3020,18 @@
       const type = result.finalType;
 
       document.getElementById('resultModeKicker').textContent = result.modeKicker;
-      document.getElementById('resultTypeName').textContent = `${type.code}（${type.cn}）`;
+      const typeEn = LANG_DATA.en?.types_en?.[type.code];
+      const typeName = currentLang === 'en' && typeEn
+        ? `${type.code}`
+        : `${type.code}（${type.cn}）`;
+      document.getElementById('resultTypeName').textContent = typeName;
       document.getElementById('matchBadge').textContent = result.badge;
       document.getElementById('resultTypeSub').textContent = result.sub;
-      const typeEn = LANG_DATA.en?.types_en?.[type.code];
       const displayDesc = currentLang === 'en' && typeEn ? typeEn.desc : type.desc;
       const displayIntro = currentLang === 'en' && typeEn ? typeEn.intro : type.intro;
       document.getElementById('resultDesc').textContent = displayDesc;
       document.getElementById('posterCaption').textContent = displayIntro;
+      document.getElementById('posterLabel').textContent = t('resultLabel');
       document.getElementById('funNote').textContent = result.special
         ? t('disclaimerHidden')
         : t('disclaimer');
@@ -2956,7 +3047,7 @@
       const imageSrc = TYPE_IMAGES[type.code];
       if (imageSrc) {
         posterImage.src = imageSrc;
-        posterImage.alt = `${type.code}（${type.cn}）`;
+        posterImage.alt = typeName;
         posterBox.classList.remove('no-image');
       } else {
         posterImage.removeAttribute('src');
