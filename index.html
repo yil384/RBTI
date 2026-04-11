@@ -768,7 +768,14 @@
       .hero-doodles span { font-size: 1.2rem; opacity: 0.05; }
     }
 
-    .lang-switch { justify-content: center; }
+    .lang-switch {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 999;
+      display: flex;
+      gap: 4px;
+    }
     .lang-btn {
       padding: 4px 12px;
       border-radius: 12px;
@@ -787,6 +794,10 @@
   </style>
 </head>
 <body>
+  <div class="lang-switch">
+    <button onclick="switchLang('zh')" class="lang-btn active" id="langZh">中文</button>
+    <button onclick="switchLang('en')" class="lang-btn" id="langEn">EN</button>
+  </div>
   <div class="shell">
     <section id="intro" class="screen active">
       <div class="hero card hero-minimal">
@@ -825,10 +836,6 @@
         </div>
         <div class="hero-actions hero-actions-single">
           <button id="startBtn" class="btn-primary">开始测试</button>
-        </div>
-        <div class="lang-switch" style="margin-top:1rem;display:flex;gap:6px;position:relative;z-index:1;">
-          <button onclick="switchLang('zh')" class="lang-btn active" id="langZh">中文</button>
-          <button onclick="switchLang('en')" class="lang-btn" id="langEn">EN</button>
         </div>
         <div class="hero-credits">
           <span>灵感来源：<a href="https://space.bilibili.com/417038183">B站@Q肉儿串儿</a>（SBTI原作者）</span>
