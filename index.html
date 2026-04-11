@@ -699,7 +699,7 @@
     }
     .author-box summary::-webkit-details-marker { display: none; }
     .author-box summary::after {
-      content: '展开';
+      content: var(--expand-label, '展开');
       font-size: 12px;
       font-weight: 700;
       color: var(--accent-strong);
@@ -710,7 +710,7 @@
       flex-shrink: 0;
     }
     .author-box[open] summary::after {
-      content: '收起';
+      content: var(--collapse-label, '收起');
     }
     .author-content {
       border-top: 1px solid var(--line);
@@ -767,6 +767,23 @@
       .hero-icons { font-size: 1.2rem; gap: 8px; }
       .hero-doodles span { font-size: 1.2rem; opacity: 0.05; }
     }
+
+    .lang-switch { justify-content: center; }
+    .lang-btn {
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -808,6 +825,10 @@
         </div>
         <div class="hero-actions hero-actions-single">
           <button id="startBtn" class="btn-primary">开始测试</button>
+        </div>
+        <div class="lang-switch" style="margin-top:1rem;display:flex;gap:6px;position:relative;z-index:1;">
+          <button onclick="switchLang('zh')" class="lang-btn active" id="langZh">中文</button>
+          <button onclick="switchLang('en')" class="lang-btn" id="langEn">EN</button>
         </div>
         <div class="hero-credits">
           <span>灵感来源：<a href="https://space.bilibili.com/417038183">B站@Q肉儿串儿</a>（SBTI原作者）</span>
@@ -894,6 +915,185 @@
 
   
   <script>
+    const LANG_DATA = {
+      zh: {
+        heroTitle: 'MBTI已经过时，<br>SBTI不够学术，<br>RBTI来了。',
+        formulaSuffix: '种科研人格等你来测',
+        subtitle: ['🧬 实验跑不通', '📝 审稿人发疯', '🧑‍🏫 导师说再想想', '🎓 毕业遥遥无期'],
+        startBtn: '开始测试',
+        submitBtn: '提交并查看结果',
+        restartBtn: '重新测试',
+        toTopBtn: '回到首页',
+        backBtn: '返回首页',
+        hintDefault: '全选完才会放行。世界已经够乱了，起码把题做完整。',
+        hintDone: '都做完了。现在可以把你的电子魂魄交给结果页审判。',
+        hintRemaining: '还剩 {n} 题没答。世界已经够乱了，起码把题做完整。',
+        hintFew: '还差 {n} 题：{links}（点击直达）',
+        resultLabel: '你的科研人格是：',
+        modeKickerNormal: '你的主类型',
+        modeKickerHidden: '隐藏人格已激活',
+        modeKickerFallback: '系统强制兜底',
+        dimTitle: '十维度评分',
+        descTitle: '该人格的简单解读',
+        disclaimer: '本测试仅供娱乐，别拿它当学术评估、毕业答辩、求职面试或心理诊断。p-value未经计算，样本量为零。',
+        disclaimerHidden: '本测试仅供娱乐。隐藏人格属于系统故意埋的彩蛋，请勿将其作为退学、转行或更换导师的依据。',
+        supplementQ: '补充题',
+        dimHidden: '维度已隐藏',
+        questionPrefix: '第 {n} 题',
+        questionLink: '第{n}题',
+        noteTitle: '友情提示',
+        aboutTitle: '关于RBTI',
+        expandLabel: '展开',
+        collapseLabel: '收起',
+        credits: {
+          inspiration: '灵感来源：',
+          creator: '创作者：',
+          opensource: '开源：',
+          prText: '（欢迎PR）',
+          ethicsJoke: '本测试已通过学术伦理委员会审批（并没有），p < 0.05（也没有），但reviewer给了accept（做梦）'
+        },
+        imageAlt: '人格结果图',
+        authorNote: '作者的话',
+      },
+      en: {
+        heroTitle: 'MBTI is outdated,<br>SBTI isn\'t academic enough,<br>RBTI is here.',
+        formulaSuffix: 'research personalities await you',
+        subtitle: ['🧬 Experiments won\'t run', '📝 Reviewers gone wild', '🧑‍🏫 Advisor says "think again"', '🎓 Graduation: TBD'],
+        startBtn: 'Start Test',
+        submitBtn: 'Submit & See Results',
+        restartBtn: 'Retake Test',
+        toTopBtn: 'Back to Home',
+        backBtn: 'Back to Home',
+        hintDefault: 'Answer all questions to proceed. Science demands completeness.',
+        hintDone: 'All done. Time to face your research personality judgment.',
+        hintRemaining: '{n} questions remaining. Your thesis isn\'t going to write itself either.',
+        hintFew: '{n} left: {links} (click to jump)',
+        resultLabel: 'Your Research Personality:',
+        modeKickerNormal: 'Your Primary Type',
+        modeKickerHidden: 'Hidden Personality Activated',
+        modeKickerFallback: 'System Fallback',
+        dimTitle: '10-Dimension Breakdown',
+        descTitle: 'Personality Analysis',
+        disclaimer: 'For entertainment only. Don\'t use this for hiring, tenure decisions, or advisor matching.',
+        disclaimerHidden: 'For entertainment only. Hidden personalities are easter eggs by the author.',
+        supplementQ: 'Bonus Q',
+        dimHidden: 'Dimension hidden',
+        questionPrefix: 'Q{n}',
+        questionLink: 'Q{n}',
+        noteTitle: 'Friendly Reminder',
+        aboutTitle: 'About RBTI',
+        expandLabel: 'Expand',
+        collapseLabel: 'Collapse',
+        credits: {
+          inspiration: 'Inspired by: ',
+          creator: 'Created by: ',
+          opensource: 'Open source: ',
+          prText: ' (PRs welcome)',
+          ethicsJoke: 'This test has been approved by the IRB (it hasn\'t), p < 0.05 (it isn\'t), and the reviewer accepted it (in our dreams)'
+        },
+        imageAlt: 'Personality result image',
+        authorNote: 'Author\'s Note',
+        questions_en: {
+          q1: { text: 'What\'s the ratio of equations to code in your papers?', options: ['90% equations 10% code \u2014 I am a proof warrior', 'About half and half \u2014 theory guides practice', '90% code 10% equations \u2014 if it runs, it\'s science'] },
+          q2: { text: 'Reviewer says your work "lacks theoretical contribution." You?', options: ['Furious. Added 3 pages of proofs overnight', 'Hmm... let me add a convergence analysis', 'Added "we leave theoretical analysis for future work"'] },
+          q3: { text: 'Your Google Scholar profile topics?', options: ['All in one direction \u2014 5 years deep, no regrets', 'Two or three related areas', 'Spanning 4-5 fields \u2014 my related work reads like a survey'] },
+          q4: { text: 'Your advisor asks you to give an intro lecture. How many topics can you cover?', options: ['Just my area, but I can talk for 3 hours straight', 'Two or three related topics, 30 min each', 'From CV to NLP to systems \u2014 10 min each, all surface'] },
+          q5: { text: 'How many names are usually on your paper\'s author list?', options: ['Just me and my advisor, maybe a senior student', 'Three or four \u2014 standard config', 'More than five \u2014 acknowledgments can\'t fit them all'] },
+          q6: { text: 'Your advisor suddenly messages: "Come to my office." Your first reaction?', options: ['Panic \u2014 my results must be wrong again', 'Calm \u2014 probably just a progress check', 'Excited \u2014 finally get to discuss my idea!'] },
+          q7: { text: 'There\'s only one GPU left. You and your labmate both need it. What do you do?', options: ['First come first served \u2014 my bash script auto-queues', 'Let\'s split it, half a day each', 'I don\'t need GPUs. Give me a pen and A4 paper'] },
+          q8: { text: '"Talk is cheap, show me the code." Your response?', options: ['Yes! Running code is the only truth', 'Code and theory each have their place', 'Wrong. Show me the proof. Algorithms without proofs are astrology'] },
+          q9: { text: 'Your attitude toward a paper?', options: ['Revise until I want to vomit, every figure must be pixel-perfect', 'Good enough to submit \u2014 reviewers will suggest changes anyway', 'Submit early, submit often \u2014 5 papers a year minimum'] },
+          q10: { text: 'Your paper got rejected. You?', options: ['Major revision, then aim for a better venue', 'Minor fixes, submit elsewhere', 'Don\'t even reformat \u2014 straight to the next conference'] },
+          q11: { text: 'Top conference deadline in 2 weeks. Your paper status?', options: ['Draft done, polishing ablation studies and figures', 'Experiments half done, intro is started', 'Idea was decided yesterday \u2014 sprinting from zero'] },
+          q12: { text: 'Advisor asks "What\'s your plan this month?" Your answer?', options: ['*pulls out Notion with a day-by-day Gantt chart*', '"I\'ll organize last experiment\'s results and try to improve them"', '"I\'ll... think about it" (haven\'t thought about it at all)'] },
+          q13: { text: 'Why are you doing a PhD? (If you\'re not, just pretend)', options: ['Genuinely can\'t sleep thinking about this problem', 'Half curiosity, half career development', 'For the Dr. title / green card / salary premium, honestly', 'I\'m not even doing a PhD, just here for fun'] },
+          q14: { text: 'A direction is interesting but won\'t lead to top venue papers. You?', options: ['Do it! Curiosity is the best motivation', 'Hesitate... but do it anyway', 'Pivot to something publishable, no question'] },
+          q15: { text: 'Post-graduation plans?', options: ['AP \u2192 tenure track \u2192 endowed chair \u2192 die in my office', 'Postdoc first, then decide', 'Industry package, goodbye academia'] },
+          q16: { text: 'Which number do you check more?', options: ['Google Scholar citations and h-index', 'Both equally', 'Levels.fyi TC and Blind interview tips'] },
+          q17: { text: 'Reviewer gives strong reject: "trivial, incremental, lack of novelty." You?', options: ['Cool analysis, point-by-point rebuttal, maintain composure', 'Sad for a day, then start revising', 'Questioning life choices and googling "how to quit PhD"'] },
+          q18: { text: 'Server crashed at 3am. Three days of experiments \u2014 gone. You?', options: ['Good thing I saved checkpoints. Just rerun the last segment', 'Meltdown for 10 min, then quietly sbatch again', 'Stared at the black screen for 30 min, contemplating existence'] },
+          q19: { text: 'Top conference poster session. A big name stops at your poster. You?', options: ['Walk up, introduce yourself, ask for their card, discuss collab', 'Wait for them to ask, then answer carefully', 'Pretend to look at the poster next to yours until they leave'] },
+          q20: { text: 'Annual PhD student dinner party. You?', options: ['Organize it \u2014 pick the restaurant, create the group chat, RSVP everyone', 'If someone organizes it, I\'ll go', '"Sorry, I have an experiment to run that night" (I don\'t)'] },
+          review_gate_q1: { text: 'You receive a review invitation. Your reaction?', options: ['Decline \u2014 can\'t even finish my own papers', 'Check the topic first', 'Accept! Reviewing is power', 'Not only accepted, but spent two weeks writing a 5-page detailed review'] },
+          review_gate_q2: { text: 'Your review style?', options: ['Constructive and kind \u2014 we\'re all struggling', '"This paper has fundamental flaws and should not be published in its current form."'] },
+          idle_gate_q1: { text: 'One hour before lab meeting, what are you doing?', options: ['Preparing slides and demo', 'Running last experiments', 'Anxiously skimming papers', 'Scrolling Bilibili/XHS/Reddit/Twitter'] },
+          idle_gate_q2: { text: 'What do you do most when slacking off?', options: ['Watch funny videos to relax', 'Secretly browse job postings and industry packages'] },
+          slide_gate_q1: { text: 'Your attitude toward academic PPTs?', options: ['Good enough is fine, content is king', 'I\'ll spend some time on layout', 'Color scheme, fonts, animations \u2014 full polish', 'Spent 3 days on one PPT, tweaking every animation and icon'] },
+          slide_gate_q2: { text: 'What matters most in an academic talk?', options: ['Depth and logical clarity', 'Honestly, pretty slides matter more than content \u2014 aesthetics is justice'] },
+          quit_gate_q1: { text: 'Your typical Friday evening?', options: ['Still grinding in the lab', 'Finally off work!', 'Going out with friends', 'Browsing non-academic job listings'] },
+          quit_gate_q2: { text: 'How seriously have you considered quitting/switching careers?', options: ['Think about it sometimes but won\'t actually do it', 'Withdrawal form is drafted, LinkedIn is secretly updated'] },
+          grind_gate_q1: { text: 'Your working hours?', options: ['9 to 5, work-life balance', 'Flexible, about 8-10 hours/day', 'Basically 12+ hours/day', 'Weekends and holidays in the lab, 365 days no break'] },
+          grind_gate_q2: { text: 'How many papers per year is acceptable?', options: ['One or two is fine, quality first', 'At least five, otherwise you\'re wasting funding'] },
+        },
+      }
+    };
+
+    let currentLang = 'zh';
+    function t(key) {
+      const keys = key.split('.');
+      let val = LANG_DATA[currentLang];
+      for (const k of keys) val = val?.[k];
+      if (val !== undefined && val !== null) return val;
+      let fallback = LANG_DATA.zh;
+      for (const k of keys) fallback = fallback?.[k];
+      return fallback || key;
+    }
+
+    function switchLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(lang === 'zh' ? 'langZh' : 'langEn').classList.add('active');
+
+      // Update static UI text
+      document.querySelector('.hero-minimal h1').innerHTML = t('heroTitle');
+      document.querySelector('.hero-formula').innerHTML =
+        '&int;<sub>0</sub><sup>114514</sup> e<sup>&minus;<i>t</i>&sup2;</sup> d<i>t</i> &middot; &nabla;<sub>&theta;</sub>log&thinsp;<i>p</i>(<i>y</i>|<i>x</i>)&nbsp; ' + t('formulaSuffix');
+
+      // Update subtitle
+      const subtitleEl = document.querySelector('.hero-subtitle');
+      const items = t('subtitle');
+      subtitleEl.innerHTML = items.map((s, i) =>
+        `<span>${s}</span>${i < items.length - 1 ? '<span>&middot;</span>' : ''}`
+      ).join('');
+
+      document.getElementById('startBtn').textContent = t('startBtn');
+      document.getElementById('submitBtn').textContent = t('submitBtn');
+      document.getElementById('restartBtn').textContent = t('restartBtn');
+      document.getElementById('toTopBtn').textContent = t('toTopBtn');
+      document.getElementById('backIntroBtn').textContent = t('backBtn');
+
+      // Update credits
+      const creditsEl = document.querySelector('.hero-credits');
+      creditsEl.innerHTML = `
+        <span>${t('credits.inspiration')}<a href="https://space.bilibili.com/417038183">B站@Q肉儿串儿</a>（SBTI原作者）</span>
+        <span>${t('credits.creator')}<a href="https://xhslink.com/m/52DE56o07sG">小红书@momo</a></span>
+        <span>${t('credits.opensource')}<a href="https://github.com/yil384/RBTI">GitHub</a>${t('credits.prText')}</span>
+        <span style="margin-top:6px;line-height:1.5;max-width:420px;text-align:center;">${t('credits.ethicsJoke')}</span>
+      `;
+
+      // Update test hint
+      document.getElementById('testHint').innerHTML = t('hintDefault');
+
+      // Update result page static labels
+      document.querySelector('.analysis-box h3').textContent = t('descTitle');
+      document.querySelector('.dim-box h3').textContent = t('dimTitle');
+      document.querySelector('.note-box h3').textContent = t('noteTitle');
+      document.querySelector('.author-box summary').childNodes[0].textContent = t('aboutTitle');
+
+      // Update CSS custom properties for expand/collapse labels
+      document.documentElement.style.setProperty('--expand-label', `'${t('expandLabel')}'`);
+      document.documentElement.style.setProperty('--collapse-label', `'${t('collapseLabel')}'`);
+
+      // If on test screen, re-render questions
+      if (document.getElementById('test').classList.contains('active')) {
+        renderQuestions();
+      }
+      // If on result screen, re-render result
+      if (document.getElementById('result').classList.contains('active')) {
+        renderResult();
+      }
+    }
+
     const dimensionMeta = {
       R1: { name: 'R1 理论\u2194应用', model: '科研模型' },
       R2: { name: 'R2 深度\u2194广度', model: '科研模型' },
@@ -2057,8 +2257,8 @@
     }
 
     function getQuestionMetaLabel(q) {
-      if (q.special) return '补充题';
-      return app.previewMode ? dimensionMeta[q.dim].name : '维度已隐藏';
+      if (q.special) return t('supplementQ');
+      return app.previewMode ? dimensionMeta[q.dim].name : t('dimHidden');
     }
 
     function renderQuestions() {
@@ -2067,21 +2267,28 @@
       visibleQuestions.forEach((q, index) => {
         const card = document.createElement('article');
         card.className = 'question';
+        const qText = currentLang !== 'zh' && LANG_DATA[currentLang]?.questions_en?.[q.id]
+          ? LANG_DATA[currentLang].questions_en[q.id].text
+          : q.text;
+        const badgeLabel = t('questionPrefix').replace('{n}', index + 1);
         card.innerHTML = `
           <div class="question-meta">
-            <div class="badge">第 ${index + 1} 题</div>
+            <div class="badge">${badgeLabel}</div>
             <div>${getQuestionMetaLabel(q)}</div>
           </div>
-          <div class="question-title">${q.text}</div>
+          <div class="question-title">${qText}</div>
           <div class="options">
             ${q.options.map((opt, i) => {
               const code = ['A', 'B', 'C', 'D'][i] || String(i + 1);
               const checked = app.answers[q.id] === opt.value ? 'checked' : '';
+              const optLabel = currentLang !== 'zh' && LANG_DATA[currentLang]?.questions_en?.[q.id]
+                ? LANG_DATA[currentLang].questions_en[q.id].options[i]
+                : opt.label;
               return `
                 <label class="option">
                   <input type="radio" name="${q.id}" value="${opt.value}" ${checked} />
                   <div class="option-code">${code}</div>
-                  <div>${opt.label}</div>
+                  <div>${optLabel}</div>
                 </label>
               `;
             }).join('')}
@@ -2130,15 +2337,17 @@
       submitBtn.disabled = !complete;
 
       if (complete) {
-        testHint.innerHTML = '都做完了。现在可以把你的电子魂魄交给结果页审判。';
+        testHint.innerHTML = t('hintDone');
       } else if (unanswered.length <= 5 && done > 0) {
+        const sep = currentLang === 'zh' ? '、' : ', ';
         const links = unanswered.map((q, i) => {
           const idx = visibleQuestions.indexOf(q) + 1;
-          return `<a href="#" onclick="document.querySelectorAll('.question')[${visibleQuestions.indexOf(q)}].scrollIntoView({behavior:'smooth',block:'center'});return false" style="color:var(--accent);text-decoration:underline;cursor:pointer">第${idx}题</a>`;
-        }).join('、');
-        testHint.innerHTML = `还差 ${unanswered.length} 题：${links}（点击直达）`;
+          const linkLabel = t('questionLink').replace('{n}', idx);
+          return `<a href="#" onclick="document.querySelectorAll('.question')[${visibleQuestions.indexOf(q)}].scrollIntoView({behavior:'smooth',block:'center'});return false" style="color:var(--accent);text-decoration:underline;cursor:pointer">${linkLabel}</a>`;
+        }).join(sep);
+        testHint.innerHTML = t('hintFew').replace('{n}', unanswered.length).replace('{links}', links);
       } else {
-        testHint.innerHTML = `还剩 ${unanswered.length} 题没答。世界已经够乱了，起码把题做完整。`;
+        testHint.innerHTML = t('hintRemaining').replace('{n}', unanswered.length);
       }
     }
 
@@ -2196,52 +2405,60 @@
       const bestNormal = ranked[0] || { similarity: 0, exact: 0 };
 
       let finalType;
-      let modeKicker = '你的主类型';
-      let badge = `匹配度 ${bestNormal.similarity}% \u00b7 精准命中 ${bestNormal.exact}/10 维`;
-      let sub = '维度命中度较高，当前结果可视为你的第一人格画像。';
+      let modeKicker = t('modeKickerNormal');
+      let badge = currentLang === 'zh'
+        ? `匹配度 ${bestNormal.similarity}% \u00b7 精准命中 ${bestNormal.exact}/10 维`
+        : `${bestNormal.similarity}% match \u00b7 ${bestNormal.exact}/10 dimensions hit`;
+      let sub = currentLang === 'zh'
+        ? '维度命中度较高，当前结果可视为你的第一人格画像。'
+        : 'High dimension match. This is your primary research personality profile.';
       let special = false;
       let secondaryType = null;
 
       if (getReviewTriggered()) {
         finalType = TYPE_LIBRARY.REVIEWER;
         secondaryType = bestNormal;
-        modeKicker = '隐藏人格已激活';
-        badge = '匹配度 100% \u00b7 审稿异常因子已接管';
-        sub = '你的review比论文还长，系统已自动认证你为毒审稿人。';
+        modeKicker = t('modeKickerHidden');
+        badge = currentLang === 'zh' ? '匹配度 100% \u00b7 审稿异常因子已接管' : '100% match \u00b7 Reviewer anomaly factor activated';
+        sub = currentLang === 'zh' ? '你的review比论文还长，系统已自动认证你为毒审稿人。' : 'Your reviews are longer than papers. System certified: Toxic Reviewer.';
         special = true;
       } else if (getIdleTriggered()) {
         finalType = TYPE_LIBRARY.IDLE;
         secondaryType = bestNormal;
-        modeKicker = '隐藏人格已激活';
-        badge = '匹配度 100% \u00b7 摸鱼异常因子已接管';
-        sub = '检测到超标带薪摸鱼行为，系统已为你开具摸鱼证明。';
+        modeKicker = t('modeKickerHidden');
+        badge = currentLang === 'zh' ? '匹配度 100% \u00b7 摸鱼异常因子已接管' : '100% match \u00b7 Slacking anomaly factor activated';
+        sub = currentLang === 'zh' ? '检测到超标带薪摸鱼行为，系统已为你开具摸鱼证明。' : 'Excessive paid slacking detected. Slacking certificate issued.';
         special = true;
       } else if (getSlideTriggered()) {
         finalType = TYPE_LIBRARY.SLIDE;
         secondaryType = bestNormal;
-        modeKicker = '隐藏人格已激活';
-        badge = '匹配度 100% \u00b7 PPT美学因子已接管';
-        sub = '你的PPT比论文还精致，系统已认证你为学术界设计师。';
+        modeKicker = t('modeKickerHidden');
+        badge = currentLang === 'zh' ? '匹配度 100% \u00b7 PPT美学因子已接管' : '100% match \u00b7 PPT aesthetics factor activated';
+        sub = currentLang === 'zh' ? '你的PPT比论文还精致，系统已认证你为学术界设计师。' : 'Your PPT is more polished than your papers. Certified: Academic Designer.';
         special = true;
       } else if (getQuitTriggered()) {
         finalType = TYPE_LIBRARY.QUIT;
         secondaryType = bestNormal;
-        modeKicker = '隐藏人格已激活';
-        badge = '匹配度 100% \u00b7 退学预警因子已接管';
-        sub = '检测到高浓度退学意向，导师已被通知（开玩笑的）。';
+        modeKicker = t('modeKickerHidden');
+        badge = currentLang === 'zh' ? '匹配度 100% \u00b7 退学预警因子已接管' : '100% match \u00b7 Dropout warning factor activated';
+        sub = currentLang === 'zh' ? '检测到高浓度退学意向，导师已被通知（开玩笑的）。' : 'High dropout intent detected. Advisor notified (just kidding).';
         special = true;
       } else if (getGrindTriggered()) {
         finalType = TYPE_LIBRARY.GRIND;
         secondaryType = bestNormal;
-        modeKicker = '隐藏人格已激活';
-        badge = '匹配度 100% \u00b7 内卷异常因子已接管';
-        sub = '实验室打卡记录显示你住在这里，系统已为你申请床位。';
+        modeKicker = t('modeKickerHidden');
+        badge = currentLang === 'zh' ? '匹配度 100% \u00b7 内卷异常因子已接管' : '100% match \u00b7 Grind anomaly factor activated';
+        sub = currentLang === 'zh' ? '实验室打卡记录显示你住在这里，系统已为你申请床位。' : 'Lab records show you live here. Bed request submitted.';
         special = true;
       } else if (bestNormal.similarity < 60) {
         finalType = TYPE_LIBRARY.HHHH;
-        modeKicker = '系统强制兜底';
-        badge = `标准人格库最高匹配仅 ${bestNormal.similarity}%`;
-        sub = '标准人格库对你的脑回路集体罢工了，于是系统把你强制分配给了 HHHH。';
+        modeKicker = t('modeKickerFallback');
+        badge = currentLang === 'zh'
+          ? `标准人格库最高匹配仅 ${bestNormal.similarity}%`
+          : `Best match only ${bestNormal.similarity}% — system fallback`;
+        sub = currentLang === 'zh'
+          ? '标准人格库对你的脑回路集体罢工了，于是系统把你强制分配给了 HHHH。'
+          : 'The personality database gave up on you. System assigned: HHHH.';
         special = true;
       } else {
         finalType = bestNormal;
@@ -2289,8 +2506,14 @@
       document.getElementById('resultDesc').textContent = type.desc;
       document.getElementById('posterCaption').textContent = type.intro;
       document.getElementById('funNote').textContent = result.special
-        ? '本测试仅供娱乐。隐藏人格属于系统故意埋的彩蛋，请勿将其作为退学、转行或更换导师的依据。'
-        : '本测试仅供娱乐，别拿它当学术评估、毕业答辩、求职面试或心理诊断。p-value未经计算，样本量为零。';
+        ? t('disclaimerHidden')
+        : t('disclaimer');
+
+      // Update section headings for current language
+      document.querySelector('.analysis-box h3').textContent = t('descTitle');
+      document.querySelector('.dim-box h3').textContent = t('dimTitle');
+      document.querySelector('.note-box h3').textContent = t('noteTitle');
+      document.querySelector('.author-box summary').childNodes[0].textContent = t('aboutTitle');
 
       const posterBox = document.getElementById('posterBox');
       const posterImage = document.getElementById('posterImage');
