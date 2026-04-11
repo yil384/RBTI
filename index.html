@@ -797,6 +797,8 @@
           <span>·</span>
           <span>📝 审稿人发疯</span>
           <span>·</span>
+          <span>🧑‍🏫 导师说再想想</span>
+          <span>·</span>
           <span>🎓 毕业遥遥无期</span>
         </p>
         <div class="hero-icons">
@@ -808,7 +810,7 @@
         <div class="hero-credits">
           <span>创作者：<a href="https://xhslink.com/m/52DE56o07sG">小红书@momo</a></span>
           <span>开源：<a href="https://github.com/yil384/RBTI">GitHub</a>（欢迎PR新人格）</span>
-          <span style="margin-top:6px;line-height:1.5;max-width:420px;text-align:center;">本测试已通过学术伦理委员会审批（并没有），p-value < 0.05（也没有）</span>
+          <span style="margin-top:6px;line-height:1.5;max-width:420px;text-align:center;">本测试已通过学术伦理委员会审批（并没有），p < 0.05（也没有），但reviewer给了accept（做梦）</span>
         </div>
       </div>
     </section>
@@ -917,25 +919,25 @@
         { label: '两三个相关方向，有主有辅', value: 2 },
         { label: '横跨四五个领域，我的related work写起来跟综述一样', value: 3 }
       ]},
-      { id: 'q4', dim: 'R2', text: '组会上别人讲的方向你能听懂吗？', options: [
-        { label: '只有我的方向我才能深入讨论', value: 1 },
-        { label: '大部分能听个大概，偶尔能提问', value: 2 },
-        { label: '什么都能插两句嘴，虽然可能都是废话', value: 3 }
+      { id: 'q4', dim: 'R2', text: '导师让你给本科生做个科研入门讲座，你能讲几个方向？', options: [
+        { label: '只能讲我自己的方向，但能讲三小时不带喘', value: 1 },
+        { label: '能讲两三个相关方向，各半小时', value: 2 },
+        { label: '从CV到NLP到systems到theory我都能讲，虽然每个都只讲十分钟', value: 3 }
       ]},
       { id: 'q5', dim: 'W1', text: '你的论文作者栏通常有几个名字？', options: [
         { label: '就我和导师，最多再加个师兄', value: 1 },
         { label: '三四个人，标准配置', value: 2 },
         { label: '超过五个，多到acknowledgment放不下', value: 3 }
       ]},
-      { id: 'q6', dim: 'W1', text: '你更喜欢哪种科研状态？', options: [
-        { label: '一个人在实验室肝到凌晨三点，耳机一戴谁都不理', value: 1 },
-        { label: '看情况，有时独处有时讨论', value: 2 },
-        { label: '跟同学在白板前头脑风暴到忘记时间', value: 3 }
+      { id: 'q6', dim: 'W1', text: '导师突然在群里@你说\u201c来我办公室一下\u201d，你的第一反应？', options: [
+        { label: '慌了，肯定是我实验结果又有问题', value: 1 },
+        { label: '平静，可能就是聊聊进度', value: 2 },
+        { label: '开心，终于能跟导师讨论idea了', value: 3 }
       ]},
-      { id: 'q7', dim: 'W2', text: '你的日常工具栈是？', options: [
-        { label: 'VSCode+Terminal开八个窗口，GPU占满', value: 1 },
-        { label: '代码和公式各占一半桌面', value: 2 },
-        { label: '纸笔+iPad推公式，Overleaf写证明', value: 3 }
+      { id: 'q7', dim: 'W2', text: '实验室只剩一块GPU了，你和师弟同时需要，你怎么办？', options: [
+        { label: '先到先得，我已经排好queue了，bash脚本自动抢', value: 1 },
+        { label: '商量着来，各用半天', value: 2 },
+        { label: '无所谓，我的研究不需要GPU，给我一支笔和一沓A4纸就够了', value: 3 }
       ]},
       { id: 'q8', dim: 'W2', text: '有人说\u201cTalk is cheap, show me the code\u201d，你？', options: [
         { label: '对！跑起来才是硬道理', value: 1 },
@@ -952,15 +954,15 @@
         { label: '按意见小改换个venue', value: 2 },
         { label: '格式都不改直接投下一个，总有一个能中', value: 3 }
       ]},
-      { id: 'q11', dim: 'P2', text: '距离论文deadline还有两个月，你的状态是？', options: [
-        { label: '已经写完初稿在打磨实验和图表了', value: 1 },
-        { label: '实验跑了一半，开始写introduction了', value: 2 },
-        { label: '两个月？还早呢，等最后两周再冲刺', value: 3 }
+      { id: 'q11', dim: 'P2', text: '距离顶会deadline还有两周，你的论文状态是？', options: [
+        { label: '初稿已定，在做ablation study和画图', value: 1 },
+        { label: '实验还在跑，introduction写了一半', value: 2 },
+        { label: 'idea昨天刚定，准备用这两周从零开始冲一篇', value: 3 }
       ]},
-      { id: 'q12', dim: 'P2', text: '你的研究计划是什么样的？', options: [
-        { label: '精确到每周的甘特图，Notion排得满满的', value: 1 },
-        { label: '脑子里有个大概方向', value: 2 },
-        { label: '什么计划？我是灵感驱动型研究者', value: 3 }
+      { id: 'q12', dim: 'P2', text: '导师问你"这个月打算做什么"，你的回答是？', options: [
+        { label: '掏出Notion展示精确到天的计划表', value: 1 },
+        { label: '"我打算把上次实验的结果整理一下，然后看看能不能改进"', value: 2 },
+        { label: '"我...再想想"（其实完全没想好）', value: 3 }
       ]},
       { id: 'q13', dim: 'M1', text: '为什么读PhD？（没读的就当假装读了）', options: [
         { label: '真的对这个问题好奇到睡不着', value: 1 },
@@ -983,25 +985,25 @@
         { label: '都关注一下', value: 2 },
         { label: 'Levels.fyi上的TC和Blind上的面经', value: 3 }
       ]},
-      { id: 'q17', dim: 'S1', text: '审稿人给了strong reject加三页毒评，你？', options: [
+      { id: 'q17', dim: 'S1', text: '审稿人给了strong reject，评语写满了\u201ctrivial, incremental, lack of novelty\u201d，你？', options: [
         { label: '冷静分析，逐条反驳，格局不能输', value: 1 },
         { label: '难受一天，然后开始按意见改', value: 2 },
         { label: '已经在质疑人生和考虑退学了', value: 3 }
       ]},
-      { id: 'q18', dim: 'S1', text: '同时面对三个deadline+导师催进度+实验跑不通，你？', options: [
-        { label: '兴奋！压力就是动力，我反而更高效', value: 1 },
-        { label: '焦虑但还能扛，先做最紧急的', value: 2 },
-        { label: '已经在写退学申请的opening了', value: 3 }
+      { id: 'q18', dim: 'S1', text: '服务器半夜崩了，跑了三天的实验全没了，你？', options: [
+        { label: '还好我有checkpoint，重新跑最后一段就行', value: 1 },
+        { label: '崩溃十分钟，然后默默打开terminal重新sbatch', value: 2 },
+        { label: '对着黑屏幕发呆了半小时，开始认真思考人生的意义', value: 3 }
       ]},
-      { id: 'q19', dim: 'S2', text: '学术会议上你通常？', options: [
-        { label: '主动找大佬social、换名片、加LinkedIn', value: 1 },
-        { label: '跟认识的同学聊聊，偶尔认识新人', value: 2 },
-        { label: '听完talk直接回酒店，社交是什么？', value: 3 }
+      { id: 'q19', dim: 'S2', text: '顶会poster session，你的论文被贴在角落，来了一个大佬停在你面前，你？', options: [
+        { label: '主动上前介绍，要名片，聊potential collaboration', value: 1 },
+        { label: '等他先开口问，然后认真回答', value: 2 },
+        { label: '假装在看旁边的poster，等他走了再回来', value: 3 }
       ]},
-      { id: 'q20', dim: 'S2', text: '实验室有人来找你聊天，你？', options: [
-        { label: '太好了！终于有人说话了！', value: 1 },
-        { label: '聊几句然后回去干活', value: 2 },
-        { label: '戴上降噪耳机假装没听到', value: 3 }
+      { id: 'q20', dim: 'S2', text: '博士生年度聚餐，你？', options: [
+        { label: '主动组织、选餐厅、建群、催人报名', value: 1 },
+        { label: '别人组织我就去，社恐但不缺席', value: 2 },
+        { label: '聚餐那天突然有个实验要跑（其实没有）', value: 3 }
       ]}
     ];
     const specialQuestions = [
@@ -1098,7 +1100,7 @@
     "code": "REVIEWER",
     "cn": "毒审稿人",
     "intro": "This paper has fundamental flaws.",
-    "desc": "恭喜你，REVIEWER毒审稿人人格\u2014\u2014学术界的质检总监，论文界的差评师。你的review比很多论文还长，每一条comment都像一把精心打磨的手术刀，直刺作者的灵魂。你不是不讲道理，你只是把道理讲到了让人想哭的程度。\u201cThe motivation is unclear\u201d \u201cThe experiments are insufficient\u201d \u201cThe writing needs significant improvement\u201d\u2014\u2014这三句话你可以不看论文就写出来，因为它们适用于99%的投稿。你是审稿界的卷王，别人写一段你写五页，不把作者改到怀疑人生你不会点submit。可是，每一个严格的审稿人，都曾经被另一个严格的审稿人伤害过。你只是在用自己被reject的方式，reject别人。"
+    "desc": "恭喜你，REVIEWER毒审稿人人格\u2014\u2014学术界的质检总监，论文界的差评师。你的review比很多论文还长，每一条comment都像一把精心打磨的手术刀，直刺作者的灵魂。你不是不讲道理，你只是把道理讲到了让人想哭的程度。\u201ctrivial\u201d \u201cincremental\u201d \u201clack of novelty\u201d \u201cThe writing needs significant improvement\u201d \u201cI have concerns about the experimental setup\u201d\u2014\u2014这五句话你可以不看论文就写出来，因为它们适用于99%的投稿。你是审稿界的卷王，别人写一段你写五页，不把作者改到怀疑人生你不会点submit。可是，每一个严格的审稿人，都曾经被另一个严格的审稿人伤害过。你只是在用自己被reject的方式，reject别人。"
   },
   "IDLE": {
     "code": "IDLE",
@@ -1116,7 +1118,7 @@
     "code": "QUIT",
     "cn": "退学预备役",
     "intro": "退学申请已存草稿箱。",
-    "desc": "恭喜你，QUIT退学预备役人格\u2014\u2014学术圈的编外人员，HR的潜在候选人。你的LinkedIn已经悄悄改成了open to work，退学申请在Notes里存了三个版本，每次被审稿人reject都会打开看一遍。你不是不热爱科研，你只是更热爱有工资、有周末、不用写rebuttal的生活。每一个读PhD的人都有过退学的念头，区别只是你把念头做成了待办事项并且设了提醒。但每次真的要提交的时候，你又想起了那个让你最初走进实验室的问题\u2014\u2014然后把申请又存回了草稿箱。"
+    "desc": "恭喜你，QUIT退学预备役人格\u2014\u2014学术圈的编外人员，HR的潜在候选人。你的LinkedIn已经悄悄改成了open to work，退学申请在Notes里存了三个版本，每次被审稿人reject都会打开看一遍。延毕的消息传来时你反而很平静，因为你早就把预期毕业时间往后调了两年。你不是不热爱科研，你只是更热爱有工资、有周末、不用写rebuttal的生活。每一个读PhD的人都有过退学的念头，区别只是你把念头做成了待办事项并且设了提醒。但每次真的要提交的时候，你又想起了那个让你最初走进实验室的问题\u2014\u2014然后把申请又存回了草稿箱。"
   },
   "GRIND": {
     "code": "GRIND",
