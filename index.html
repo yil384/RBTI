@@ -1185,57 +1185,105 @@
             q7: { text: 'Only one GPU left in the lab. You and your labmate both need it. What do you do?', options: ['First come first served — my bash script auto-queues', 'Let\'s negotiate, half a day each', 'Don\'t care — my research doesn\'t need GPUs. Give me a pen and A4 paper'] },
             q8: { text: 'Someone says "Talk is cheap, show me the code." You?', options: ['Yes! Running code is the only truth', 'Code and theory each have their place', 'Wrong. Show me the proof. Algorithms without proofs are astrology'] },
             q18: { text: 'Server crashed at midnight. Three days of experiments — gone. You?', options: ['Good thing I saved checkpoints. Just redo the last part', 'Meltdown for 10 min, then quietly open terminal and sbatch again', 'Stared at the black screen for 30 min, contemplating the meaning of life'] },
-          },
+          
+          q2: { text: "Reviewer says your method is \"just an engineering trick, lacks theoretical contribution.\" You?", options: ["Furious — added 3 pages of proofs and 2 theorems overnight","Fine, I'll add a convergence analysis","Added: \"we leave the theoretical analysis for future work\""] },
+        
+          q19: { text: "Top conference poster session. A big name stops at your poster. You?", options: ["Walk up, introduce yourself, exchange cards, discuss collaboration","Wait for them to ask, then answer carefully","Pretend to study the poster next to yours until they leave"] },
+        },
           bio: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure mechanism research, no clinical applications', 'Half basic, half translational', 'Directly clinical/industry-facing applications'] },
             q4: { text: 'How many lab techniques do you know?', options: ['Only one (e.g., WB or PCR), but mastered it', 'Three or four common techniques', 'From molecular cloning to cell culture to animal experiments to bioinformatics — full stack'] },
             q7: { text: 'What does your daily routine look like?', options: ['In the wet lab all day, pipette never leaves my hand', 'Half wet lab, half data analysis', 'Mostly at the computer doing bioinformatics, rarely touch the bench'] },
             q8: { text: 'Someone says "only wet lab scientists are real biologists." You?', options: ['Yes! If your hands don\'t touch reagents, you\'re not doing biology', 'Wet and dry experiments each have value', 'Wrong. One line of bioinformatics code analyzes more data than your whole year of experiments'] },
             q18: { text: 'Three months of cell cultures — all contaminated. You?', options: ['Good thing I have backup cryovials in the freezer, just thaw and restart', 'Meltdown for 10 min, then quietly sterilize the incubator and start over', 'Stared at the empty flask for 30 min, seriously considering a career change'] },
-          },
+          
+          q2: { text: "Reviewer says your work \"lacks mechanistic insight, merely descriptive.\" You?", options: ["Furious — added 3 knockdown experiments and a signaling pathway diagram","Fine, I'll add a Western to validate the key protein","Added: \"the underlying mechanism warrants further investigation\""] },
+        
+          q19: { text: "You have a poster/oral presentation at a conference. You?", options: ["Actively seek out peers, exchange contacts","Stand by your poster and wait for visitors","Stick the poster up and go listen to other talks — avoid standing near yours"] },
+        },
           mech: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure theoretical modeling/simulation, no physical prototypes', 'Half simulation, half experimental validation', 'Directly building prototypes/testing'] },
             q4: { text: 'Your skill tree?', options: ['Only one area, like controls or structures', 'Two or three related areas', 'From CAD to simulation to machining to testing — a bit of everything'] },
             q7: { text: 'What are your daily tools?', options: ['MATLAB/ANSYS/COMSOL — simulation is everything', 'Half simulation, half hands-on', 'Workshop/test bench/oscilloscope — grease on my hands means I\'m working'] },
             q8: { text: 'Someone says "simulation results don\'t count, only real tests matter." You?', options: ['Wrong! A well-tuned model is more accurate than testing', 'Simulation and testing should be combined', 'Right! No matter how pretty the simulation, it can still fail on the test bench'] },
             q18: { text: 'Simulation ran for three days and diverged / prototype burned out. You?', options: ['Good thing I have backup parameters, just tweak boundary conditions and retry', 'Meltdown for 10 min, then check what went wrong', 'Stared at the error message for 30 min, questioning if engineering is for me'] },
-          },
+          
+          q2: { text: "Reviewer says your work \"lacks experimental validation — simulation alone is unconvincing.\" You?", options: ["Furious — built a test rig overnight and ran 3 experiments","Fine, I'll add a simple validation experiment","Added: \"experimental validation is planned as future work\""] },
+        
+          q19: { text: "At an exhibition/defense, someone is interested in your prototype. You?", options: ["Demo on the spot, exchange contacts for potential collaboration","Wait for them to ask, then explain the technical details","Point at the poster and say \"see the paper\" then step back"] },
+        },
           phys: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure theory/computation, never enter the lab', 'Half theory, half experiment', 'Pure experiment — leave theory to the theorists'] },
             q7: { text: 'What are your daily tools?', options: ['Pen, paper, and Mathematica — derivations are everything', 'Half derivations, half lab work', 'Instruments/optics/vacuum systems — hands-on feel matters more than equations'] },
             q8: { text: 'Someone says "theory without experimental validation is just math." You?', options: ['Wrong! An elegant theory is an end in itself', 'Theory and experiment complement each other', 'Right! Unverifiable theory is no different from mysticism'] },
             q18: { text: 'Spent three days aligning optics/instruments — the janitor bumped it / data all lost. You?', options: ['Good thing I documented everything, just realign', 'Meltdown for 10 min, then quietly start realigning', 'Stared at the bench for 30 min — physics doesn\'t need me'] },
-          },
+          
+          q2: { text: "Reviewer says your work has \"unclear physical picture — just mathematical manipulation.\" You?", options: ["Furious — added 3 pages of physical intuition and limiting-case analysis","Fine, I'll add a physical interpretation section","Added: \"a more intuitive physical picture is left for future work\""] },
+        
+          q4: { text: "How broad is your skill tree?", options: ["Deep in one subfield only — e.g. condensed matter or optics","Can discuss both theory and experiment across 2-3 areas","Attend seminars in everything from high-energy to astro"] },
+        
+          q19: { text: "Your turn to present latest results at group meeting / seminar. You?", options: ["Happily present for 20 minutes, looking forward to discussion","Brief report, expand only when asked","Compress to 5 minutes, pray nobody asks questions"] },
+        },
           civil: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure theoretical modeling/numerical simulation', 'Half theory, half field testing', 'Directly on-site/sampling/field testing'] },
             q7: { text: 'What are your daily tools?', options: ['FEM software/MATLAB — sitting at the computer all day', 'Half computer modeling, half field measurements', 'Hard hat/sampling bottles/total station — fieldwork is the real job'] },
             q8: { text: 'Someone says "no model beats actually going to the site." You?', options: ['Wrong! Model results are more precise than field observations', 'Models and fieldwork each have their strengths', 'Right! You never know how crazy reality is until you\'re there'] },
             q18: { text: 'A full day of field sampling wasted / lab data got mixed up. You?', options: ['Good thing I have backup records, just re-sample once', 'Meltdown for 10 min, then plan the next sampling trip', 'Sat by the roadside for 30 min — civil engineering is inhuman'] },
-          },
+          
+          q2: { text: "Reviewer says your work \"lacks practical engineering significance — too theoretical.\" You?", options: ["Furious — found 3 real engineering case studies for validation","Fine, I'll add a section on engineering applications","Added: \"practical implications will be explored in future field studies\""] },
+        
+          q4: { text: "Your skill coverage?", options: ["Deep in one area only — e.g. structural or geotechnical","Know both design and construction basics","Can chat about structural, geotech, hydraulic, and traffic"] },
+        
+          q19: { text: "On-site report — the client/supervisor comes to inspect your experiment. You?", options: ["Walk up and proactively present the progress","Answer what they ask, nothing more","Hide behind the testing machine pretending to record data"] },
+        },
           biz: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure theoretical models/mathematical derivation', 'Half theory, half empirical', 'Pure empirical/case study/surveys — data speaks'] },
             q7: { text: 'What are your daily tools?', options: ['Stata/R/SPSS — running regressions until the end of time', 'Half stats software, half literature reading', 'Interviews/surveys/field research — collecting data face to face'] },
             q8: { text: 'Someone says "without p<0.05, a conclusion is worthless." You?', options: ['Yes! Statistical significance is the basic requirement of science', 'Quantitative and qualitative each have value', 'Wrong! Qualitative research reveals deeper truths than p-values'] },
             q18: { text: 'Sent 500 surveys, got 30 back / regression results all insignificant. You?', options: ['Good thing I have backup datasets, try a different angle', 'Meltdown for 10 min, then check if the model spec is wrong', 'Stared at p=0.87 for 30 min, questioning the entire research direction'] },
-          },
+          
+          q2: { text: "Reviewer says your work \"lacks theoretical contribution — merely empirical findings.\" You?", options: ["Furious — added a theoretical framework and 3 hypothesis derivations overnight","Fine, I'll beef up the literature review","Added: \"we contribute to the literature by providing empirical evidence\""] },
+        
+          q4: { text: "Your methodological toolbox?", options: ["Master one method only — e.g. econometrics or case study","Can do both quantitative and qualitative","Regression, experiments, interviews, fieldwork, text analysis — tried them all"] },
+        
+          q19: { text: "You're presenting your research at an academic workshop. You?", options: ["Happily present for 20 minutes, looking forward to feedback","Brief report, respond after others comment","Read the PPT without looking at the audience, pray nobody follows up"] },
+        },
           math: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure math — no concern for applications', 'Applied math — half theory, half applications', 'Directly facing applied problems — math is just a tool'] },
             q7: { text: 'What are your daily tools?', options: ['Pen, paper, and blackboard — occasionally LaTeX', 'Half hand-derivation, half programming', 'MATLAB/Python numerical computing — rarely derive by hand'] },
             q8: { text: 'Someone says "if you can compute it, that\'s enough — no need for rigorous proofs." You?', options: ['Blasphemy! No proof means no math', 'Depends — engineering problems can be approximated', 'Right! Correct numerical results are sufficient — proofs waste time'] },
             q18: { text: 'Spent three months proving a theorem, then found a counterexample / key lemma is wrong. You?', options: ['Actually, the counterexample itself might be an even more interesting result', 'Meltdown for 10 min, then check which step went wrong', 'Stared at the draft paper for 30 min — three months of work, all wasted'] },
-          },
+          
+          q2: { text: "Reviewer says your proof \"has a gap at step 3 — not rigorous enough.\" You?", options: ["Furious — expanded that step into 5 pages of complete derivation","Fine, I'll add a lemma to close the gap","Added a footnote: \"the details are left to the interested reader\""] },
+        
+          q4: { text: "How broad is your research?", options: ["One direction only — e.g. algebra or analysis","Two or three related areas with some overlap","Attend seminars from pure math to applied to stats to computational"] },
+        
+          q19: { text: "After your seminar talk, a senior mathematician raises their hand: \"I have a question.\" You?", options: ["Great! Discussion is the soul of a seminar","Deep breath, listen carefully, then answer","\"That's a great question — let me think about it offline\" (never thinks about it)"] },
+        },
           hum: {
             q1: { text: 'Which side does your research lean toward?', options: ['Pure theoretical analysis/philosophical inquiry', 'Half theory, half empirical', 'Fieldwork/archival research/case analysis primarily'] },
             q7: { text: 'What are your daily tools?', options: ['Books and papers — 8 hours of reading a day', 'Half reading, half empirical work', 'Field notes/legal databases/archives — collecting primary materials'] },
             q8: { text: 'Someone says "humanities research isn\'t real science." You?', options: ['Humanities have their own methodology — no need for natural science standards', 'Humanities are also moving toward quantification and empirics', 'Indeed, it should be more scientific — data and evidence matter'] },
             q18: { text: 'Three months of archival research turns out to be forged / your core argument is overturned by new literature. You?', options: ['Actually, this discovery itself is a story worth writing', 'Meltdown for 10 min, then re-organize the materials', 'Stared at the literature for 30 min — three months of reading, all wasted'] },
-          },
+          
+          q2: { text: "Reviewer says your argument \"lacks primary source support — too speculative.\" You?", options: ["Furious — spent 3 months in the archives and found the key document","Fine, I'll add case studies to strengthen the empirical base","Added: \"detailed materials to be published separately due to space constraints\""] },
+        
+          q4: { text: "How broad is your intellectual range?", options: ["Deep in one area, thoroughly read the core literature","Follow two or three related fields","Read across disciplines — social science, philosophy, literature, history"] },
+        
+          q19: { text: "At a reading group / workshop, you're asked to comment on a paper on the spot. You?", options: ["Speak fluently — critique from methodology to theoretical framework","Start with the positives, then cautiously raise one question","\"This paper is very thought-provoking\" then say nothing more"] },
+        },
           art: {
             q1: { text: 'Which side does your research/practice lean toward?', options: ['Pure theoretical research/criticism/analysis', 'Half theory, half creative practice', 'Primarily creative/design practice'] },
             q7: { text: 'What are your daily tools?', options: ['Books and papers — theoretical research primarily', 'Half theoretical reading, half creative practice', 'Rhino/PS/brushes/materials — hands-on is everything'] },
             q8: { text: 'Someone says "design is just drawing." You?', options: ['Design is thinking — drawings are just the expression tool', 'Thinking and expression are equally important', 'Good drawings ARE good design — visual impact speaks'] },
             q18: { text: 'Rendered for 24 hours and the client says it\'s wrong / your exhibition got pulled. You?', options: ['It\'s fine — design is an iterative process by nature', 'Meltdown for 10 min, then ask the client what specifically they don\'t like', 'Stared at the screen for 30 min — design is inhuman'] },
-          },
+          
+          q2: { text: "Critics say your design \"lacks theoretical grounding — just looks pretty.\" You?", options: ["Furious — wrote 3 pages of design theory framework overnight","Fine, I'll add a section on design logic derivation","Added: \"theoretical discussion of this design is in the appendix\""] },
+        
+          q4: { text: "Your skill coverage?", options: ["Deep in one area — e.g. architectural design or visual communication","Cover both design and theory","From concept to modeling to rendering to construction docs — can handle the full pipeline"] },
+        
+          q19: { text: "Design review: five professors critique your work in turn. You?", options: ["Actively respond to each comment, explain design logic","Nod and take notes, digest later","Stare at your notebook the whole time, hoping it ends soon"] },
+        },
         },
         types_en: {
           "LLM": {
@@ -1788,11 +1836,6 @@
             intro: "I spend more time writing proposals than doing research.",
             desc: "Congratulations, FUND Grant Hunter personality — you spend more time applying for money than spending it. Proposal writing is your true scholarly output; budget justification is the literary genre you have mastered. You can package any research direction as 'transformative and of critical societal importance,' and your Broader Impact section reads more movingly than your research plan. Your calendar is peppered with funding deadlines — NSF, NIH, DOE, ERC — each month brings a new one calling your name. You have grown accustomed to rejection because the success rate is fifteen percent, but every rejection hones your prose into something smoother and more polished. You are academia's fundraising specialist. Yet sometimes you wonder: if you redirected all that proposal energy into actual research, maybe you would have published that paper by now."
           },
-          "CONF": {
-            name: "Academic Tourist",
-            intro: "Conferences are mainly for sightseeing.",
-            desc: "Congratulations, CONF Academic Tourist personality — your conference itinerary is twenty percent talks and eighty percent travel guide. Upon landing in a new city, your first move is not finding the venue but searching for nearby restaurants and attractions. The poster session is your social hour — primarily for free wine and canapes. Your talk attendance record is touching: one keynote, and the rest are 'I was in the other session' (actually napping at the hotel). Your conference photo album has ten times more scenery than slides, and your expense report creatively categorizes sightseeing taxi rides as 'academic transportation.' But you know what? Those chance coffee-break conversations sometimes deliver more value than any formal talk. The best collaborations in academia often start with a free coffee and an 'oh, you work on that too?'"
-          },
           "THESIS": {
             name: "Never-Ending Paper",
             intro: "This paper has been alive for three years.",
@@ -1802,16 +1845,6 @@
             name: "Future Advisor",
             intro: "You've started using your advisor's catchphrases.",
             desc: "Congratulations, PI Future Advisor personality — you are slowly, imperceptibly becoming your advisor. You have adopted their catchphrases, mirrored their gestures, learned the subtle inflection with which they say 'interesting' when they actually mean 'this is terrible.' When you give feedback to junior students at lab meetings, you look exactly like a miniature version of your PI. You have even begun to understand decisions your advisor made years ago that once seemed baffling — not because you grew wiser, but because you were assimilated. This is academic Stockholm syndrome: suffer long enough and you start identifying with the one who makes you suffer. Your CV is quietly trending toward faculty material; your email signature grows more formal by the month. One day you will sit in your advisor's chair, look at a new student's draft, and say 'revise it a bit more' — and in that moment you will realize the cycle is complete."
-          },
-          "POST": {
-            name: "Postdoc DLC",
-            intro: "Postdoc is the paid DLC for your PhD.",
-            desc: "Congratulations, POST Postdoc DLC personality — you thought the PhD was the final chapter, but it turns out the postdoc is the real base game. It is paid DLC that extends the suffering without adding any genuinely new content. Your salary is slightly higher than during grad school, but so is your anxiety, because now you chose this voluntarily. You drift between labs, cities, countries — your CV says 'rich international academic experience,' your heart says 'I just cannot find a faculty position.' Your contract renews one or two years at a time, never offering stability. You are academia's temp worker: doing the same work as a professor for a trainee's pay. And yet you stay on this path, because you are not quite ready to admit the possibility that academia might not be your destination after all."
-          },
-          "CTRLC": {
-            name: "Copy-Paste Artist",
-            intro: "Related work section copied from last paper.",
-            desc: "Congratulations, CTRLC Copy-Paste Artist personality — your Related Work paragraph migrates between papers like a nomad, never settling down. 'As we discussed in our previous work [1][2][3][4][5]...' — you have used that sentence seventeen times. Your self-citation ratio is high enough to make editors nervous. You are not self-plagiarizing; you are 'maintaining narrative consistency.' Your Introduction template has been passed down through three generations of students, each adding a sentence or two while the core structure remains untouched. The textual similarity between your papers is remarkable, but you insist it reflects 'continuity of a research program.' Turnitin is your nemesis; paraphrasing is your mandatory elective. But you know the truth: real innovation lives in ideas, not words — you are just too lazy to say the same thing a different way."
           },
           "STATS": {
             name: "P-Value Warrior",
@@ -1823,11 +1856,6 @@
             intro: "Opened 1 paper, it cited 10 more...",
             desc: "Congratulations, LIT Literature Abyss personality — your literature review is a never-ending descent into the abyss. Open one paper, it cites ten more, each of which cites ten more, and your reading list grows exponentially — far faster than your reading speed. Your Zotero holds 3,000 papers; you have finished fewer than 300 and truly understood fewer than 30. Your browser perpetually has 47 PDF tabs open, each read only to page one. You are trapped in a peculiar anxiety loop: the more you read, the more you discover you do not know, the more inadequate you feel. Your literature review is permanently 'in progress' because new papers appear every week. But here is a secret: nobody has read all the relevant literature — not even the senior authors you cite. At some point you must stop reading and start writing."
           },
-          "TEACH": {
-            name: "TA Life",
-            intro: "No time left for my own research.",
-            desc: "Congratulations, TEACH TA Life personality — your teaching duties have devoured every last minute of research time. While you grade 200 assignments, your own paper gathers dust in the corner. Office hours are not Q&A sessions but therapy hotlines for undergrads: 'Will I fail this class?' 'Can I get an extension?' 'I broke up with my partner so I didn't do the homework.' Your inbox has ten times more student emails than advisor emails, and your calendar is packed wall-to-wall with course obligations. The course you teach is one you barely understood yourself, but now you must pretend you know everything. You are academia's unpaid labor, subsidizing the teaching budget with your own research time. But occasionally, when a student's eyes light up and they say 'I get it!' you remember why you started down this path — then you return to your desk and keep grading."
-          },
           "TALK": {
             name: "Stage Fright",
             intro: "Papers are brilliant; presentations are trembling.",
@@ -1837,11 +1865,6 @@
             name: "Impostor",
             intro: "Do I even deserve to be here?",
             desc: "Congratulations, IMPST Impostor personality — you are the walking embodiment of impostor syndrome. Everyone around you seems smarter. Every paper acceptance feels like the reviewers made a mistake. Every award feels like a clerical error. You Google basic concepts far more often than you would ever admit, and at every lab meeting you dread the question 'how do you not know this?' Your CV lists impressive achievements, but you feel every line is inflated. You live in perpetual fear: someday everyone will discover you actually know nothing. But here is a cruel truth — people who truly know nothing never feel like they know nothing. Your doubt itself is proof of your conscientiousness. Of course, you will not believe this paragraph, because you think the quiz got it wrong too."
-          },
-          "COFFEE": {
-            name: "Caffeine-Powered",
-            intro: "More caffeine than hemoglobin in my blood.",
-            desc: "Congratulations, COFFEE Caffeine-Powered personality — your blood is no longer red; it is the deep brown of concentrated espresso. Three lattes to boot your brain in the morning, an energy drink at 3 PM to stay alive, a late-night espresso for the final push. Your blood type: Americano positive. Your caffeine intake and paper output are perfectly correlated, r = 0.99, p < 0.001. Your tolerance is so high that regular coffee is basically water — only a double shot registers as a signal. Your heart rate, like your anxiety level, runs slightly elevated but still operational. You are not drinking coffee; you are injecting fuel into your biological system. But sometimes you wonder: without caffeine, could you still do research? The answer is no, because without caffeine you cannot even get out of bed."
           },
           "WB": {
             name: "Band Mystic",
@@ -4260,7 +4283,7 @@
         { label: '理论和实验各占一半', value: 2 },
         { label: '90%实验/实操，出结果就是正义', value: 3 }
       ]},
-      { id: 'q2', dim: 'R1', text: '审稿人/评审老师说你的工作\u201c缺乏理论贡献\u201d，你？', options: [
+      { id: 'q2', dim: 'R1', text: '审稿人说你的工作\u201c缺乏理论贡献\u201d，你？', options: [
         { label: '怒了，当晚加了三页证明和两个定理', value: 1 },
         { label: '嗯……补个convergence analysis吧', value: 2 },
         { label: '加了一句\u201cwe leave the theoretical analysis for future work\u201d', value: 3 }
@@ -4336,7 +4359,7 @@
         { label: '都关注一下', value: 2 },
         { label: '招聘网站上的薪资和面试帖', value: 3 }
       ]},
-      { id: 'q17', dim: 'S1', text: '审稿人/评审老师给了strong reject，评语写满了\u201ctrivial, incremental, lack of novelty\u201d，你？', options: [
+      { id: 'q17', dim: 'S1', text: '审稿人给了strong reject，评语写满了\u201ctrivial, incremental, lack of novelty\u201d，你？', options: [
         { label: '冷静分析，逐条反驳，格局不能输', value: 1 },
         { label: '难受一天，然后开始按意见改', value: 2 },
         { label: '已经在质疑人生和考虑退学了', value: 3 }
@@ -4467,6 +4490,18 @@
           { label: '崩溃十分钟，然后默默打开terminal重新sbatch', value: 2 },
           { label: '对着黑屏幕发呆了半小时，开始认真思考人生的意义', value: 3 }
         ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的方法「只是engineering trick，缺乏theoretical contribution」，你？", options: [
+          { label: "怒了，当晚加了三页证明和两个定理", value: 1 },
+          { label: "补个convergence analysis再投", value: 2 },
+          { label: "加了一句“we leave the theoretical analysis for future work”", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "顶会poster session，一个大佬停在你的poster前，你？", options: [
+          { label: "主动介绍，要名片，聊potential collaboration", value: 1 },
+          { label: "等对方先开口，然后认真回答", value: 2 },
+          { label: "假装在看旁边的poster，等人走了再回来", value: 3 }
+        ]},
       },
       bio: {
         q1: { id: 'q1', dim: 'R1', text: '你的研究更偏哪一边？', options: [
@@ -4493,6 +4528,18 @@
           { label: '还好冰箱里有备份的冻存管，重新复苏', value: 1 },
           { label: '崩溃十分钟，然后默默消毒培养箱重新开始', value: 2 },
           { label: '对着空培养瓶发呆了半小时，开始认真思考转行', value: 3 }
+        ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的研究「缺乏机制探讨，只是现象描述」，你？", options: [
+          { label: "怒了，加了三组knockdown实验和一个信号通路图", value: 1 },
+          { label: "补个Western验证一下关键蛋白吧", value: 2 },
+          { label: "加了一句“the underlying mechanism warrants further investigation”", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "学术会议上你要做poster/oral展示，你？", options: [
+          { label: "主动找同行讨论，交换联系方式", value: 1 },
+          { label: "站在poster旁边等人来问", value: 2 },
+          { label: "poster贴好就去听别人的报告了，尽量不在自己poster旁边", value: 3 }
         ]},
       },
       mech: {
@@ -4521,6 +4568,18 @@
           { label: '崩溃十分钟，然后检查是哪里设错了', value: 2 },
           { label: '对着报错信息发呆半小时，开始怀疑自己适不适合做工程', value: 3 }
         ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的研究「缺乏实验验证，仿真结果不可信」，你？", options: [
+          { label: "怒了，连夜搭实验台做了三组对照", value: 1 },
+          { label: "补一组简单实验验证关键结论", value: 2 },
+          { label: "加了一句“experimental validation is planned as future work”", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "展会/答辩上有人对你的样机很感兴趣，你？", options: [
+          { label: "现场演示，加微信聊合作可能", value: 1 },
+          { label: "等对方问，认真讲解技术细节", value: 2 },
+          { label: "指着海报说“详见论文”然后退后一步", value: 3 }
+        ]},
       },
       phys: {
         q1: { id: 'q1', dim: 'R1', text: '你的研究更偏哪一边？', options: [
@@ -4542,6 +4601,24 @@
           { label: '还好我做了记录，重新调就是了', value: 1 },
           { label: '崩溃十分钟，然后默默重新对准', value: 2 },
           { label: '对着实验台发呆半小时，物理学不需要我', value: 3 }
+        ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的工作「物理图像不清晰，只是数学操作」，你？", options: [
+          { label: "怒了，加了三页物理直觉讨论和极限情况分析", value: 1 },
+          { label: "补一节physical interpretation", value: 2 },
+          { label: "加了一句“a more intuitive physical picture is left for future work”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的技能树有多广？", options: [
+          { label: "只精通一个子方向，比如凝聚态或光学", value: 1 },
+          { label: "理论和实验都能聊，两三个方向有涉猎", value: 2 },
+          { label: "从高能到凝聚态到光学到天体，什么seminar都去听", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "组会/seminar上轮到你讲最新结果，你？", options: [
+          { label: "主动讲二十分钟，期待讨论", value: 1 },
+          { label: "简短汇报，被问到再展开", value: 2 },
+          { label: "压缩到五分钟，祈祷没人提问", value: 3 }
         ]},
       },
       civil: {
@@ -4565,6 +4642,24 @@
           { label: '崩溃十分钟，然后规划下次重新采', value: 2 },
           { label: '坐在路边发呆半小时，土木真不是人干的', value: 3 }
         ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的研究「缺乏工程实际意义，太理论化」，你？", options: [
+          { label: "怒了，找了三个实际工程案例验证", value: 1 },
+          { label: "补一节工程应用讨论", value: 2 },
+          { label: "加了一句“practical implications will be explored in future field studies”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的技能覆盖面？", options: [
+          { label: "只精通一个方向，比如结构或岩土", value: 1 },
+          { label: "设计和施工都懂一些", value: 2 },
+          { label: "从结构到岩土到水利到交通，每个方向都能聊两句", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "工地/现场汇报，甲方/领导来视察你的实验，你？", options: [
+          { label: "主动迎上去介绍进展", value: 1 },
+          { label: "被问到什么答什么", value: 2 },
+          { label: "躲在试验机后面假装在记数据", value: 3 }
+        ]},
       },
       biz: {
         q1: { id: 'q1', dim: 'R1', text: '你的研究更偏哪一边？', options: [
@@ -4586,6 +4681,24 @@
           { label: '还好我有备选数据集，换个角度分析', value: 1 },
           { label: '崩溃十分钟，然后检查是不是模型设定错了', value: 2 },
           { label: '对着屏幕上的p=0.87发呆半小时，开始怀疑整个研究方向', value: 3 }
+        ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的研究「缺乏理论贡献，只是实证发现」，你？", options: [
+          { label: "怒了，连夜加了一个理论框架和三个假设推导", value: 1 },
+          { label: "补一个文献综述把理论基础写厚一点", value: 2 },
+          { label: "加了一句“we contribute to the literature by providing empirical evidence”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的方法论工具箱？", options: [
+          { label: "只精通一种方法，比如计量或案例研究", value: 1 },
+          { label: "定量和定性都能做", value: 2 },
+          { label: "回归、实验、访谈、田野、文本分析……什么方法都用过", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "学术workshop上你要展示研究，你？", options: [
+          { label: "主动讲二十分钟，期待讨论和反馈", value: 1 },
+          { label: "简短汇报，等别人评论再回应", value: 2 },
+          { label: "读PPT不看观众，祈祷没人追问", value: 3 }
         ]},
       },
       math: {
@@ -4609,6 +4722,24 @@
           { label: '崩溃十分钟，然后检查是哪个步骤出了问题', value: 2 },
           { label: '对着草稿纸发呆半小时，三个月的心血全白费了', value: 3 }
         ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的证明「第三步有gap，不够严谨」，你？", options: [
+          { label: "怒了，把那一步展开成了五页完整推导", value: 1 },
+          { label: "加一个引理把gap补上", value: 2 },
+          { label: "注释了一句“the details are left to the interested reader”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的研究涉猎面？", options: [
+          { label: "只做一个方向，比如代数或分析", value: 1 },
+          { label: "两三个相关方向有交叉", value: 2 },
+          { label: "从纯数到应用到统计到计算，每个seminar都去听", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "seminar上你讲完了，大佬举手说「我有个问题」，你？", options: [
+          { label: "太好了，学术讨论是seminar的精髓", value: 1 },
+          { label: "深呼吸，认真听完问题再回答", value: 2 },
+          { label: "“这个问题很好，我下来再想想”（然后再也没想）", value: 3 }
+        ]},
       },
       hum: {
         q1: { id: 'q1', dim: 'R1', text: '你的研究更偏哪一边？', options: [
@@ -4631,6 +4762,24 @@
           { label: '崩溃十分钟，然后重新梳理材料', value: 2 },
           { label: '对着文献发呆半小时，三个月的阅读全白费了', value: 3 }
         ]},
+      
+        q2: { id: "q2", dim: "R1", text: "审稿人说你的论述「缺乏一手材料支撑，过于思辨」，你？", options: [
+          { label: "怒了，翻了三个月档案找到了关键史料", value: 1 },
+          { label: "补几个案例分析增强实证基础", value: 2 },
+          { label: "加了一句“受篇幅所限，详细材料另文发表”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的学术涉猎有多广？", options: [
+          { label: "只深耕一个方向，读透了核心文献", value: 1 },
+          { label: "两三个相关方向都有关注", value: 2 },
+          { label: "跨学科阅读，社科、哲学、文学、历史的书都看", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "读书会/workshop上你被要求即兴评论一篇论文，你？", options: [
+          { label: "侃侃而谈，从方法论到理论框架全面点评", value: 1 },
+          { label: "先说优点，再小心翼翼地提一个问题", value: 2 },
+          { label: "“这篇文章很有启发性”然后不再说话", value: 3 }
+        ]},
       },
       art: {
         q1: { id: 'q1', dim: 'R1', text: '你的研究/创作更偏哪一边？', options: [
@@ -4652,6 +4801,24 @@
           { label: '还好，设计本来就是不断修改的过程', value: 1 },
           { label: '崩溃十分钟，然后问甲方具体哪里不满意', value: 2 },
           { label: '对着屏幕发呆半小时，设计不是人干的', value: 3 }
+        ]},
+      
+        q2: { id: "q2", dim: "R1", text: "评委说你的设计「缺乏理论支撑，只是形式好看」，你？", options: [
+          { label: "怒了，连夜写了三页设计理论框架", value: 1 },
+          { label: "补一节设计逻辑的推导", value: 2 },
+          { label: "加了一句“本设计的理论探讨详见附录”", value: 3 }
+        ]},
+      
+        q4: { id: "q4", dim: "R2", text: "你的技能覆盖面？", options: [
+          { label: "只精通一个方向，比如建筑设计或视觉传达", value: 1 },
+          { label: "设计和理论都有涉猎", value: 2 },
+          { label: "从概念到建模到渲染到施工图，全流程都能上手", value: 3 }
+        ]},
+      
+        q19: { id: "q19", dim: "S2", text: "评图会上五个老师轮流点评你的作品，你？", options: [
+          { label: "积极回应每一条意见，解释设计逻辑", value: 1 },
+          { label: "点头记录，回去再消化", value: 2 },
+          { label: "全程低头看笔记本，希望时间快点过去", value: 3 }
         ]},
       },
     };
@@ -5317,12 +5484,6 @@
     "intro": "写proposal的时间比做研究还长。",
     "desc": "恭喜你，FUND经费猎人人格——你花在申请经费上的时间比花经费的时间还长。写proposal是你的真正学术产出，budget justification是你最擅长的文学体裁。你能把任何研究方向包装成\u201c具有重大社会影响和前沿科学价值\u201d的课题，Broader Impact写得比research plan还感人。你的日历上标满了各种基金的截止日，NSF、NIH、DOE、自科基金，每个月都有新的deadline在召唤。你已经习惯了被拒，因为中标率只有15%，但每一次rejection都让你的proposal写得更圆滑、更老练。你是学术界的融资专家，但有时候你会想：如果把写proposal的精力放在做研究上，也许你早就发了那篇论文。"
   },
-  "CONF": {
-    "code": "CONF",
-    "cn": "学术游客",
-    "intro": "去开会主要是为了旅游。",
-    "desc": "恭喜你，CONF学术游客人格——你的会议行程里，学术报告占20%，旅游攻略占80%。飞到一个新城市的第一件事不是找会场，而是搜附近的美食和景点。Poster session是你的social hour——主要目的是拿免费的酒和小食。你的学术报告出席率感人：keynote听一个，剩下的全是\u201c我在隔壁session\u201d（其实在酒店休息）。你的conference照片里风景比PPT多十倍，你的报销单里打车去景点的费用被巧妙归类为\u201c学术交通\u201d。但你心里清楚，那些在coffee break偶遇的闲聊，有时候比正式报告更有价值——学术界最好的合作，往往始于一杯免费咖啡和一句\u201c你也做这个方向？\u201d"
-  },
   "THESIS": {
     "code": "THESIS",
     "cn": "永恒论文",
@@ -5334,18 +5495,6 @@
     "cn": "未来导师",
     "intro": "你开始用导师的口头禅了。",
     "desc": "恭喜你，PI未来导师人格——你正在不知不觉中变成你的导师。你开始用他们的口头禅，模仿他们的手势，学会了他们说\u201cinteresting\u201d时其实意思是\u201c这很糟糕\u201d的微妙语调。你在组会上给师弟师妹提意见的样子，活脱脱就是小号版的你导。你甚至开始理解导师当年那些你觉得莫名其妙的决定——不是因为你变聪明了，而是因为你被同化了。这是学术界的斯德哥尔摩综合征：被折磨久了就开始认同折磨你的人。你的简历在慢慢向faculty方向靠拢，你的邮件签名越来越正式。有一天你会坐在导师的位置上，对着新来的学生说\u201c再改改\u201d——然后你会突然意识到，循环完成了。"
-  },
-  "POST": {
-    "code": "POST",
-    "cn": "博后漂流",
-    "intro": "博后是读博的DLC。",
-    "desc": "恭喜你，POST博后漂流人格——你以为读博是最终章，结果发现博后才是真正的游戏本体。博后是读博的DLC：付费扩展包，延长了痛苦但没有新增任何实质内容。你的薪资比读博时高了一点，但你的焦虑也高了一点，因为你现在是\u201c自愿\u201d选择继续受苦的。你漂流在不同的实验室、不同的城市、不同的国家，简历上写着\u201c丰富的国际学术经历\u201d，心里想着\u201c我只是找不到教职\u201d。你的合同是一年一签或两年一签，永远没有稳定感。你是学术界的临时工，做着和教授一样的工作，拿着学生级别的待遇。但你依然留在这条路上，因为你还没准备好承认那个可能性——也许学术，并不是你的终点。"
-  },
-  "CTRLC": {
-    "code": "CTRLC",
-    "cn": "复制粘贴",
-    "intro": "Related work从上篇copy过来。",
-    "desc": "恭喜你，CTRLC复制粘贴人格——你的Related Work段落在论文之间像游牧民族一样迁徙，从来不曾定居。\u201cAs we discussed in our previous work [1][2][3][4][5]...\u201d这句话你已经用了十七次，自引比例高到编辑看了想报警。你不是在自我抄袭，你只是在\u201c保持叙述的一致性\u201d。你的Introduction模板已经传了三代学生，每个人都在上面加了一两句，但核心结构从未改变。你的论文之间有着惊人的文本相似度，但你坚称这是\u201c系列工作的延续性\u201d。Turnitin是你的天敌，paraphrase是你的必修课。但你心里清楚，真正的创新不在文字里，而在想法里——你只是懒得换一种方式说同样的话。"
   },
   "STATS": {
     "code": "STATS",
@@ -5359,12 +5508,6 @@
     "intro": "打开1篇引用了10篇...",
     "desc": "恭喜你，LIT文献海人格——你的文献综述之旅是一场永无止境的深渊之旅。打开1篇论文，它引用了10篇，每篇又引用了10篇，于是你的\u201c待读列表\u201d以指数级增长，reading list的增速远超reading speed。你的Zotero里有3000篇论文，读完的不超过300篇，真正理解的不超过30篇。你的浏览器永远开着47个PDF标签页，每个都只看了第一页。你陷入了一种诡异的焦虑循环：读得越多，发现不知道的越多，越觉得自己读得不够。你的literature review永远在\u201c进行中\u201d，因为这个领域每周都有新论文出来。但你知道吗，没有人真的读完了所有相关文献——包括你引用的那些大佬。在某个时刻，你必须停止阅读，开始写。"
   },
-  "TEACH": {
-    "code": "TEACH",
-    "cn": "助教命",
-    "intro": "自己的研究没时间做。",
-    "desc": "恭喜你，TEACH助教命人格——你的TA任务吞噬了你所有的科研时间。批改200份作业的时候，你的论文在角落里积灰。Office hours不是答疑时间，而是本科生的心理咨询热线：\u201c老师我这门课会不会挂\u201d\u201c老师这个作业能不能延期\u201d\u201c老师我失恋了所以没写作业\u201d。你的邮箱里学生的邮件比导师的邮件多十倍，你的日历被课程安排塞得密不透风。你教的课你自己当年也没学明白，但你现在要假装什么都懂。你是学术界的无偿劳动力，用自己的科研时间补贴教学经费。但偶尔，当一个学生眼睛亮起来说\u201c我懂了！\u201d的时候，你会想起自己当年为什么走上这条路——然后回到办公室，继续批作业。"
-  },
   "TALK": {
     "code": "TALK",
     "cn": "怯场王",
@@ -5376,12 +5519,6 @@
     "cn": "冒名顶替",
     "intro": "我是不是不配读这个？",
     "desc": "恭喜你，IMPST冒名顶替人格——你是冒名顶替综合征的行走代言人。身边每个人都比你聪明，每次论文被接收都觉得是审稿人看走了眼，每次获奖都觉得是凑数。你Google基础概念的频率比你愿意承认的高得多，每次组会都怕被问到\u201c这个你怎么不知道？\u201d。你的简历上写着impressive的成果，但你心里觉得每一条都有水分。你活在一种持续的恐惧中：总有一天，所有人会发现你其实什么都不会。但这里有一个残酷的事实——真正什么都不会的人，从来不会觉得自己什么都不会。你的怀疑本身，恰恰证明了你的认真。不过你不会相信这段话的，因为你觉得这个测试也看走了眼。"
-  },
-  "COFFEE": {
-    "code": "COFFEE",
-    "cn": "咖啡因依赖",
-    "intro": "血液里咖啡因比血红蛋白多。",
-    "desc": "恭喜你，COFFEE咖啡因依赖人格——你的血液已经不是红色的了，而是浓缩咖啡的深棕色。早上三杯拿铁才能启动大脑，下午三点一罐能量饮料续命，晚上十点一杯espresso为最后的冲刺加油。你的血型是：美式阳性。你的咖啡消耗量和论文产出量呈完美正相关，r=0.99，p<0.001。你对咖啡因的耐受度已经高到普通咖啡如同白水，需要双倍浓缩才能感到一丝清醒。你的心跳速率和你的焦虑水平一样——偏高但尚可运转。你不是在喝咖啡，你是在给自己的生物系统注入燃料。但你偶尔会想，如果没有咖啡因，你还能不能做科研？答案是：不能，因为那样你连起床都做不到。"
   },
   "WB": {
     "code": "WB",
@@ -8177,17 +8314,12 @@
   "DRAFT": "./image/DRAFT.png",
   "DDL": "./image/DDL.png",
   "FUND": "./image/FUND.png",
-  "CONF": "./image/CONF.png",
   "THESIS": "./image/THESIS.png",
   "PI": "./image/PI.png",
-  "POST": "./image/POST.png",
-  "CTRLC": "./image/CTRLC.png",
   "STATS": "./image/STATS.png",
   "LIT": "./image/LIT.png",
-  "TEACH": "./image/TEACH.png",
   "TALK": "./image/TALK.png",
   "IMPST": "./image/IMPST.png",
-  "COFFEE": "./image/COFFEE.png",
   "WB": "./image/WB.png",
   "GEL": "./image/GEL.png",
   "PLSMD": "./image/PLSMD.png",
@@ -8742,17 +8874,12 @@
   { code: "DRAFT", pattern: "LM-LM-MH-LM-ML", discipline: "universal" },
   { code: "DDL", pattern: "HM-MH-MH-HM-HM", discipline: "universal" },
   { code: "FUND", pattern: "MH-HM-HM-HH-HM", discipline: "universal" },
-  { code: "CONF", pattern: "HM-HH-HH-MH-HH", discipline: "universal" },
   { code: "THESIS", pattern: "LM-LM-LL-LM-ML", discipline: "universal" },
   { code: "PI", pattern: "MH-LM-MH-LH-MH", discipline: "universal" },
-  { code: "POST", pattern: "MM-MM-MH-LH-LM", discipline: "universal" },
-  { code: "CTRLC", pattern: "HM-HH-HM-HM-ML", discipline: "universal" },
-  { code: "STATS", pattern: "MH-LH-LM-MH-LM", discipline: "universal" },
+  { code: "STATS", pattern: "MH-LH-LM-MH-LM", discipline: "biz" },
   { code: "LIT", pattern: "LH-LL-LH-LL-LH", discipline: "universal" },
-  { code: "TEACH", pattern: "MM-MH-HM-LM-HM", discipline: "universal" },
   { code: "TALK", pattern: "LM-LM-LM-LM-HH", discipline: "universal" },
   { code: "IMPST", pattern: "LL-MM-LM-ML-LH", discipline: "universal" },
-  { code: "COFFEE", pattern: "HM-MM-HM-MM-HM", discipline: "universal" },
   { code: "WB", pattern: "LM-LL-LH-LM-HM", discipline: "bio" },
   { code: "GEL", pattern: "MM-LM-LH-MM-LM", discipline: "bio" },
   { code: "PLSMD", pattern: "LM-LL-LM-LM-HM", discipline: "bio" },
