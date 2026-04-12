@@ -1002,7 +1002,7 @@
           </div>
 
           <div class="analysis-box">
-            <h3>该人格的简单解读</h3>
+            <hr style="border:none;border-top:1px solid var(--line);margin:0 0 18px;" />
             <p id="resultDesc"></p>
           </div>
 
@@ -4234,7 +4234,7 @@
       document.getElementById('testHint').innerHTML = t('hintDefault');
 
       // Update result page static labels
-      document.querySelector('.analysis-box h3').textContent = t('descTitle');
+      // analysis-box header removed — desc flows directly after hr
       document.querySelector('.dim-box h3').textContent = t('dimTitle');
       document.querySelector('.note-box h3').textContent = t('noteTitle');
       document.querySelector('.author-box summary').childNodes[0].textContent = t('aboutTitle');
@@ -9738,7 +9738,7 @@
         : t('disclaimer');
 
       // Update section headings for current language
-      document.querySelector('.analysis-box h3').textContent = t('descTitle');
+      // analysis-box header removed — desc flows directly after hr
       document.querySelector('.dim-box h3').textContent = t('dimTitle');
       document.querySelector('.note-box h3').textContent = t('noteTitle');
       document.querySelector('.author-box summary').childNodes[0].textContent = t('aboutTitle');
