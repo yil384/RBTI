@@ -1169,8 +1169,8 @@
           q20: { text: 'Lab group dinner party. You?', options: ['Organize it \u2014 pick the restaurant, create the group chat, RSVP everyone', 'If someone organizes it, I\'ll go', '"Sorry, I have an experiment to run that night" (I don\'t)'] },
           review_gate_q1: { text: 'You receive a review invitation. Your reaction?', options: ['Decline \u2014 can\'t even finish my own papers', 'Check the topic first', 'Accept! Reviewing is power', 'Not only accepted, but spent two weeks writing a 5-page detailed review'] },
           review_gate_q2: { text: 'Your review style?', options: ['Constructive and kind \u2014 we\'re all struggling', '"This paper has fundamental flaws and should not be published in its current form."'] },
-          idle_gate_q1: { text: 'One hour before lab meeting, what are you doing?', options: ['Preparing slides and demo', 'Running last experiments', 'Anxiously skimming papers', 'Scrolling Bilibili/XHS/Reddit/Twitter'] },
-          idle_gate_q2: { text: 'What do you do most when slacking off?', options: ['Watch funny videos to relax', 'Secretly browse job postings and industry packages'] },
+          idle_gate_q1: { text: 'One hour before lab meeting, what are you doing?', options: ['Preparing slides and demo', 'Running last experiments', 'Anxiously skimming papers', 'Scrolling Bilibili/XHS/Reddit/Twitter', 'Completely forgot there\'s a meeting — still in bed'] },
+          idle_gate_q2: { text: 'What do you do most when slacking off?', options: ['Watch funny videos to relax', 'Secretly browse job postings and industry packages', 'Evolved to slack guilt-free — I call it my research break'] },
           slide_gate_q1: { text: 'Your attitude toward academic PPTs?', options: ['Good enough is fine, content is king', 'I\'ll spend some time on layout', 'Color scheme, fonts, animations \u2014 full polish', 'Spent 3 days on one PPT, tweaking every animation and icon'] },
           slide_gate_q2: { text: 'What matters most in an academic talk?', options: ['Depth and logical clarity', 'Honestly, pretty slides matter more than content \u2014 aesthetics is justice'] },
           quit_gate_q1: { text: 'Your typical Friday evening?', options: ['Still grinding in the lab', 'Finally off work!', 'Going out with friends', 'Browsing non-academic job listings'] },
@@ -4403,14 +4403,16 @@
           { label: '在准备slides和demo', value: 1 },
           { label: '在跑最后一组实验', value: 2 },
           { label: '在焦虑地刷论文', value: 3 },
-          { label: '在刷B站/小红书/Reddit/Twitter', value: 4 }
+          { label: '在刷B站/小红书/Reddit/Twitter', value: 4 },
+          { label: '根本忘了今天有组会，现在还在被窝里', value: 5 }
         ]
       },
       { id: 'idle_gate_q2', special: true, kind: 'idle_trigger',
         text: '你摸鱼的时候最常做什么？',
         options: [
           { label: '看看搞笑视频放松一下', value: 1 },
-          { label: '偷偷刷招聘网站，看看外面的世界和package', value: 2 }
+          { label: '偷偷刷招聘网站，看看外面的世界和package', value: 2 },
+          { label: '已经进化到边摸鱼边心安理得了，摸鱼本身就是我的research break', value: 3 }
         ]
       },
       { id: 'slide_gate_q1', special: true, kind: 'slide_gate',
@@ -9428,7 +9430,7 @@
       const visible = [...app.shuffledQuestions];
       const gateQ2Map = {
         'review_gate_q1': { triggerValue: 4, q2Id: 'review_gate_q2' },
-        'idle_gate_q1':   { triggerValue: 4, q2Id: 'idle_gate_q2' },
+        'idle_gate_q1':   { triggerValue: 5, q2Id: 'idle_gate_q2' },
         'slide_gate_q1':  { triggerValue: 4, q2Id: 'slide_gate_q2' },
         'quit_gate_q1':   { triggerValue: 4, q2Id: 'quit_gate_q2' },
         'grind_gate_q1':  { triggerValue: 4, q2Id: 'grind_gate_q2' }
@@ -9503,7 +9505,7 @@
 
           const gateResets = {
             'review_gate_q1': { triggerValue: 4, q2Id: 'review_gate_q2' },
-            'idle_gate_q1':   { triggerValue: 4, q2Id: 'idle_gate_q2' },
+            'idle_gate_q1':   { triggerValue: 5, q2Id: 'idle_gate_q2' },
             'slide_gate_q1':  { triggerValue: 4, q2Id: 'slide_gate_q2' },
             'quit_gate_q1':   { triggerValue: 4, q2Id: 'quit_gate_q2' },
             'grind_gate_q1':  { triggerValue: 4, q2Id: 'grind_gate_q2' }
@@ -9565,7 +9567,7 @@
     }
 
     function getReviewTriggered() { return app.answers[REVIEW_TRIGGER_ID] === 2; }
-    function getIdleTriggered() { return app.answers[IDLE_TRIGGER_ID] === 2; }
+    function getIdleTriggered() { return app.answers[IDLE_TRIGGER_ID] === 3; }
     function getSlideTriggered() { return app.answers[SLIDE_TRIGGER_ID] === 2; }
     function getQuitTriggered() { return app.answers[QUIT_TRIGGER_ID] === 2; }
     function getGrindTriggered() { return app.answers[GRIND_TRIGGER_ID] === 2; }

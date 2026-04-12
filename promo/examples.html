@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1440px;
+    background: linear-gradient(135deg, #f5f5ff, #f0f0fa);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 48px;
+    color: #1e1e3f;
+    text-align: center;
+    margin-bottom: 48px;
+    font-weight: 800;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+  }
+
+  .card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(99,102,241,0.08);
+    border: 1px solid #e8e8f4;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-field {
+    font-size: 20px;
+    color: #6366f1;
+    font-weight: 700;
+  }
+
+  .card-name {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1e1e3f;
+  }
+
+  .card-intro {
+    font-size: 22px;
+    color: #6a6a8a;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 28px;
+    color: #8a8aaa;
+  }
+</style>
+</head>
+<body>
+  <h2>各学科人格示例</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-field">💻 CS</div>
+      <div class="card-name">VIM · 进去出不来</div>
+      <div class="card-intro">怎么退出？就像我的PhD</div>
+    </div>
+    <div class="card">
+      <div class="card-field">🧬 生物</div>
+      <div class="card-name">条带玄学</div>
+      <div class="card-intro">Western Blot出条带全靠缘分</div>
+    </div>
+    <div class="card">
+      <div class="card-field">⚙️ 机械</div>
+      <div class="card-name">仿真永不收敛</div>
+      <div class="card-intro">47次diverge和3次蓝屏</div>
+    </div>
+    <div class="card">
+      <div class="card-field">🧪 物化材</div>
+      <div class="card-name">量子态</div>
+      <div class="card-intro">论文在写完和没写完的叠加态</div>
+    </div>
+    <div class="card">
+      <div class="card-field">🏗️ 土木</div>
+      <div class="card-name">28天不达标</div>
+      <div class="card-intro">混凝土等28天还是差2MPa</div>
+    </div>
+    <div class="card">
+      <div class="card-field">📊 商科</div>
+      <div class="card-name">方差不齐</div>
+      <div class="card-intro">F值显著了！等等假设前提没过</div>
+    </div>
+    <div class="card">
+      <div class="card-field">📐 数学</div>
+      <div class="card-name">证明强迫症</div>
+      <div class="card-intro">"显然"背后是三页证明</div>
+    </div>
+    <div class="card">
+      <div class="card-field">⚖️ 人文</div>
+      <div class="card-name">知识产权</div>
+      <div class="card-intro">研究版权保护的论文被人抄了</div>
+    </div>
+  </div>
+  <div class="footer">还有554种等你来测 → rbti.picasso-lab.com</div>
+</body>
+</html>

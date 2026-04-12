@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1440px;background:linear-gradient(135deg,#f8f8ff,#f0f0fa);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:40px;display:flex;flex-direction:column}
+.header{text-align:center;margin-bottom:28px}
+.header-icon{font-size:2.5rem}
+.header-title{font-size:44px;font-weight:800;color:#1e1e3f;margin:8px 0 4px}
+.header-sub{font-size:22px;color:#8a8aaa}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1}
+.card{background:white;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border:1px solid #e8e8f4;display:flex;flex-direction:column;align-items:center;text-align:center}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;margin-bottom:10px}
+.card-code{font-size:16px;color:#f59e0b;font-weight:700;letter-spacing:1px}
+.card-name{font-size:22px;font-weight:700;color:#1e1e3f;margin:2px 0}
+.card-intro{font-size:14px;color:#6a6a8a;line-height:1.4;flex:1}
+.footer{text-align:center;margin-top:20px;font-size:22px;color:#8a8aaa}
+</style></head><body>
+<div class="header">
+  <div class="header-icon">⚙️</div>
+  <div class="header-title">机械/电气/自动化</div>
+  <div class="header-sub">共60种人格 · 以下展示12种</div>
+</div>
+<div class="grid">
+    <div class="card">
+      <img src="../image/ANSYS.png" alt="仿真永不收敛" />
+      <div class="card-code">ANSYS</div>
+      <div class="card-name">仿真永不收敛</div>
+      <div class="card-intro">仿真跑了三天，结果diverge了。</div>
+    </div>
+    <div class="card">
+      <img src="../image/TOLER.png" alt="差了十倍" />
+      <div class="card-code">TOLER</div>
+      <div class="card-name">差了十倍</div>
+      <div class="card-intro">0.01mm的公差，加工出来差了0.1mm。</div>
+    </div>
+    <div class="card">
+      <img src="../image/CIRCT.png" alt="通电冒烟" />
+      <div class="card-code">CIRCT</div>
+      <div class="card-name">通电冒烟</div>
+      <div class="card-intro">焊了八小时的板子，通电烧了。</div>
+    </div>
+    <div class="card">
+      <img src="../image/EMBED.png" alt="嵌入式" />
+      <div class="card-code">EMBED</div>
+      <div class="card-name">嵌入式</div>
+      <div class="card-intro">代码在仿真器里跑得很好，烧进去就死机。</div>
+    </div>
+    <div class="card">
+      <img src="../image/PLC.png" alt="梯形图" />
+      <div class="card-code">PLC</div>
+      <div class="card-name">梯形图</div>
+      <div class="card-intro">梯形图画了200行，有一个线圈没接。</div>
+    </div>
+    <div class="card">
+      <img src="../image/STATE.png" alt="状态空间" />
+      <div class="card-code">STATE</div>
+      <div class="card-name">状态空间</div>
+      <div class="card-intro">系统能观能控，就是不能毕业。</div>
+    </div>
+    <div class="card">
+      <img src="../image/COMPS.png" alt="铺了就脱层" />
+      <div class="card-code">COMPS</div>
+      <div class="card-name">铺了就脱层</div>
+      <div class="card-intro">铺层设计了两年，脱层了。</div>
+    </div>
+    <div class="card">
+      <img src="../image/TELM.png" alt="全是噪声" />
+      <div class="card-code">TELM</div>
+      <div class="card-name">全是噪声</div>
+      <div class="card-intro">遥测数据有了，解调出来全是噪声。</div>
+    </div>
+    <div class="card">
+      <img src="../image/EMOBJ.png" alt="嵌入式车载" />
+      <div class="card-code">EMOBJ</div>
+      <div class="card-name">嵌入式车载</div>
+      <div class="card-intro">CAN总线通信正常，偶尔丢一帧，刚好是刹车那帧。</div>
+    </div>
+    <div class="card">
+      <img src="../image/SPRING.png" alt="弹簧刚度" />
+      <div class="card-code">SPRING</div>
+      <div class="card-name">弹簧刚度</div>
+      <div class="card-intro">弹簧刚度算了二十遍，装上去共振了。</div>
+    </div>
+    <div class="card">
+      <img src="../image/INVERT.png" alt="逆变器" />
+      <div class="card-code">INVERT</div>
+      <div class="card-name">逆变器</div>
+      <div class="card-intro">逆变器波形完美，MOS管炸了。</div>
+    </div>
+    <div class="card">
+      <img src="../image/LIDAR.png" alt="激光雷达" />
+      <div class="card-code">LIDAR</div>
+      <div class="card-name">激光雷达</div>
+      <div class="card-intro">点云配准了三天，发现两帧之间差了半米。</div>
+    </div></div>
+<div class="footer">更多人格 → rbti.picasso-lab.com</div>
+</body></html>
