@@ -849,6 +849,30 @@
       .field-btn { padding: 14px 8px; }
       .field-icon { font-size: 1.5rem; }
     }
+    .gallery-filter {
+      padding: 6px 14px; border-radius: 10px; border: 1px solid var(--line);
+      background: transparent; color: var(--muted); font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .gallery-filter:hover { border-color: var(--accent); color: var(--accent); }
+    .gallery-filter.active { background: var(--accent); color: white; border-color: var(--accent); }
+    .gallery-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+      overflow: hidden; cursor: pointer; transition: all 0.2s; text-align: center;
+    }
+    .gallery-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(99,102,241,0.12); border-color: var(--accent); }
+    .gallery-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .gallery-card-info { padding: 8px 10px 10px; }
+    .gallery-card-code { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.5px; }
+    .gallery-card-name { font-size: 15px; font-weight: 700; color: var(--text); margin-top: 2px; }
+    .gallery-card-intro { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    /* Modal for gallery detail */
+    .gallery-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .gallery-modal-content { background: var(--panel); border-radius: var(--radius); max-width: 560px; width: 100%;
+      max-height: 90vh; overflow-y: auto; padding: 24px; position: relative; }
+    .gallery-modal-close { position: absolute; top: 12px; right: 16px; font-size: 24px; cursor: pointer; color: var(--muted);
+      background: none; border: none; line-height: 1; }
   </style>
 </head>
 <body>
@@ -892,8 +916,9 @@
         <div class="hero-icons">
           <span>📝</span><span>🧬</span><span>💻</span><span>🔬</span><span>📊</span>
         </div>
-        <div class="hero-actions hero-actions-single">
+        <div class="hero-actions hero-actions-single" style="gap:12px;">
           <button id="startBtn" class="btn-primary">开始测试</button>
+          <button id="galleryBtn" class="btn-secondary" style="padding:12px 24px;">人格图鉴</button>
         </div>
         <div class="hero-credits">
           <span id="creditInspiration">灵感来源：<a href="https://space.bilibili.com/417038183">B站@Q肉儿串儿</a>（SBTI原作者）</span>
@@ -1036,9 +1061,26 @@
       </div>
     </section>
 
+    <section id="gallery" class="screen">
+      <div class="result-wrap card" style="padding:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;">
+          <h2 id="galleryTitle" style="margin:0;">人格图鉴</h2>
+          <button id="galleryBackBtn" class="btn-secondary" style="padding:8px 18px;font-size:14px;">返回首页</button>
+        </div>
+        <div id="galleryFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+          <button class="gallery-filter active" data-disc="all">全部</button>
+        </div>
+        <div id="gallerySearch" style="margin-bottom:16px;">
+          <input type="text" id="gallerySearchInput" placeholder="搜索人格名称或代码..." style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;font-size:14px;background:var(--soft);outline:none;" />
+        </div>
+        <div id="galleryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;"></div>
+        <div id="galleryEmpty" style="display:none;text-align:center;padding:40px;color:var(--muted);">没有找到匹配的人格</div>
+      </div>
+    </section>
+
   </div>
 
-  
+
   <script>
     const LANG_DATA = {
       zh: {
@@ -9797,6 +9839,125 @@
     document.getElementById('submitBtn').addEventListener('click', renderResult);
     document.getElementById('restartBtn').addEventListener('click', () => showScreen('fieldSelect'));
     document.getElementById('toTopBtn').addEventListener('click', () => showScreen('intro'));
+
+    // ===== GALLERY =====
+    const galleryDiscMeta = {
+      all:     { icon: '🔮', zh: '全部',   en: 'All' },
+      cs:      { icon: '💻', zh: 'CS',     en: 'CS' },
+      bio:     { icon: '🧬', zh: '生物',   en: 'Bio' },
+      mech:    { icon: '⚙️', zh: '机械',   en: 'Mech' },
+      phys:    { icon: '🧪', zh: '物化材', en: 'Phys' },
+      civil:   { icon: '🏗️', zh: '土木',   en: 'Civil' },
+      biz:     { icon: '📊', zh: '商科',   en: 'Biz' },
+      math:    { icon: '📐', zh: '数学',   en: 'Math' },
+      hum:     { icon: '⚖️', zh: '人文',   en: 'Hum' },
+      art:     { icon: '🎨', zh: '艺术',   en: 'Art' },
+      universal: { icon: '🌐', zh: '通用', en: 'Universal' },
+    };
+    let galleryFilter = 'all';
+    let galleryQuery = '';
+
+    function initGallery() {
+      const filterBox = document.getElementById('galleryFilters');
+      filterBox.innerHTML = Object.entries(galleryDiscMeta).map(([key, m]) =>
+        `<button class="gallery-filter${key === 'all' ? ' active' : ''}" data-disc="${key}">${m.icon} ${currentLang === 'en' ? m.en : m.zh}</button>`
+      ).join('');
+      filterBox.querySelectorAll('.gallery-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          galleryFilter = btn.dataset.disc;
+          filterBox.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderGallery();
+        });
+      });
+      document.getElementById('gallerySearchInput').addEventListener('input', (e) => {
+        galleryQuery = e.target.value.toLowerCase();
+        renderGallery();
+      });
+      document.getElementById('galleryTitle').textContent = currentLang === 'en' ? 'Personality Gallery' : '人格图鉴';
+      document.getElementById('galleryBackBtn').textContent = currentLang === 'en' ? 'Back' : '返回首页';
+      document.getElementById('gallerySearchInput').placeholder = currentLang === 'en' ? 'Search personality name or code...' : '搜索人格名称或代码...';
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      const emptyEl = document.getElementById('galleryEmpty');
+      const types = NORMAL_TYPES.filter(t => {
+        if (galleryFilter !== 'all' && t.discipline !== galleryFilter) return false;
+        if (galleryQuery) {
+          const info = TYPE_LIBRARY[t.code];
+          if (!info) return false;
+          const searchStr = (t.code + ' ' + info.cn + ' ' + info.intro).toLowerCase();
+          return searchStr.includes(galleryQuery);
+        }
+        return true;
+      });
+
+      if (types.length === 0) {
+        grid.innerHTML = '';
+        emptyEl.style.display = 'block';
+        return;
+      }
+      emptyEl.style.display = 'none';
+
+      grid.innerHTML = types.map(t => {
+        const info = TYPE_LIBRARY[t.code];
+        if (!info) return '';
+        const img = TYPE_IMAGES[t.code] || '';
+        const enInfo = LANG_DATA.en?.types_en?.[t.code];
+        const name = currentLang === 'en' && enInfo ? enInfo.name : info.cn;
+        const intro = currentLang === 'en' && enInfo ? enInfo.intro : info.intro;
+        return `<div class="gallery-card" data-code="${t.code}">
+          <img src="${img}" alt="${name}" loading="lazy" />
+          <div class="gallery-card-info">
+            <div class="gallery-card-code">${t.code}</div>
+            <div class="gallery-card-name">${name}</div>
+            <div class="gallery-card-intro">${intro}</div>
+          </div>
+        </div>`;
+      }).join('');
+
+      grid.querySelectorAll('.gallery-card').forEach(card => {
+        card.addEventListener('click', () => openGalleryModal(card.dataset.code));
+      });
+    }
+
+    function openGalleryModal(code) {
+      const info = TYPE_LIBRARY[code];
+      if (!info) return;
+      const enInfo = LANG_DATA.en?.types_en?.[code];
+      const name = currentLang === 'en' && enInfo ? enInfo.name : info.cn;
+      const intro = currentLang === 'en' && enInfo ? enInfo.intro : info.intro;
+      const desc = currentLang === 'en' && enInfo ? enInfo.desc : info.desc;
+      const img = TYPE_IMAGES[code] || '';
+
+      const modal = document.createElement('div');
+      modal.className = 'gallery-modal';
+      modal.innerHTML = `<div class="gallery-modal-content">
+        <button class="gallery-modal-close">&times;</button>
+        <div style="text-align:center;margin-bottom:16px;">
+          <img src="${img}" alt="${name}" style="max-width:240px;border-radius:16px;" />
+        </div>
+        <div style="text-align:center;margin-bottom:12px;">
+          <div style="font-size:12px;color:var(--accent);font-weight:700;">${code}</div>
+          <div style="font-size:24px;font-weight:800;color:var(--text);">${name}</div>
+          <div style="font-size:14px;color:var(--muted);margin-top:4px;">${intro}</div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--line);margin:16px 0;" />
+        <p style="font-size:14px;line-height:1.8;color:var(--text);">${desc}</p>
+      </div>`;
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('gallery-modal-close')) modal.remove();
+      });
+      document.body.appendChild(modal);
+    }
+
+    document.getElementById('galleryBtn').addEventListener('click', () => {
+      showScreen('gallery');
+      initGallery();
+      renderGallery();
+    });
+    document.getElementById('galleryBackBtn').addEventListener('click', () => showScreen('intro'));
   </script>
 
 </body>
