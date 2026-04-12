@@ -9598,15 +9598,13 @@
           distance += diff;
           if (diff === 0) exact += 1;
         }
+        // Slightly penalize universal types so discipline-specific types are preferred
+        if (app.discipline !== 'general' && type.discipline === 'universal') distance += 1;
         const similarity = Math.max(0, Math.round((1 - distance / 20) * 100));
         return { ...type, ...TYPE_LIBRARY[type.code], distance, exact, similarity };
       }).sort((a, b) => {
         if (a.distance !== b.distance) return a.distance - b.distance;
         if (b.exact !== a.exact) return b.exact - a.exact;
-        // Prefer discipline-specific types over universal when tied
-        const aDisc = (a.discipline === app.discipline) ? 1 : 0;
-        const bDisc = (b.discipline === app.discipline) ? 1 : 0;
-        if (bDisc !== aDisc) return bDisc - aDisc;
         return b.similarity - a.similarity;
       });
 
