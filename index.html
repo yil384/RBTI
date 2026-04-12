@@ -1219,7 +1219,6 @@
           quit_gate_q2: { text: 'How seriously have you considered quitting/switching careers?', options: ['Think about it sometimes but won\'t actually do it', 'Withdrawal form is drafted, LinkedIn is secretly updated'] },
           grind_gate_q1: { text: 'Your working hours?', options: ['9 to 5, work-life balance', 'Flexible, about 8-10 hours/day', 'Basically 12+ hours/day', 'Weekends and holidays in the lab, 365 days no break'] },
           grind_gate_q2: { text: 'How many papers per year is acceptable?', options: ['One or two is fine, quality first', 'At least five, otherwise you\'re wasting funding'] },
-          hhhh_gate_q1: { text: 'After all these questions, did any of the options accurately describe you?', options: ['Some questions were spot on', 'Kinda, roughly', 'Not at all — I don\'t belong in any standard category'] },
         },
         discipline_questions_en: {
           cs: {
@@ -4506,14 +4505,6 @@
           { label: '至少五篇，不然就是在浪费funding', value: 2 }
         ]
       },
-      { id: 'hhhh_gate_q1', special: true, kind: 'hhhh_gate',
-        text: '做完所有题，你觉得上面这些选项有精准描述你的吗？',
-        options: [
-          { label: '有几道题挺准的', value: 1 },
-          { label: '大概沾点边吧', value: 2 },
-          { label: '完全没有，我觉得我不属于任何标准分类', value: 3 }
-        ]
-      }
     ];
 
     const DISCIPLINE_QUESTIONS = {
@@ -9440,7 +9431,6 @@
     const SLIDE_TRIGGER_ID = 'slide_gate_q2';
     const QUIT_TRIGGER_ID = 'quit_gate_q2';
     const GRIND_TRIGGER_ID = 'grind_gate_q2';
-    const HHHH_GATE_ID = 'hhhh_gate_q1';
 
     const app = {
       shuffledQuestions: [],
@@ -9623,7 +9613,6 @@
     function getSlideTriggered() { return app.answers[SLIDE_TRIGGER_ID] === 2; }
     function getQuitTriggered() { return app.answers[QUIT_TRIGGER_ID] === 2; }
     function getGrindTriggered() { return app.answers[GRIND_TRIGGER_ID] === 2; }
-    function getHhhhTriggered() { return app.answers[HHHH_GATE_ID] === 3; }
 
     function computeResult() {
       const rawScores = {};
@@ -9711,16 +9700,29 @@
         badge = currentLang === 'zh' ? '匹配度 100% \u00b7 内卷异常因子已接管' : '100% match \u00b7 Grind anomaly factor activated';
         sub = currentLang === 'zh' ? '实验室打卡记录显示你住在这里，系统已为你申请床位。' : 'Lab records show you live here. Bed request submitted.';
         special = true;
-      } else if (getHhhhTriggered()) {
+      } else if ((() => {
+        // HHHH triggers when user is highly self-contradictory:
+        // same dimension, two questions with opposite extreme answers (1+3 or 3+1)
+        const dimQs = {};
+        questions.forEach(q => {
+          const val = Number(app.answers[q.id] || 0);
+          if (val) { if (!dimQs[q.dim]) dimQs[q.dim] = []; dimQs[q.dim].push(val); }
+        });
+        let contradictions = 0;
+        for (const vals of Object.values(dimQs)) {
+          if (vals.length >= 2 && Math.abs(vals[0] - vals[1]) >= 2) contradictions++;
+        }
+        return contradictions >= 5;
+      })()) {
         finalType = TYPE_LIBRARY.HHHH;
         secondaryType = bestNormal;
-        modeKicker = t('modeKickerHidden');
+        modeKicker = t('modeKickerFallback');
         badge = currentLang === 'zh'
-          ? '匹配度 ???% \u00b7 人格库已崩溃'
-          : '???% match \u00b7 Personality database crashed';
+          ? `匹配度 ${bestNormal.similarity}% \u00b7 人格矛盾度爆表`
+          : `${bestNormal.similarity}% match \u00b7 Personality contradiction overload`;
         sub = currentLang === 'zh'
-          ? '你亲手承认了自己不属于任何分类。系统尊重你的选择，并强制分配了 HHHH。'
-          : 'You admitted you don\'t fit any category. System respects your choice and assigned HHHH.';
+          ? '你在5个以上维度给了自相矛盾的回答，系统判定你的人格无法被任何模型描述。'
+          : 'You gave contradictory answers on 5+ dimensions. The system cannot classify you.';
         special = true;
       } else {
         finalType = bestNormal;
