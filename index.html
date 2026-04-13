@@ -10336,7 +10336,7 @@
         const name = currentLang === 'en' && enInfo ? enInfo.name : info.cn;
         const intro = currentLang === 'en' && enInfo ? enInfo.intro : info.intro;
         return `<div class="gallery-card" data-code="${t.code}" style="position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:\${gradeColors[getGrade(t.code)]};color:\${gradeTextColors[getGrade(t.code)]};padding:2px 8px;border-radius:8px;font-size:12px;font-weight:700;">\${getGrade(t.code)}</span>
+          <span style="position:absolute;top:8px;right:8px;background:${gradeColors[getGrade(t.code)]};color:${gradeTextColors[getGrade(t.code)]};padding:2px 8px;border-radius:8px;font-size:12px;font-weight:700;z-index:1;">${getGrade(t.code)}</span>
           <img src="${img}" alt="${name}" loading="lazy" />
           <div class="gallery-card-info">
             <div class="gallery-card-code">${t.code}</div>
