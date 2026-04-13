@@ -10274,37 +10274,42 @@
     
     // Reverse grade system: more suffering = higher grade
     function getGrade(code) {
-      const miseryKeywords = ['崩','死','不','没','错','烂','废','烧','裂','漏','失','毒','恐','焦','拖','卡','锁','溢','乱','鬼','炸','断','碎','污染','翻车','噩梦','玄学','失败','不够','太大','太小','不行'];
-      const joyKeywords = ['完美','精准','大师','高手','达人','之王','专家','天才','完成','成功'];
+      const miseryKeywords = ['崩','死','不','没','错','烂','废','烧','裂','漏','失','毒','恐','焦','拖','卡','锁','溢','乱','鬼','炸','断','碎','污染','翻车','噩梦','玄学','失败','不够','不行','差','坏','困','难','苦','痛','累','惨','哭','绝望','崩溃','折磨','摸鱼','拖延','焦虑','退学'];
+      const joyKeywords = ['完美','精准','大师','高手','达人','之王','专家','天才','完成','成功','漂亮','优雅','高效','创新','突破','领先','自信','从容'];
       const t = TYPE_LIBRARY[code];
-      if (!t) return 'B';
-      const text = t.cn + t.intro + t.desc.substring(0, 100);
+      if (!t) return 'C';
+      const text = t.cn + t.intro + t.desc.substring(0, 200);
       let misery = 0, joy = 0;
-      miseryKeywords.forEach(k => { if (text.includes(k)) misery++; });
-      joyKeywords.forEach(k => { if (text.includes(k)) joy++; });
-      const score = misery - joy * 2;
-      if (score >= 6) return 'A+';
-      if (score >= 4) return 'A';
-      if (score >= 3) return 'A-';
-      if (score >= 2) return 'B+';
-      if (score >= 1) return 'B';
-      if (score >= 0) return 'B-';
-      if (score >= -1) return 'C+';
-      if (score >= -2) return 'C';
-      if (score >= -3) return 'D';
+      miseryKeywords.forEach(k => { const m = text.split(k).length - 1; misery += m; });
+      joyKeywords.forEach(k => { const m = text.split(k).length - 1; joy += m; });
+      const score = misery - joy * 3;
+      if (score >= 12) return 'A+';
+      if (score >= 9) return 'A';
+      if (score >= 7) return 'A-';
+      if (score >= 5) return 'B+';
+      if (score >= 4) return 'B';
+      if (score >= 3) return 'B-';
+      if (score >= 2) return 'C+';
+      if (score >= 1) return 'C';
+      if (score >= 0) return 'C-';
+      if (score >= -1) return 'D+';
+      if (score >= -2) return 'D';
+      if (score >= -4) return 'E';
       return 'F';
     }
     const gradeColors = {
-      'A+': '#e74c3c', 'A': '#e67e22', 'A-': '#f39c12',
-      'B+': '#27ae60', 'B': '#2ecc71', 'B-': '#1abc9c',
-      'C+': '#3498db', 'C': '#2980b9',
-      'D': '#9b59b6', 'F': '#ecf0f1'
+      'A+': '#e74c3c', 'A': '#e74c3c', 'A-': '#e67e22',
+      'B+': '#f39c12', 'B': '#f1c40f', 'B-': '#27ae60',
+      'C+': '#2ecc71', 'C': '#1abc9c', 'C-': '#3498db',
+      'D+': '#2980b9', 'D': '#8e44ad', 'E': '#9b59b6',
+      'F': '#95a5a6'
     };
     const gradeTextColors = {
       'A+': '#fff', 'A': '#fff', 'A-': '#fff',
-      'B+': '#fff', 'B': '#fff', 'B-': '#fff',
-      'C+': '#fff', 'C': '#fff',
-      'D': '#fff', 'F': '#333'
+      'B+': '#fff', 'B': '#333', 'B-': '#fff',
+      'C+': '#fff', 'C': '#fff', 'C-': '#fff',
+      'D+': '#fff', 'D': '#fff', 'E': '#fff',
+      'F': '#fff'
     };
 
     function renderGallery() {
