@@ -10271,6 +10271,42 @@
       document.getElementById('gallerySearchInput').placeholder = currentLang === 'en' ? 'Search personality name or code...' : '搜索人格名称或代码...';
     }
 
+    
+    // Reverse grade system: more suffering = higher grade
+    function getGrade(code) {
+      const miseryKeywords = ['崩','死','不','没','错','烂','废','烧','裂','漏','失','毒','恐','焦','拖','卡','锁','溢','乱','鬼','炸','断','碎','污染','翻车','噩梦','玄学','失败','不够','太大','太小','不行'];
+      const joyKeywords = ['完美','精准','大师','高手','达人','之王','专家','天才','完成','成功'];
+      const t = TYPE_LIBRARY[code];
+      if (!t) return 'B';
+      const text = t.cn + t.intro + t.desc.substring(0, 100);
+      let misery = 0, joy = 0;
+      miseryKeywords.forEach(k => { if (text.includes(k)) misery++; });
+      joyKeywords.forEach(k => { if (text.includes(k)) joy++; });
+      const score = misery - joy * 2;
+      if (score >= 6) return 'A+';
+      if (score >= 4) return 'A';
+      if (score >= 3) return 'A-';
+      if (score >= 2) return 'B+';
+      if (score >= 1) return 'B';
+      if (score >= 0) return 'B-';
+      if (score >= -1) return 'C+';
+      if (score >= -2) return 'C';
+      if (score >= -3) return 'D';
+      return 'F';
+    }
+    const gradeColors = {
+      'A+': '#e74c3c', 'A': '#e67e22', 'A-': '#f39c12',
+      'B+': '#27ae60', 'B': '#2ecc71', 'B-': '#1abc9c',
+      'C+': '#3498db', 'C': '#2980b9',
+      'D': '#9b59b6', 'F': '#ecf0f1'
+    };
+    const gradeTextColors = {
+      'A+': '#fff', 'A': '#fff', 'A-': '#fff',
+      'B+': '#fff', 'B': '#fff', 'B-': '#fff',
+      'C+': '#fff', 'C': '#fff',
+      'D': '#fff', 'F': '#333'
+    };
+
     function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       const emptyEl = document.getElementById('galleryEmpty');
@@ -10299,7 +10335,8 @@
         const enInfo = LANG_DATA.en?.types_en?.[t.code];
         const name = currentLang === 'en' && enInfo ? enInfo.name : info.cn;
         const intro = currentLang === 'en' && enInfo ? enInfo.intro : info.intro;
-        return `<div class="gallery-card" data-code="${t.code}">
+        return `<div class="gallery-card" data-code="${t.code}" style="position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:\${gradeColors[getGrade(t.code)]};color:\${gradeTextColors[getGrade(t.code)]};padding:2px 8px;border-radius:8px;font-size:12px;font-weight:700;">\${getGrade(t.code)}</span>
           <img src="${img}" alt="${name}" loading="lazy" />
           <div class="gallery-card-info">
             <div class="gallery-card-code">${t.code}</div>
