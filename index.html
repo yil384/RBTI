@@ -916,8 +916,9 @@
         <div class="hero-icons">
           <span>📝</span><span>🧬</span><span>💻</span><span>🔬</span><span>📊</span>
         </div>
-        <div class="hero-actions hero-actions-single">
+        <div class="hero-actions hero-actions-single" style="gap:12px;">
           <button id="startBtn" class="btn-primary">开始测试</button>
+          <a href="/gallery" id="galleryBtn" class="btn-secondary" style="padding:12px 24px;text-decoration:none;">人格图鉴</a>
         </div>
         <div class="hero-credits">
           <span id="creditInspiration">灵感来源：<a href="https://space.bilibili.com/417038183">B站@Q肉儿串儿</a>（SBTI原作者）</span>
@@ -1596,6 +1597,151 @@
             name: "Eternal Sprint",
             intro: "Two-week sprints. Paper progress measured in years.",
             desc: "Congratulations, AGILE Perpetual Sprint personality — you've applied agile methodology to your PhD with religious devotion. Two-week sprints, each with a clear goal and a groomed backlog. Your Jira board is a work of art: To Do, In Progress, Done — three pristine columns, every task with story points and acceptance criteria. The problem is that your sprint velocity is approximately zero. Every sprint review, the previous sprint's tasks carry over wholesale into the next sprint. You've been carrying over for twenty-six consecutive sprints now — that's exactly one year of rolling the same boulder up the same hill. Your daily standup has become a liturgy: \"Yesterday I read papers, today I'll read papers, no blockers.\" But that paper has been \"in progress\" for three months. Your retrospectives are more eloquent than your actual research: \"This sprint's reflection: should focus more, reduce context switching\" — this identical reflection has appeared in twelve consecutive retros. You're running agile ceremonies on what is fundamentally a waterfall project. Sprints can be as short as you want; the PhD still takes years. The standup doesn't care about your velocity. Time does."
+          },
+          "RAG": {
+            name: 'External Memory',
+            intro: 'Can\'t remember — retrieval-augmented everything.',
+            desc: 'Congratulations, RAG External Memory personality — your brain has limited capacity but an incredibly powerful plugin: everyone else\'s knowledge base. Your Zotero is your vector database, Scholar is your retriever. Colleagues marvel at your breadth; you\'re just fast at retrieval. Without internet you hallucinate.'
+          },
+          "LORA": {
+            name: 'Fine-Tuner',
+            intro: 'Never train from scratch — just tweak the last few layers.',
+            desc: 'Congratulations, LoRA Fine-Tuner personality — academia\'s efficiency king. Advisor says you stand on giants\' shoulders; reviewers say incremental. But real engineering wisdom is knowing which parameters to change. You achieve 98% performance with 4% of the parameters.'
+          },
+          "RLHF": {
+            name: 'People Pleaser',
+            intro: 'Align to human feedback — especially the advisor\'s face.',
+            desc: 'Congratulations, RLHF People Pleaser personality — your reward model is your advisor\'s facial expressions. You\'ve been aligned perfectly to academic preferences, but among all the optimized-away responses, was there one truly breakthrough idea? Safe in research sometimes means mediocre.'
+          },
+          "DIFFU": {
+            name: 'Noise-to-Signal',
+            intro: 'First make everything chaotic, then slowly denoise.',
+            desc: 'Congratulations, DIFFU Diffusion personality — your first draft is pure Gaussian noise; after fifty revisions a beautiful paper emerges. Advisor panics at draft one but is always impressed by the final version. Nobody knows when your denoising will converge — including you.'
+          },
+          "TSFMR": {
+            name: 'Attention Is All',
+            intro: 'Attention is all I need — attending to way too much.',
+            desc: 'Congratulations, TSFMR Transformer personality — you attend equally to everything. Your context window is almost full, KV cache overflowing. You\'re a powerful model but inference cost is too high.'
+          },
+          "XPLOIT": {
+            name: 'Exploit Hunter',
+            intro: 'Others find bugs — I find exploits.',
+            desc: 'Congratulations, XPLOIT Exploit Hunter personality — you see attack surfaces, not systems. You review code to break it. You thrive in CTFs but drive teammates crazy. You can\'t tell if you\'re protecting or attacking the system.'
+          },
+          "CRYPT": {
+            name: 'Everything Encrypted',
+            intro: 'Unencrypted communication is running naked.',
+            desc: 'Congratulations, CRYPT Cryptography personality — Signal for messages, GPG for files, signed commits. You can derive RSA on a whiteboard but can\'t remember your bank PIN. You excel at zero-knowledge proofs: proving you know the answer without revealing it.'
+          },
+          "REACT": {
+            name: 'State Meltdown',
+            intro: 'UI renders beautifully — state management is spaghetti.',
+            desc: 'Congratulations, REACT State Meltdown personality — your mental state is useState(anxiety), useState(confusion), useState(faking_it). Every state change triggers a full re-render — including your emotions.'
+          },
+          "NPM": {
+            name: 'Dependency Hell',
+            intro: 'Installed one package — node_modules bigger than thesis.',
+            desc: 'Congratulations, NPM Dependency Hell personality — your research depends on advisor\'s direction, senior\'s code, lab GPUs, reviewer\'s mood. Any version update breaks your build. The left-pad nightmare: one tiny dependency disappears and everything collapses.'
+          },
+          "STACK": {
+            name: 'Overflow',
+            intro: 'Stack Overflow is my second advisor.',
+            desc: 'Congratulations, STACK Overflow personality — one-third your code, one-third SO, one-third ChatGPT. Your SO reputation exceeds your h-index. The irony: SO god, research newbie — because nobody has asked those questions before.'
+          },
+          "KPNC": {
+            name: 'Kernel Panic',
+            intro: 'kernel panic: unrecoverable life error.',
+            desc: 'Congratulations, KPNC Kernel Panic personality — you work at the lowest level. One bug reboots an entire building\'s servers. You exist where users can\'t see, doing work they\'ll never thank you for — until you crash.'
+          },
+          "THRD": {
+            name: 'Deadlocked',
+            intro: 'Two threads waiting for each other — neither yields.',
+            desc: 'Congratulations, THRD Deadlock personality — you wait for advisor feedback, advisor waits for your draft. You know all four deadlock conditions; your PhD satisfies them all. Your solution: pretend there\'s no deadlock and wait for timeout.'
+          },
+          "SUDO": {
+            name: 'Superuser',
+            intro: 'sudo makes everything possible — except graduation.',
+            desc: 'Congratulations, SUDO Superuser personality — no sudo can bypass reviewers, no chmod 777 can unlock graduation. Power is an illusion in academia — the only root user is your advisor, and you don\'t even have sudo.'
+          },
+          "PROXY": {
+            name: 'The Middleman',
+            intro: 'All requests pass through me — nobody knows I exist.',
+            desc: 'Congratulations, PROXY Middleman personality — the lab\'s reverse proxy. You cache everyone\'s problems and solutions — but nobody is your proxy.'
+          },
+          "MERGE": {
+            name: 'Conflict Resolver',
+            intro: 'Merge conflicts are fine — advisor conflicts aren\'t.',
+            desc: 'Congratulations, MERGE Conflict Resolver personality — your life is a PR that can never auto-merge. The hardest conflict isn\'t in git — it\'s with your advisor, and there\'s no --theirs flag for that.'
+          },
+          "LEGCY": {
+            name: 'Legacy Code',
+            intro: 'This codebase is older than my PhD.',
+            desc: 'Congratulations, LEGCY Legacy Code personality — you inherited a codebase with no docs, no comments, no tests. One comment reads DO NOT TOUCH - 2019/03/15. You\'ll graduate and pass this tech debt to the next student. Academic legacy code — always inherited, never refactored.'
+          },
+          "CTNR": {
+            name: 'Containerized Life',
+            intro: 'Works on my machine → ships a Docker image.',
+            desc: 'Congratulations, CTNR Containerized personality — your Dockerfile is longer than your thesis. No problem can\'t be solved by adding another abstraction layer. If it can\'t, add another.'
+          },
+          "RTFM": {
+            name: 'RTFM Purist',
+            intro: 'Read The Friendly Manual — all 500 pages.',
+            desc: 'Congratulations, RTFM Purist personality — others skim three paragraphs and start coding; you read page 1 to 500. Your depth is awe-inspiring; your speed is despair-inducing. You are academia\'s RTFM: Read The Full Manuscript.'
+          },
+          "SPAGG": {
+            name: 'Spaghetti Code',
+            intro: 'If it runs, don\'t refactor — ever.',
+            desc: 'Congratulations, SPAGG Spaghetti Code personality — functions span 300 lines, variables are a, b, temp, temp_final. The irony: code is spaghetti but papers are crystal clear — because papers have reviewers, code doesn\'t.'
+          },
+          "GPT2": {
+            name: 'AI Ghostwriter',
+            intro: 'Did I write this or did AI? Not sure anymore.',
+            desc: 'Congratulations, GPT2 AI Ghostwriter personality — Claude polishes intro, GPT-4 organizes related work, Copilot completes code. Reviewers say well-written; you don\'t know if that\'s praise or exposure. First-gen cyborg researcher: double efficiency, double impostor syndrome.'
+          },
+          "YAML": {
+            name: 'Indentation Hell',
+            intro: 'One missing space — entire pipeline crashed.',
+            desc: 'Congratulations, YAML Indentation Hell personality — CI config revised twenty times, each failing on indentation. Details don\'t determine success or failure — details ARE success or failure.'
+          },
+          "CONDA": {
+            name: 'Environment Purgatory',
+            intro: 'conda create running three days — still resolving.',
+            desc: 'Congratulations, CONDA Environment Purgatory personality — 27 conda envs: env_paper1, env_backup, env_please_work. Paper says Python 3.8; truth is an environment that took two weeks to configure and you pray works every time you activate it.'
+          },
+          "COLAB": {
+            name: 'Freeloader GPUs',
+            intro: 'Colab disconnected — 6 hours of training, gone.',
+            desc: 'Congratulations, COLAB Freeloader personality — Colab always disconnects at the critical moment, right when loss starts dropping. Acknowledgments should read: thanks to Colab for free GPUs, and for teaching me to save checkpoints.'
+          },
+          "LEETC": {
+            name: 'LeetCode Grinder',
+            intro: 'Can\'t write papers, but I solve hards in 20 min.',
+            desc: 'Congratulations, LEETC LeetCode Grinder personality — AC a hard in 20 minutes but can\'t finish your intro in two months. Your contest ranking is three orders of magnitude higher than your Scholar ranking. You\'re building an exit ramp — and it\'s getting very wide.'
+          },
+          "OVRFT": {
+            name: 'Overfitted',
+            intro: 'Training 100%, test 50%, life generalization: zero.',
+            desc: 'Congratulations, OVRFT Overfitted personality — all A\'s from memorizing past exams; high paper scores from fitting venue taste exactly. But on unseen problems, performance cliff-drops. Training loss zero, generalization error infinite.'
+          },
+          "V2": {
+            name: 'Refactor Loop',
+            intro: 'v1 isn\'t shipped — already designing v3.',
+            desc: 'Congratulations, V2 Refactor Loop personality — seven branches: main (empty), dev (stale), refactor (in progress). You pursue perfection but perfection\'s definition changes weekly. Academic perpetual motion machine: always moving, never outputting.'
+          },
+          "CHMOD": {
+            name: 'Permission Denied',
+            intro: 'You do not have graduation privileges.',
+            desc: 'Congratulations, CHMOD Permission Denied personality — GPU? Denied. Dataset? Denied. Graduate? Denied. Academia\'s permission model is more complex than Linux: an ACL based on advisor mood and reviewer RNG. You\'ll always be the other user.'
+          },
+          "GC": {
+            name: 'Garbage Collected',
+            intro: 'Auto-reclaims unused memories — including happy ones.',
+            desc: 'Congratulations, GC Garbage Collected personality — forgot undergrad calculus (refcount=0), forgot last month\'s paper. GC is fair: good and bad memories reclaimed equally. Sometimes triggers STW pause during meetings, leaving your mind blank.'
+          },
+          "PING2": {
+            name: 'Seen, No Reply',
+            intro: 'Message received — response time: infinity.',
+            desc: 'Congratulations, PING2 Seen-No-Reply personality — high-latency, zero-packet-loss endpoint. Inbox shows 342 unreplied, WeChat shows 99+, conscience shows 999+. Your response to everyone waiting: continue not replying.'
           },
           "CICD": {
             name: "Deploy Anxiety",
@@ -10199,18 +10345,23 @@
       document.body.appendChild(modal);
     }
 
-    // Gallery: hidden entry via URL hash #gallery
-    if (window.location.hash === '#gallery') {
+    // Gallery: accessible via /gallery path or #gallery hash
+    function openGalleryView() {
       showScreen('gallery');
       initGallery();
       renderGallery();
     }
-    window.addEventListener('hashchange', () => {
-      if (window.location.hash === '#gallery') {
-        showScreen('gallery');
-        initGallery();
-        renderGallery();
-      }
+    if (window.location.pathname === '/gallery' || window.location.hash === '#gallery') {
+      openGalleryView();
+    }
+    document.getElementById('galleryBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      history.pushState(null, '', '/gallery');
+      openGalleryView();
+    });
+    document.getElementById('galleryBackBtn').addEventListener('click', () => {
+      history.pushState(null, '', '/');
+      showScreen('intro');
     });
     document.getElementById('galleryBackBtn').addEventListener('click', () => showScreen('intro'));
   </script>
