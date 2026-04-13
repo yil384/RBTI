@@ -29,14 +29,6 @@
 
 还有6种隐藏人格等你触发。
 
-## 截图
-
-<p align="center">
-  <img src="image/screenshot_home.png" alt="首页" width="300" />
-  <img src="image/screenshot_field.png" alt="学科选择" width="300" />
-  <img src="image/screenshot_result.png" alt="结果页" width="300" />
-</p>
-
 ## 技术架构
 
 ```
