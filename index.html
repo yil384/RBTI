@@ -9965,10 +9965,18 @@
       document.body.appendChild(modal);
     }
 
-    document.getElementById('galleryBtn').addEventListener('click', () => {
+    // Gallery: hidden entry via URL hash #gallery
+    if (window.location.hash === '#gallery') {
       showScreen('gallery');
       initGallery();
       renderGallery();
+    }
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#gallery') {
+        showScreen('gallery');
+        initGallery();
+        renderGallery();
+      }
     });
     document.getElementById('galleryBackBtn').addEventListener('click', () => showScreen('intro'));
   </script>
