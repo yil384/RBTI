@@ -10358,6 +10358,11 @@
       }
     });
     document.getElementById('galleryBackBtn').addEventListener('click', () => showScreen('intro'));
+    document.getElementById('galleryBtn').addEventListener('click', () => {
+      showScreen('gallery');
+      initGallery();
+      renderGallery();
+    });
   </script>
 
 </body>
