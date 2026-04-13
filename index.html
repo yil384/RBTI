@@ -8245,6 +8245,181 @@
     "intro": "升温降温各做了五十次，相变温度每次都不一样。",
     "desc": "恭喜你，PHASE相变人格——过冷度的体验者，成核理论的实践者。你的DSC数据显示：升温时相变温度是120°C，降温时是95°C——滞后了25度。你又做了一次：升温118°C，降温91°C。第三次：升温122°C，降温98°C。做了五十次，五十个不同的数字。相变这件事理论上应该在一个确定的温度发生，但实际上它取决于成核——成核是随机过程，每次都不一样。你画了一个相变温度的统计分布图，发现它是一个宽宽的高斯分布，标准差大到让你怀疑这究竟是不是同一种材料。你开始理解相变的本质：它不是一个点，是一个范围；不是确定性的，是概率性的。就像你的毕业时间——理论上是确定的，实际上是一个宽得离谱的概率分布。"
   }
+,
+  "RAG": {
+    "code": "RAG",
+    "cn": "外挂记忆",
+    "intro": "自己记不住，全靠检索增强。",
+    "desc": "恭喜你，RAG外挂记忆人格——你的大脑容量有限，但你有一个无比强大的外挂：别人的知识库。你的Zotero是你的向量数据库，Google Scholar是你的检索器。没有网络的你就像断了检索的RAG——hallucinate率直线上升。"
+  },
+  "LORA": {
+    "code": "LORA",
+    "cn": "微调侠",
+    "intro": "不从头训练，只改最后几层。",
+    "desc": "恭喜你，LoRA微调侠人格——你是学术界的效率之王。导师说你站在巨人的肩膀上，审稿人说你incremental。但真正的工程智慧是知道哪几个参数值得改。你用4%的参数量达到了98%的效果。"
+  },
+  "RLHF": {
+    "code": "RLHF",
+    "cn": "看脸色行事",
+    "intro": "根据人类反馈调整策略，包括导师的脸色。",
+    "desc": "恭喜你，RLHF看脸色行事人格——你的reward model就是导师的表情。你已经被align得完美适配了学术环境，但被优化掉的想法里有没有一个才是真正有突破性的？安全在科研里有时候意味着平庸。"
+  },
+  "DIFFU": {
+    "code": "DIFFU",
+    "cn": "加噪去噪",
+    "intro": "先把一切搞乱，再慢慢还原。",
+    "desc": "恭喜你，DIFFU扩散模型人格——你的论文初稿像纯高斯噪声；经过五十轮revision一篇精美的论文从噪声中浮现。导师第一次看你的草稿会崩溃但最终成品总是让人惊艳。没有人知道你的去噪过程什么时候会收敛。"
+  },
+  "TSFMR": {
+    "code": "TSFMR",
+    "cn": "注意力就是一切",
+    "intro": "Attention is all I need，但我attend太多东西了。",
+    "desc": "恭喜你，TSFMR Transformer人格——你对所有事情都给予同等的注意力。你的context window快满了，KV cache已经爆了。你是一个强大的模型但推理成本太高。"
+  },
+  "XPLOIT": {
+    "code": "XPLOIT",
+    "cn": "漏洞猎人",
+    "intro": "别人找bug，我找exploit。",
+    "desc": "恭喜你，XPLOIT漏洞猎人人格——你看到的不是系统而是系统的弱点。你review代码是为了让它break。你在CTF里如鱼得水但在正常开发中让所有人抓狂。"
+  },
+  "CRYPT": {
+    "code": "CRYPT",
+    "cn": "全程加密",
+    "intro": "没有加密的通信就是裸奔。",
+    "desc": "恭喜你，CRYPT密码学人格——你的消息用Signal发文件用GPG加密git commit必须签名。零知识证明你很擅长——能证明你知道答案但不透露就像能证明你在做科研但不透露做了什么。"
+  },
+  "REACT": {
+    "code": "REACT",
+    "cn": "状态管理崩溃",
+    "intro": "UI渲染得很美，state管理一团糟。",
+    "desc": "恭喜你，REACT状态管理崩溃人格——你脑子里的状态是useState(焦虑)、useState(迷茫)、useState(假装没事)。每次有个state变化整个组件树都re-render了包括你的情绪。"
+  },
+  "NPM": {
+    "code": "NPM",
+    "cn": "依赖地狱",
+    "intro": "装了一个包，node_modules比论文还大。",
+    "desc": "恭喜你，NPM依赖地狱人格——你的科研依赖导师的方向、师兄的代码、GPU、审稿人的心情——任何一个依赖版本更新你的整个build就break了。最可怕的是left-pad事件。"
+  },
+  "STACK": {
+    "code": "STACK",
+    "cn": "溢出了",
+    "intro": "Stack Overflow是我的第二导师。",
+    "desc": "恭喜你，STACK溢出人格——你的代码三分之一自己写的三分之一SO抄的三分之一ChatGPT生成的。你在SO上是大神科研里却连简单bug都要搜半天。因为科研的问题没人问过。"
+  },
+  "KPNC": {
+    "code": "KPNC",
+    "cn": "内核恐慌",
+    "intro": "kernel panic: 人生不可恢复错误。",
+    "desc": "恭喜你，KPNC内核恐慌人格——你在最底层工作。你的一个bug能让整栋楼的服务器重启。你活在用户看不见的地方做着用户永远不会感谢的工作——直到你crash了。"
+  },
+  "THRD": {
+    "code": "THRD",
+    "cn": "死锁了",
+    "intro": "两个线程互相等对方，谁也不让。",
+    "desc": "恭喜你，THRD死锁人格——你在等导师给反馈导师在等你写完论文。你知道四个deadlock必要条件你的科研生活完美满足了所有四个。你选择了假装没有deadlock然后等系统自动超时。"
+  },
+  "SUDO": {
+    "code": "SUDO",
+    "cn": "超级用户",
+    "intro": "sudo让一切成为可能，除了毕业。",
+    "desc": "恭喜你，SUDO超级用户人格——论文没有sudo可以绕过审稿人毕业没有chmod 777可以解除限制。权力是幻觉——这里唯一的root用户是你的导师而你连sudo权限都没有。"
+  },
+  "PROXY": {
+    "code": "PROXY",
+    "cn": "中间人",
+    "intro": "所有请求都经过我，但没人知道我的存在。",
+    "desc": "恭喜你，PROXY中间人人格——你是实验室的反向代理所有请求都经过你但没人知道你的存在。你缓存了所有人的问题和答案但你自己的问题从来不被缓存。"
+  },
+  "MERGE": {
+    "code": "MERGE",
+    "cn": "冲突解决",
+    "intro": "merge conflict不可怕，可怕的是跟导师的conflict。",
+    "desc": "恭喜你，MERGE冲突解决人格——你的人生就是一个永远无法auto-merge的PR。最难resolve的conflict不在git里而在你和导师之间——没有--theirs也没有--ours可以一键解决。"
+  },
+  "LEGCY": {
+    "code": "LEGCY",
+    "cn": "祖传代码",
+    "intro": "这段代码比我读博的时间还长。",
+    "desc": "恭喜你，LEGCY祖传代码人格——你继承了一个没有文档没有注释没有测试的代码库。你终将毕业然后把这座屎山传给下一届。学术界的legacy code——永远在传承永远没人重构。"
+  },
+  "CTNR": {
+    "code": "CTNR",
+    "cn": "容器化人生",
+    "intro": "works on my machine → 打包成Docker发你。",
+    "desc": "恭喜你，CTNR容器化人格——你的Dockerfile比论文还长。你知道：没有什么问题是加一层抽象解决不了的。如果有就再加一层。"
+  },
+  "RTFM": {
+    "code": "RTFM",
+    "cn": "文档原教旨",
+    "intro": "Read The Friendly Manual，但manual有500页。",
+    "desc": "恭喜你，RTFM文档原教旨人格——别人看tutorial前三段就开始写代码你从page 1读到page 500。你的知识深度令人敬畏开发速度令人绝望。你是学术界的RTFM：Read The Full Manuscript。"
+  },
+  "SPAGG": {
+    "code": "SPAGG",
+    "cn": "面条代码",
+    "intro": "能跑就行，重构是不可能重构的。",
+    "desc": "恭喜你，SPAGG面条代码人格——你的函数有三百行变量名是a、b、temp、temp_final。代码虽然是面条但论文写得条理清晰——因为论文有审稿人看代码没有。"
+  },
+  "GPT2": {
+    "code": "GPT2",
+    "cn": "AI代笔",
+    "intro": "这段是我写的还是AI写的？我也不确定了。",
+    "desc": "恭喜你，GPT2 AI代笔人格——introduction让Claude润色related work让GPT-4整理代码让Copilot补全。审稿人说论文写得很流畅你不知道该开心还是该心虚。你是第一代cyborg researcher。"
+  },
+  "YAML": {
+    "code": "YAML",
+    "cn": "缩进地狱",
+    "intro": "少了一个空格，整个pipeline崩了。",
+    "desc": "恭喜你，YAML缩进地狱人格——你的CI/CD配置改了二十版每一版都因为缩进问题失败。细节不是决定成败细节就是成败。"
+  },
+  "CONDA": {
+    "code": "CONDA",
+    "cn": "环境炼狱",
+    "intro": "conda create了三天，还在resolving environment。",
+    "desc": "恭喜你，CONDA环境炼狱人格——你的电脑里有27个conda环境：env_paper1、env_backup、env_please_work。论文里写Python 3.8真相是一个花了两周才配好的祈祷每次activate都能正常工作的环境。"
+  },
+  "COLAB": {
+    "code": "COLAB",
+    "cn": "白嫖算力",
+    "intro": "Colab断开连接了，跑了六小时的训练没了。",
+    "desc": "恭喜你，COLAB白嫖算力人格——Colab总能在最关键的时候断开——就在loss终于开始下降的时候。你的acknowledgment应该写：感谢Google Colab也感谢它让我学会了定期保存checkpoint。"
+  },
+  "LEETC": {
+    "code": "LEETC",
+    "cn": "刷题机器",
+    "intro": "论文不会写，但LeetCode hard我能秒。",
+    "desc": "恭喜你，LEETC刷题机器人格——你能在20分钟内AC一道hard题但论文introduction写了两个月没写完。你在准备的不是学术生涯你在准备退路——而这条退路越修越宽。"
+  },
+  "OVRFT": {
+    "code": "OVRFT",
+    "cn": "过拟合",
+    "intro": "训练集100%，测试集50%，人生泛化能力为零。",
+    "desc": "恭喜你，OVRFT过拟合人格——课程成绩全A因为背下了往年题。但遇到没见过的问题performance断崖式下跌。training loss为零generalization error无穷大。"
+  },
+  "V2": {
+    "code": "V2",
+    "cn": "重构永动机",
+    "intro": "v1还没上线，已经在设计v3了。",
+    "desc": "恭喜你，V2重构永动机人格——你的GitHub有七个分支：main(空的)、dev(过时的)、refactor(进行中)。你追求的不是完成而是完美——但完美的定义每周都在变。你是科研界的永动机：永远在运动永远没有output。"
+  },
+  "CHMOD": {
+    "code": "CHMOD",
+    "cn": "权限不够",
+    "intro": "Permission denied: 你没有毕业的权限。",
+    "desc": "恭喜你，CHMOD权限不够人格——想用GPU？permission denied。想毕业？denied。学术界的permission model比Linux还复杂：基于导师心情和审稿人随机数生成器的ACL系统。你永远是other用户。"
+  },
+  "GC": {
+    "code": "GC",
+    "cn": "垃圾回收",
+    "intro": "自动回收不用的记忆，包括快乐的记忆。",
+    "desc": "恭喜你，GC垃圾回收人格——你忘了本科学的微积分忘了上个月读的论文。GC很公平——好的坏的记忆一视同仁地被回收。有时候它会在组会上触发STW pause让你大脑一片空白。"
+  },
+  "PING2": {
+    "code": "PING2",
+    "cn": "已读不回",
+    "intro": "你的消息我收到了，但response time无限大。",
+    "desc": "恭喜你，PING2已读不回人格——你是一个高延迟低丢包率的端点。邮件显示342封未回复微信显示99+良心显示999+。你的response是——继续不回。"
+  }
 };
     const TYPE_IMAGES = {
   "LLM": "./image/LLM.png",
@@ -8810,7 +8985,36 @@
   "MAGMTL": "./image/MAGMTL.png",
   "SURFCE": "./image/SURFCE.png",
   "PHASE": "./image/PHASE.png"
-};
+,
+  "RAG": "./image/RAG.png",
+  "LORA": "./image/LORA.png",
+  "RLHF": "./image/RLHF.png",
+  "DIFFU": "./image/DIFFU.png",
+  "TSFMR": "./image/TSFMR.png",
+  "XPLOIT": "./image/XPLOIT.png",
+  "CRYPT": "./image/CRYPT.png",
+  "REACT": "./image/REACT.png",
+  "NPM": "./image/NPM.png",
+  "STACK": "./image/STACK.png",
+  "KPNC": "./image/KPNC.png",
+  "THRD": "./image/THRD.png",
+  "SUDO": "./image/SUDO.png",
+  "PROXY": "./image/PROXY.png",
+  "MERGE": "./image/MERGE.png",
+  "LEGCY": "./image/LEGCY.png",
+  "CTNR": "./image/CTNR.png",
+  "RTFM": "./image/RTFM.png",
+  "SPAGG": "./image/SPAGG.png",
+  "GPT2": "./image/GPT2.png",
+  "YAML": "./image/YAML.png",
+  "CONDA": "./image/CONDA.png",
+  "COLAB": "./image/COLAB.png",
+  "LEETC": "./image/LEETC.png",
+  "OVRFT": "./image/OVRFT.png",
+  "V2": "./image/V2.png",
+  "CHMOD": "./image/CHMOD.png",
+  "GC": "./image/GC.png",
+  "PING2": "./image/PING2.png"};
 
     const NORMAL_TYPES = [
   { code: "CPP", pattern: "LH-LM-LM-LH-HM", discipline: "cs" },
@@ -9370,6 +9574,35 @@
   { code: "AUDNC", pattern: "MH-HH-HL-MH-LM", discipline: "hum" },
   { code: "NEWSR", pattern: "HH-MH-LL-HL-HM", discipline: "hum" },
   { code: "ALGRTM", pattern: "LM-HL-MH-HM-LH", discipline: "hum" }
+  { code: "RAG", pattern: "MH-HH-LM-HM-ML", discipline: "cs" },
+  { code: "LORA", pattern: "MH-LM-HM-HM-MM", discipline: "cs" },
+  { code: "RLHF", pattern: "MH-LM-HH-MH-MH", discipline: "cs" },
+  { code: "DIFFU", pattern: "LM-LM-LH-LM-MM", discipline: "cs" },
+  { code: "TSFMR", pattern: "LH-HH-LM-LH-LM", discipline: "cs" },
+  { code: "XPLOIT", pattern: "LH-MM-LM-MH-LM", discipline: "cs" },
+  { code: "CRYPT", pattern: "LH-LM-LM-LH-LH", discipline: "cs" },
+  { code: "REACT", pattern: "MH-MM-HM-MH-MH", discipline: "cs" },
+  { code: "NPM", pattern: "HM-HH-HM-MH-HM", discipline: "cs" },
+  { code: "STACK", pattern: "MH-HH-MH-MH-LM", discipline: "cs" },
+  { code: "KPNC", pattern: "LH-LL-LM-LH-ML", discipline: "cs" },
+  { code: "THRD", pattern: "LM-LM-LM-LM-ML", discipline: "cs" },
+  { code: "SUDO", pattern: "HM-LM-HH-MH-LM", discipline: "cs" },
+  { code: "PROXY", pattern: "MM-MH-HH-MM-HM", discipline: "cs" },
+  { code: "MERGE", pattern: "MM-LM-HM-MM-MH", discipline: "cs" },
+  { code: "LEGCY", pattern: "MH-LL-HM-LM-LM", discipline: "cs" },
+  { code: "CTNR", pattern: "MH-LM-HH-MH-HL", discipline: "cs" },
+  { code: "RTFM", pattern: "LH-LL-LH-LH-MH", discipline: "cs" },
+  { code: "SPAGG", pattern: "HH-MH-HH-HM-LH", discipline: "cs" },
+  { code: "GPT2", pattern: "HH-HH-HH-HM-MM", discipline: "cs" },
+  { code: "YAML", pattern: "LM-LM-LH-LM-HH", discipline: "cs" },
+  { code: "CONDA", pattern: "MH-MM-HM-MH-HM", discipline: "cs" },
+  { code: "COLAB", pattern: "HM-MM-HH-HM-MH", discipline: "cs" },
+  { code: "LEETC", pattern: "HH-LM-HM-HH-ML", discipline: "cs" },
+  { code: "OVRFT", pattern: "LH-LL-LH-MH-LM", discipline: "cs" },
+  { code: "V2", pattern: "LM-LL-LH-LM-MH", discipline: "cs" },
+  { code: "CHMOD", pattern: "MM-MM-LM-ML-HH", discipline: "cs" },
+  { code: "GC", pattern: "HM-HH-MH-MM-ML", discipline: "cs" },
+  { code: "PING2", pattern: "LM-MM-HM-LM-HH", discipline: "cs" },
 ];
     const DIM_EXPLANATIONS = {
   "R1": {
